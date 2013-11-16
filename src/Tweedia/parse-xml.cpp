@@ -27,22 +27,29 @@
 
 ParseXml::ParseXml()
 {
+
 }
 
 bool ParseXml::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts)
 {
+    if (qName == "stdin")
+    {
+        command->settype(cm_stdin);
+    }
 
     return true;
 }
 
 bool ParseXml::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
+    exec->submitCommand(command);
 
     return true;
 }
 
 bool ParseXml::characters(const QString &ch)
 {
+    command->setInputstring(ch);
 
     return true;
 }

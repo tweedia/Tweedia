@@ -34,6 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    handler.setCommand(&command);
+
+    reader.setContentHandler(&handler);
+    reader.setErrorHandler(&handler);
+
     db = QSqlDatabase::addDatabase("QPSQL");
     db.setHostName("localhost");
     db.setDatabaseName("postgres");
@@ -115,9 +120,18 @@ void MainWindow::on_actionOpen_textview_triggered()
     txtvwStdout1->show();
 }
 
+void MainWindow::on_pushButton_clicked()
+{
+    handler.setExecobjobj(obsobj->findExecObsobj(ui->tableView->currentIndex().row()));
+    inputSource.setData(ui->plainTextEdit->toPlainText());
+
+    reader.parse(inputSource);
+
+}
 
 
 
 
 /* References, Quotation:
  */
+

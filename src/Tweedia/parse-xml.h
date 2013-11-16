@@ -28,10 +28,16 @@
 
 #include <QXmlDefaultHandler>
 
+#include "command.h"
+#include "exec-obsobj.h"
+
 class ParseXml : public QXmlDefaultHandler
 {
 public:
     ParseXml();
+
+    void setCommand(Command *arg){command=arg;}
+    void setExecobjobj(ExecObsobj *arg){exec=arg;}
 
     bool startElement(const QString &namespaceURI,
                       const QString &localName,
@@ -45,6 +51,9 @@ public:
 
 private:
     QString currentText;
+
+    Command* command;
+    ExecObsobj* exec;
 
 };
 

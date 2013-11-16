@@ -26,6 +26,8 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include <QString>
+
 /* Command Types: */    // ref.1
 enum command_type       // ref.1
 {
@@ -39,10 +41,18 @@ class Command
 public:
     Command();
 
+    command_type gettype(){return type;}
+    void settype(command_type arg){type=arg;}
+
+    QString Inputstring(){return mInputstring;}
+    void setInputstring(QString arg){mInputstring=arg;}
+
 protected:
     command_type type;  // ref.1
     int flags;          // ref.1
     int line;			// ref.1
+
+    QString mInputstring;
 
 };
 

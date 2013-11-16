@@ -28,7 +28,10 @@
 
 #include <QMainWindow>
 #include <QSqlDatabase>
+#include <QXmlSimpleReader>
 
+#include "command.h"
+#include "parse-xml.h"
 #include "obsobj.h"
 #include "mdichild/txtvw-stdout.h"
 
@@ -61,8 +64,15 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+
+    Command command;
+    QXmlInputSource inputSource;
+    QXmlSimpleReader reader;
+    ParseXml handler;
 
     QSqlDatabase db;
     Obsobj *obsobj;

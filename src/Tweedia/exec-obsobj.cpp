@@ -99,8 +99,15 @@ QByteArray ExecObsobj::ResultWhereMaxid()
     return mResultWhereMaxid;
 }
 
-void submitCommand(Command *command)
+void ExecObsobj::submitCommand(Command *command)
 {
+    command_type type = command->gettype();
+
+    if (type == cm_stdin)
+    {
+        mProcess->write(command->Inputstring().toAscii());
+//        mProcess->closeWriteChannel();
+    }
 
 }
 
