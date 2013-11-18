@@ -106,6 +106,7 @@ void MainWindow::on_actionStart_process_triggered()
 {
 //    obsobj->startProcess(ui->tableView->currentIndex().row());
     obsobj->startExecObsobj(ui->tableView->currentIndex().row());
+    MainWindow::on_actionOpen_textview_triggered();
 }
 
 void MainWindow::on_actionRefreash_triggered()
