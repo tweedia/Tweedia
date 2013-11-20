@@ -141,6 +141,8 @@ void ExecObsobj::saveresult()
     mTable->setData(mTable->index(row,1),mOutputbuffer.constData());
     mTable->submitAll();
 
+    ExecObsobj::DatabaseUpdated();
+
 }
 
 void ExecObsobj::processFinished(int exitCode, QProcess::ExitStatus exitStatus) // ref.3

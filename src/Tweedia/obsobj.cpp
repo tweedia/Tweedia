@@ -94,7 +94,7 @@ QString Obsobj::Argument(int row)
 void Obsobj::newExecObsobj(int argId)
 {
     ExecObsobj *app = new ExecObsobj(argId, this->database(), this);
-    mAppvec.append(app);
+    mExecObsobjs.append(app);
 
     mErrcode = OBSOBJ_RC_NOERROR;
 }
@@ -120,18 +120,38 @@ void Obsobj::stopExecObsobj(int row)
     theThread->stop();
 }
 
+void Obsobj::connectToAllExecObsobj(QObject *mdichild,  const char* method)
+{
+    QListIterator<ExecObsobj*> i(mExecObsobjs);
+    while (i.hasNext())
+        QObject::connect(i.next(), SIGNAL(DatabaseUpdated()), mdichild, method);
+}
+
 ExecObsobj* Obsobj::findExecObsobjById(int argId)
 {
     mErrcode = OBSOBJ_RC_FAILEDTOFIND;
     ExecObsobj* ret = 0;
     int theId;
-    int nthreads = mAppvec.count();
-    for (int i=0; i<nthreads; i++)
+//    int nthreads = mExecObsobjs.count();
+//    for (int i=0; i<nthreads; i++)
+//    {
+//        theId = mAppvec[i]->Id();
+//        if (theId == argId)
+//        {
+//            ret = mAppvec[i];
+//            mErrcode = OBSOBJ_RC_NOERROR;
+//            break;
+//        }
+//    }
+    ExecObsobj* wkobj;
+    QListIterator<ExecObsobj*> i(mExecObsobjs);
+    while (i.hasNext())
     {
-        theId = mAppvec[i]->Id();
+        wkobj = i.next();
+        theId = wkobj->Id();
         if (theId == argId)
         {
-            ret = mAppvec[i];
+            ret = wkobj;
             mErrcode = OBSOBJ_RC_NOERROR;
             break;
         }

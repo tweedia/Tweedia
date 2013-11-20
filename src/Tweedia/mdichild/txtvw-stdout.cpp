@@ -65,6 +65,10 @@ void TxtvwStdout::on_pushButton_clicked()
     refreashWithRowOfTableView();
 }
 
+void TxtvwStdout::on_DatabaseUpdated()
+{
+    TxtvwStdout::refreashWithRowOfTableView();
+}
 
 /* References, Quotation:
  */

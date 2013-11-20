@@ -30,7 +30,7 @@
 #include <QFileInfo>
 #include <QSqlQuery>
 #include <QString>
-#include <QVector>
+#include <QList>
 
 #include "log.h"
 #include "exec-obsobj.h"
@@ -60,6 +60,8 @@ public:
     void startExecObsobj(int row);
     void stopExecObsobj(int row);
 
+    void connectToAllExecObsobj(QObject *mdichild, const char* method);
+
 //    void startProcess(int row);
 
 protected:
@@ -73,7 +75,7 @@ protected:
     QString mTableExpected;
     QString mArgument;
 
-    QVector<ExecObsobj*> mAppvec;
+    QList<ExecObsobj*> mExecObsobjs;
     ExecObsobj* findExecObsobjById(int argId);
 
 //    QProcess *mProcess;

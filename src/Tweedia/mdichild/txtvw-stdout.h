@@ -47,6 +47,9 @@ public:
 
     void refreashWithRowOfTableView();
 
+public slots:
+    void on_DatabaseUpdated();
+
 private slots:
     void on_pushButton_clicked();
 

@@ -81,6 +81,7 @@ private:
     QByteArray mResultWhereMaxid;
 
 signals:
+    void DatabaseUpdated();
 
 public slots:
 

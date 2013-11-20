@@ -29,6 +29,8 @@
 #include <QMainWindow>
 #include <QSqlDatabase>
 #include <QXmlSimpleReader>
+#include <QWidget>
+#include <QList>
 
 #include "command.h"
 #include "parse-xml.h"
@@ -48,6 +50,7 @@ public:
     ~MainWindow();
 
     void on_focused_ptnapp_output();
+    QList<QWidget*> *Mdichilds(){return mdichilds;}
 
 private slots:
     void on_actionNamed_pipe_triggered();
@@ -78,6 +81,8 @@ private:
     Obsobj *obsobj;
 
     QString bufActualText;
+
+    QList<QWidget*> *mdichilds;
 
 };
 

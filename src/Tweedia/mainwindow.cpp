@@ -47,10 +47,14 @@ MainWindow::MainWindow(QWidget *parent) :
     obsobj = new Obsobj(this, db);
     ui->tableView->setModel(obsobj);
 
+    mdichilds = new QList<QWidget*>;
+
 }
 
 MainWindow::~MainWindow()
 {
+    delete mdichilds;
+
     delete obsobj;
     db.close();
 
@@ -118,6 +122,8 @@ void MainWindow::on_actionOpen_textview_triggered()
 {
     TxtvwStdout *txtvwStdout1 = new TxtvwStdout(this, obsobj, ui->tableView->currentIndex().row());
     ui->mdiArea->addSubWindow(txtvwStdout1);
+    mdichilds->append(txtvwStdout1);
+    obsobj->connectToAllExecObsobj(txtvwStdout1, SLOT(on_DatabaseUpdated()));
     txtvwStdout1->show();
 }
 
