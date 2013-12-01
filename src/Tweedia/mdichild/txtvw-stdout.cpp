@@ -70,5 +70,21 @@ void TxtvwStdout::on_DatabaseUpdated()
     TxtvwStdout::refreashWithRowOfTableView();
 }
 
+void TxtvwStdout::on_spinBox_valueChanged(int arg1)
+{
+    mExecObsobj = mObsobj->updatedExecObsobj(mRowOfTableView);
+
+    ui->lblTableName->setText(mExecObsobj->Tablename());
+//    ui->spinBox->setValue(mExecObsobj->Maxid());
+
+    // Cast for QString
+    mValueAsQString.clear();
+    mValueAsQString.append(mExecObsobj->ResultWhereTheid(arg1));
+
+    ui->textBrowser->setText(mValueAsQString);
+
+}
+
 /* References, Quotation:
  */
+

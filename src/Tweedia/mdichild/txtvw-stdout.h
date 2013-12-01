@@ -53,6 +53,8 @@ public slots:
 private slots:
     void on_pushButton_clicked();
 
+    void on_spinBox_valueChanged(int arg1);
+
 private:
     Ui::TxtvwStdout *ui;
 
