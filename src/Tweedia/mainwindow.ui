@@ -133,12 +133,10 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuObsobj">
+   <widget class="QMenu" name="menuRun">
     <property name="title">
-     <string>Obsobj</string>
+     <string>Run</string>
     </property>
-    <addaction name="actionNewObsobj"/>
-    <addaction name="actionDeleteObsobj"/>
     <addaction name="actionRunObsobj"/>
    </widget>
    <widget class="QMenu" name="menuTest">
@@ -150,7 +148,39 @@
     </property>
     <addaction name="actionOpen_TextView"/>
    </widget>
-   <addaction name="menuObsobj"/>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNewObsobj"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionDeleteObsobj"/>
+   </widget>
+   <widget class="QMenu" name="menuWindow">
+    <property name="title">
+     <string>Window</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuRun"/>
+   <addaction name="menuWindow"/>
+   <addaction name="menuHelp"/>
    <addaction name="menuTest"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -194,17 +224,17 @@
   </action>
   <action name="actionNewObsobj">
    <property name="text">
-    <string>New</string>
+    <string>New Obsobj</string>
    </property>
   </action>
   <action name="actionDeleteObsobj">
    <property name="text">
-    <string>Delete</string>
+    <string>Delete Obsobj</string>
    </property>
   </action>
   <action name="actionRunObsobj">
    <property name="text">
-    <string>Run</string>
+    <string>Run Obsobj</string>
    </property>
   </action>
   <action name="actionOpen_TextView">
