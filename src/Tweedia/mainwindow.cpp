@@ -62,8 +62,24 @@ MainWindow::~MainWindow()
 
 }
 
+bool MainWindow::ChkTableView()
+{
+    bool ret = ui->tableView->currentIndex().isValid();
+
+    if (ret == false)
+    {
+        QMessageBox msgBox(this);
+//        msgBox.setWindowTitle(tr("Warning"));
+        msgBox.setText(tr("You can't do this action before opening DB."));
+        msgBox.exec();
+    }
+
+    return ret;
+}
+
 void MainWindow::NewObsobj()
 {
+    if (ChkTableView() == false) return;
     QString pathname = QFileDialog::getOpenFileName(
                 this,
                 tr("Open Executable File")
@@ -77,11 +93,13 @@ void MainWindow::NewObsobj()
 
 void MainWindow::DeleteObsobj()
 {
+    if (ChkTableView() == false) return;
     obsobj->delObsobj(ui->tableView->currentIndex().row());
 }
 
 void MainWindow::RunObsobj()
 {
+    if (ChkTableView() == false) return;
 //    obsobj->startProcess(ui->tableView->currentIndex().row());
     obsobj->startExecObsobj(ui->tableView->currentIndex().row());
     MainWindow::OpenTextview();
@@ -89,6 +107,7 @@ void MainWindow::RunObsobj()
 
 void MainWindow::OpenTextview()
 {
+    if (ChkTableView() == false) return;
     TxtvwStdout *txtvwStdout1 = new TxtvwStdout(this, obsobj, ui->tableView->currentIndex().row());
     ui->mdiArea->addSubWindow(txtvwStdout1);
     mdichilds->append(txtvwStdout1);
@@ -101,14 +120,6 @@ void MainWindow::on_pushButton_3_clicked()
 {
     MainWindow::NewObsobj();
 }
-
-void MainWindow::on_focused_ptnapp_output()
-{
-//    bufActualText = QString::QString(obsobj->ExecObsobj(ui->tableView->currentIndex().row())->Outputbuffer().constData());
-//    ui->lineEdit->setText(bufActualText);
-}
-
-
 
 void MainWindow::on_pushButton_clicked()
 {
