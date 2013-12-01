@@ -86,7 +86,7 @@ bool MainWindow::ChkTableView()
     {
         QMessageBox msgBox(this);
 //        msgBox.setWindowTitle(tr("Warning"));
-        msgBox.setText(tr("You can't do this action before opening DB."));
+        msgBox.setText(tr("You can't do this action before selecting Obsobj."));
         msgBox.exec();
     }
 
