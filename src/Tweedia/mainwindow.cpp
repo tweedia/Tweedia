@@ -62,7 +62,7 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::NewObsobj()
 {
     QString pathname = QFileDialog::getOpenFileName(
                 this,
@@ -75,57 +75,40 @@ void MainWindow::on_pushButton_3_clicked()
 
 }
 
-void MainWindow::on_focused_ptnapp_output()
-{
-//    bufActualText = QString::QString(obsobj->ExecObsobj(ui->tableView->currentIndex().row())->Outputbuffer().constData());
-//    ui->lineEdit->setText(bufActualText);
-}
-
-void MainWindow::on_actionNamed_pipe_triggered()
-{
-//    if (pCmdDriver->isRunning())
-//    {
-//        pCmdDriver->stop();
-//    }
-//    else
-//    {
-//        pCmdDriver->start();
-//    }
-
-}
-
-void MainWindow::on_actionLoad_plugin_triggered()
-{
-    QFileDialog *dialog = new QFileDialog();
-    dialog->show();
-
-}
-
-void MainWindow::on_actionDelete_observation_triggered()
+void MainWindow::DeleteObsobj()
 {
     obsobj->delObsobj(ui->tableView->currentIndex().row());
 }
 
-void MainWindow::on_actionStart_process_triggered()
+void MainWindow::RunObsobj()
 {
 //    obsobj->startProcess(ui->tableView->currentIndex().row());
     obsobj->startExecObsobj(ui->tableView->currentIndex().row());
-    MainWindow::on_actionOpen_textview_triggered();
+    MainWindow::OpenTextview();
 }
 
-void MainWindow::on_actionRefreash_triggered()
-{
-    MainWindow::on_focused_ptnapp_output();
-}
-
-void MainWindow::on_actionOpen_textview_triggered()
+void MainWindow::OpenTextview()
 {
     TxtvwStdout *txtvwStdout1 = new TxtvwStdout(this, obsobj, ui->tableView->currentIndex().row());
     ui->mdiArea->addSubWindow(txtvwStdout1);
     mdichilds->append(txtvwStdout1);
     obsobj->connectToAllExecObsobj(txtvwStdout1, SLOT(on_DatabaseUpdated()));
     txtvwStdout1->show();
+
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    MainWindow::NewObsobj();
+}
+
+void MainWindow::on_focused_ptnapp_output()
+{
+//    bufActualText = QString::QString(obsobj->ExecObsobj(ui->tableView->currentIndex().row())->Outputbuffer().constData());
+//    ui->lineEdit->setText(bufActualText);
+}
+
+
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -135,6 +118,27 @@ void MainWindow::on_pushButton_clicked()
     reader.parse(inputSource);
 
 }
+
+void MainWindow::on_actionNewObsobj_triggered()
+{
+    MainWindow::NewObsobj();
+}
+
+void MainWindow::on_actionDeleteObsobj_triggered()
+{
+    MainWindow::DeleteObsobj();
+}
+
+void MainWindow::on_actionRunObsobj_triggered()
+{
+    MainWindow::RunObsobj();
+}
+
+void MainWindow::on_actionOpen_TextView_triggered()
+{
+    MainWindow::OpenTextview();
+}
+
 
 
 

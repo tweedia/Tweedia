@@ -53,23 +53,25 @@ public:
     QList<QWidget*> *Mdichilds(){return mdichilds;}
 
 private slots:
-    void on_actionNamed_pipe_triggered();
-
-    void on_actionLoad_plugin_triggered();
-
-    void on_actionDelete_observation_triggered();
-
-    void on_actionStart_process_triggered();
-
-    void on_actionRefreash_triggered();
-
-    void on_actionOpen_textview_triggered();
 
     void on_pushButton_3_clicked();
 
     void on_pushButton_clicked();
 
+    void on_actionNewObsobj_triggered();
+
+    void on_actionDeleteObsobj_triggered();
+
+    void on_actionRunObsobj_triggered();
+
+    void on_actionOpen_TextView_triggered();
+
 private:
+    void NewObsobj();
+    void DeleteObsobj();
+    void RunObsobj();
+    void OpenTextview();
+
     Ui::MainWindow *ui;
 
     Command command;

@@ -133,17 +133,25 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuTools">
+   <widget class="QMenu" name="menuObsobj">
     <property name="title">
-     <string>Tools</string>
+     <string>Obsobj</string>
     </property>
-    <addaction name="actionNamed_pipe"/>
-    <addaction name="actionDelete_observation"/>
-    <addaction name="actionStart_process"/>
-    <addaction name="actionRefreash"/>
-    <addaction name="actionOpen_textview"/>
+    <addaction name="actionNewObsobj"/>
+    <addaction name="actionDeleteObsobj"/>
+    <addaction name="actionRunObsobj"/>
    </widget>
-   <addaction name="menuTools"/>
+   <widget class="QMenu" name="menuTest">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>Test</string>
+    </property>
+    <addaction name="actionOpen_TextView"/>
+   </widget>
+   <addaction name="menuObsobj"/>
+   <addaction name="menuTest"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -182,6 +190,26 @@
   <action name="actionOpen_textview">
    <property name="text">
     <string>open textview</string>
+   </property>
+  </action>
+  <action name="actionNewObsobj">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="actionDeleteObsobj">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+  </action>
+  <action name="actionRunObsobj">
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="actionOpen_TextView">
+   <property name="text">
+    <string>Open TextView</string>
    </property>
   </action>
  </widget>
