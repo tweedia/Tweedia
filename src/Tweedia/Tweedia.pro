@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     parse-xml.cpp \
     command.cpp \
     exec-obsobj.cpp \
-    mdichild/txtvw-stdout.cpp
+    mdichild/txtvw-stdout.cpp \
+    open-db.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -49,7 +50,9 @@ HEADERS  += mainwindow.h \
     log.h \
     obsobj.h \
     parse-xml.h \
-    mdichild/txtvw-stdout.h
+    mdichild/txtvw-stdout.h \
+    open-db.h
 
 FORMS    += mainwindow.ui \
-    mdichild/txtvw-stdout.ui
+    mdichild/txtvw-stdout.ui \
+    open-db.ui

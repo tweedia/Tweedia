@@ -39,14 +39,6 @@ MainWindow::MainWindow(QWidget *parent) :
     reader.setContentHandler(&handler);
     reader.setErrorHandler(&handler);
 
-    db = QSqlDatabase::addDatabase("QPSQL");
-    db.setHostName("localhost");
-    db.setDatabaseName("postgres");
-    db.open();
-
-    obsobj = new Obsobj(this, db);
-    ui->tableView->setModel(obsobj);
-
     mdichilds = new QList<QWidget*>;
 
 }
@@ -93,8 +85,27 @@ bool MainWindow::ChkTableView()
     return ret;
 }
 
+void MainWindow::OpenDatabase()
 {
-    if (ChkTableView() == false) return;
+    OpenDb dialog(this);
+    dialog.exec();
+
+    if (dialog.result() == OpenDb::Accepted)
+    {
+        QString dbms(dialog.Dbmsname());
+        db = QSqlDatabase::addDatabase(dbms);
+        db.setHostName(dialog.Hostname());
+        db.setPort(dialog.Port());
+        db.setDatabaseName(dialog.Dbname());
+        db.open();
+
+        obsobj = new Obsobj(this, db);
+        ui->tableView->setModel(obsobj);
+
+    }
+
+}
+
 void MainWindow::AddObsobj()
 {
     if (ChkOpenDatabase() == false) return;
@@ -120,7 +131,7 @@ void MainWindow::RunObsobj()
     if (ChkTableView() == false) return;
 //    obsobj->startProcess(ui->tableView->currentIndex().row());
     obsobj->startExecObsobj(ui->tableView->currentIndex().row());
-    MainWindow::OpenTextview();
+    this->OpenTextview();
 }
 
 void MainWindow::OpenTextview()
@@ -148,7 +159,11 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
+void MainWindow::on_actionOpenDatabase_triggered()
 {
+    this->OpenDatabase();
+}
+
 void MainWindow::on_actionAddObsobj_triggered()
 {
     this->AddObsobj();
@@ -156,17 +171,17 @@ void MainWindow::on_actionAddObsobj_triggered()
 
 void MainWindow::on_actionDeleteObsobj_triggered()
 {
-    MainWindow::DeleteObsobj();
+    this->DeleteObsobj();
 }
 
 void MainWindow::on_actionRunObsobj_triggered()
 {
-    MainWindow::RunObsobj();
+    this->RunObsobj();
 }
 
 void MainWindow::on_actionOpen_TextView_triggered()
 {
-    MainWindow::OpenTextview();
+    this->OpenTextview();
 }
 
 

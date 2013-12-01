@@ -152,6 +152,7 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionOpenDatabase"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -240,6 +241,11 @@
   <action name="actionOpen_TextView">
    <property name="text">
     <string>Open TextView</string>
+   </property>
+  </action>
+  <action name="actionOpenDatabase">
+   <property name="text">
+    <string>Open Database</string>
    </property>
   </action>
  </widget>

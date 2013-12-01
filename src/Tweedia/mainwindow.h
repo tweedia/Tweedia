@@ -36,6 +36,7 @@
 #include "command.h"
 #include "parse-xml.h"
 #include "obsobj.h"
+#include "open-db.h"
 #include "mdichild/txtvw-stdout.h"
 
 namespace Ui {
@@ -65,7 +66,11 @@ private slots:
 
     void on_actionOpen_TextView_triggered();
 
+    void on_actionOpenDatabase_triggered();
+
 private:
+    void OpenDatabase();
+
     void AddObsobj();
     void DeleteObsobj();
     void RunObsobj();
