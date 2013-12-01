@@ -49,6 +49,8 @@ public:
     int Maxid();
     QByteArray ResultWhereMaxid();
     int Id(){return mId;}
+    QByteArray ResultWhereTheid(int id);
+    QByteArray ResultWhereTheid(QString strid);
     QString Pathname(){return mPathname;}
     void setPathname(QString arg){mPathname=arg;}
     QString Argument(){return mArgument;}
@@ -75,10 +77,10 @@ private:
 
     QSqlTableModel *mTable;
     QString mSqlSelectmaxid;
-    QString mSqlSelectresultwheremaxid;
+    QString mSqlSelectresultwheretheid;
 
     QByteArray mOutputbuffer;
-    QByteArray mResultWhereMaxid;
+    QByteArray mResultWhereTheid;
 
 signals:
     void DatabaseUpdated();

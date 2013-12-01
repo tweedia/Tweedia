@@ -31,7 +31,8 @@ Obsobj::Obsobj(QObject *parent, QSqlDatabase db) :
     QSqlTableModel(parent, db)
 {
     mTablename = QString("obsobj");
-    mSqlSelectmaxid = QString("SELECT MAX(id) FROM " + mTablename); // ref.1
+    mSqlSelectmaxid = QString("SELECT MAX(id) FROM "); // ref.1
+    mSqlSelectmaxid.append(mTablename);
 
     mTableActual = QString();
     mTableExpected = QString();
