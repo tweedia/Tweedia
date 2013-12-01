@@ -59,14 +59,14 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_actionNewObsobj_triggered();
+    void on_actionAddObsobj_triggered();
     void on_actionDeleteObsobj_triggered();
     void on_actionRunObsobj_triggered();
 
     void on_actionOpen_TextView_triggered();
 
 private:
-    void NewObsobj();
+    void AddObsobj();
     void DeleteObsobj();
     void RunObsobj();
 

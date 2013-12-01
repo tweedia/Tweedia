@@ -77,9 +77,11 @@ bool MainWindow::ChkTableView()
     return ret;
 }
 
-void MainWindow::NewObsobj()
 {
     if (ChkTableView() == false) return;
+void MainWindow::AddObsobj()
+{
+    if (ChkOpenDatabase() == false) return;
     QString pathname = QFileDialog::getOpenFileName(
                 this,
                 tr("Open Executable File")
@@ -118,7 +120,7 @@ void MainWindow::OpenTextview()
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    MainWindow::NewObsobj();
+    this->AddObsobj();
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -130,9 +132,10 @@ void MainWindow::on_pushButton_clicked()
 
 }
 
-void MainWindow::on_actionNewObsobj_triggered()
 {
-    MainWindow::NewObsobj();
+void MainWindow::on_actionAddObsobj_triggered()
+{
+    this->AddObsobj();
 }
 
 void MainWindow::on_actionDeleteObsobj_triggered()
