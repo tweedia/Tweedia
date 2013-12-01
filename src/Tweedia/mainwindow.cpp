@@ -62,6 +62,22 @@ MainWindow::~MainWindow()
 
 }
 
+bool MainWindow::ChkOpenDatabase()
+{
+    QObject *ret = (QObject*)ui->tableView->model();
+    if (ret == NULL)
+    {
+        QMessageBox msgBox(this);
+//        msgBox.setWindowTitle(tr("Warning"));
+        msgBox.setText(tr("You can't do this action before opening Database."));
+        msgBox.exec();
+        return false;
+    }
+
+    return true;
+
+}
+
 bool MainWindow::ChkTableView()
 {
     bool ret = ui->tableView->currentIndex().isValid();

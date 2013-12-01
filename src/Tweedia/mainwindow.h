@@ -72,6 +72,7 @@ private:
 
     void OpenTextview();
 
+    bool ChkOpenDatabase();
     bool ChkTableView();
 
     Ui::MainWindow *ui;
