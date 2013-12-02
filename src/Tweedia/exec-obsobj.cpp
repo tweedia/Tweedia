@@ -35,9 +35,9 @@ ExecObsobj::ExecObsobj(int id, QSqlDatabase db, QObject *parent) :
     mId = id;
     mProcess = new QProcess(this);
 
-    connect(mProcess, SIGNAL(readyRead()), this, SLOT(saveresult()));
-//    connect(mProcess, SIGNAL(readyReadStandardOutput()),
-//            this, SLOT(saveresult()));                                  // ref.2
+//    connect(mProcess, SIGNAL(readyRead()), this, SLOT(saveresult()));
+    connect(mProcess, SIGNAL(readyReadStandardOutput()),
+            this, SLOT(saveresult()));                                  // ref.2
     connect(mProcess, SIGNAL(finished(int, QProcess::ExitStatus)),
             this, SLOT(processFinished(int, QProcess::ExitStatus)));    // ref.2
     connect(mProcess, SIGNAL(error(QProcess::ProcessError)),
@@ -140,10 +140,20 @@ void ExecObsobj::start()
 {
     mLog->WriteLog(LOG_NOTICE, "ExecObsobj started.");
 
+    QString *msg = new QString();
+    msg->clear();
+    msg->append("mPathname: " );
+    msg->append(mPathname);
+    mLog->WriteLog(LOG_NOTICE, msg->toAscii().constData());
+    msg->clear();
+    msg->append("mArgument: ");
+    msg->append(mArgument);
+    mLog->WriteLog(LOG_NOTICE, msg->toAscii().constData());
+
     if (!m_running)
     {
         m_running = true;
-        mProcess->start(mPathname);
+        mProcess->start(mPathname, QStringList() << mArgument);
     }
 
     mLog->WriteLog(LOG_NOTICE, "ExecObsobj ended.");
