@@ -27,6 +27,7 @@
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
+#include <QFile>
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -177,6 +178,32 @@ void MainWindow::RunObsobj()
     this->OpenTextview();
 }
 
+void MainWindow::OpenCommand()
+{
+    QString pathname = QFileDialog::getOpenFileName(
+                this,
+                tr("Open Command File")
+                );
+
+    if (!pathname.isEmpty()) {
+        QFile file(pathname, this);
+        if (!file.open(QIODevice::ReadOnly|QIODevice::Text))
+        {
+            file.close();
+            QMessageBox dialog(this);
+            dialog.setWindowTitle(tr("Error"));
+            dialog.setText(tr("Failed opening file."));
+            dialog.setStandardButtons(QMessageBox::Ok);
+            dialog.exec();
+            return;
+        }
+        ui->plainTextEdit->clear();
+        ui->plainTextEdit->appendPlainText(QString(file.readAll().constData()));
+        file.close();
+    }
+
+}
+
 void MainWindow::OpenTextview()
 {
     if (ChkTableView() == false) return;
@@ -188,11 +215,6 @@ void MainWindow::OpenTextview()
 
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-    this->AddObsobj();
-}
-
 void MainWindow::on_pushButton_clicked()
 {
     handler.setExecobjobj(obsobj->findExecObsobj(ui->tableView->currentIndex().row()));
@@ -200,6 +222,16 @@ void MainWindow::on_pushButton_clicked()
 
     reader.parse(inputSource);
 
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    this->OpenCommand();
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    this->AddObsobj();
 }
 
 void MainWindow::on_actionOpenDatabase_triggered()
@@ -242,6 +274,7 @@ void MainWindow::on_actionInitialize_Database_triggered()
 
 /* References, Quotation:
  */
+
 
 
 

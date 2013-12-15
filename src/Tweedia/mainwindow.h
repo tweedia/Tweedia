@@ -56,9 +56,9 @@ public:
 
 private slots:
 
-    void on_pushButton_3_clicked();
-
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButton_3_clicked();
 
     void on_actionAddObsobj_triggered();
     void on_actionDeleteObsobj_triggered();
@@ -67,8 +67,8 @@ private slots:
     void on_actionOpen_TextView_triggered();
 
     void on_actionOpenDatabase_triggered();
-
     void on_actionInitialize_Database_triggered();
+
 
 private:
     bool OpenDatabase();
@@ -78,6 +78,8 @@ private:
     void AddObsobj();
     void DeleteObsobj();
     void RunObsobj();
+
+    void OpenCommand();
 
     void OpenTextview();
 
