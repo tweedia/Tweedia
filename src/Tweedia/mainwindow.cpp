@@ -136,7 +136,7 @@ void MainWindow::InitializeDatabase()
 
     QMessageBox dialog(this);
     dialog.setWindowTitle(tr("Confirmation"));
-    dialog.setText(tr("Obsobj will be recreated. Continue?"));
+    dialog.setText(tr("Obsobj will be cleared. Continue?"));
     dialog.setStandardButtons(QMessageBox::Cancel|QMessageBox::Ok);
     dialog.exec();
     if (dialog.result() != QMessageBox::Ok) return;
