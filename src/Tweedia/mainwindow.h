@@ -80,6 +80,7 @@ private:
     void RunObsobj();
 
     void OpenCommand();
+    void SubmitCommand();
 
     void OpenTextview();
 

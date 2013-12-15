@@ -204,6 +204,17 @@ void MainWindow::OpenCommand()
 
 }
 
+void MainWindow::SubmitCommand()
+{
+    if (ChkOpenDatabase() == false) return;
+
+    handler.setExecobjobj(obsobj->findExecObsobj(ui->tableView->currentIndex().row()));
+    inputSource.setData(ui->plainTextEdit->toPlainText());
+
+    reader.parse(inputSource);
+
+}
+
 void MainWindow::OpenTextview()
 {
     if (ChkTableView() == false) return;
@@ -217,11 +228,7 @@ void MainWindow::OpenTextview()
 
 void MainWindow::on_pushButton_clicked()
 {
-    handler.setExecobjobj(obsobj->findExecObsobj(ui->tableView->currentIndex().row()));
-    inputSource.setData(ui->plainTextEdit->toPlainText());
-
-    reader.parse(inputSource);
-
+    this->SubmitCommand();
 }
 
 void MainWindow::on_pushButton_2_clicked()
