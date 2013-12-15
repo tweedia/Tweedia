@@ -153,6 +153,7 @@
      <string>File</string>
     </property>
     <addaction name="actionOpenDatabase"/>
+    <addaction name="actionInitialize_Database"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -246,6 +247,11 @@
   <action name="actionOpenDatabase">
    <property name="text">
     <string>Open Database</string>
+   </property>
+  </action>
+  <action name="actionInitialize_Database">
+   <property name="text">
+    <string>Initialize Database</string>
    </property>
   </action>
  </widget>

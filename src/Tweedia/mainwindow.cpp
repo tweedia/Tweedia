@@ -106,6 +106,18 @@ void MainWindow::OpenDatabase()
 
 }
 
+void MainWindow::InitializeDatabase()
+{
+    OpenDb dialog(this);
+    dialog.exec();
+
+    if (dialog.result() == OpenDb::Accepted)
+    {
+
+    }
+
+}
+
 void MainWindow::AddObsobj()
 {
     if (ChkOpenDatabase() == false) return;
@@ -184,10 +196,18 @@ void MainWindow::on_actionOpen_TextView_triggered()
     this->OpenTextview();
 }
 
+void MainWindow::on_actionInitialize_Database_triggered()
+{
+    this->InitializeDatabase();
+}
+
+
 
 
 
 
 /* References, Quotation:
  */
+
+
 

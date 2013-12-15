@@ -68,8 +68,11 @@ private slots:
 
     void on_actionOpenDatabase_triggered();
 
+    void on_actionInitialize_Database_triggered();
+
 private:
     void OpenDatabase();
+    void InitializeDatabase();
 
     void AddObsobj();
     void DeleteObsobj();
