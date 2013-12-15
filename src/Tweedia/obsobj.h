@@ -43,6 +43,7 @@ class Obsobj : public QSqlTableModel
     Q_OBJECT
 public:
     explicit Obsobj(QObject *parent = 0, QSqlDatabase db = QSqlDatabase());
+    ~Obsobj();
 
     int Errcode(){return mErrcode;}
     int Maxid();

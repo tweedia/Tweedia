@@ -54,6 +54,11 @@ Obsobj::Obsobj(QObject *parent, QSqlDatabase db) :
     mErrcode = OBSOBJ_RC_NOERROR;
 }
 
+Obsobj::~Obsobj()
+{
+    delete mLog;
+}
+
 int Obsobj::Maxid()
 {
     mErrcode = OBSOBJ_RC_NOERROR;
