@@ -27,6 +27,7 @@
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,6 +40,18 @@ MainWindow::MainWindow(QWidget *parent) :
     reader.setContentHandler(&handler);
     reader.setErrorHandler(&handler);
 
+    mSqlDropObsobj = QString("DROP TABLE obsobj");
+    mSqlCreateObsobj = QString("CREATE TABLE obsobj");
+    mSqlCreateObsobj.append("(");
+    mSqlCreateObsobj.append("id integer NOT NULL,");
+    mSqlCreateObsobj.append("file_name character varying,");
+    mSqlCreateObsobj.append("path_name character varying,");
+    mSqlCreateObsobj.append("argument character varying,");
+    mSqlCreateObsobj.append("table_actual character varying,");
+    mSqlCreateObsobj.append("table_expected character varying,");
+    mSqlCreateObsobj.append("CONSTRAINT obsobj_pkey PRIMARY KEY (id)");
+    mSqlCreateObsobj.append(")");
+
     mdichilds = new QList<QWidget*>;
 
 }
@@ -47,7 +60,7 @@ MainWindow::~MainWindow()
 {
     delete mdichilds;
 
-    delete obsobj;
+//    delete obsobj;
     db.close();
 
     delete ui;
@@ -85,7 +98,7 @@ bool MainWindow::ChkTableView()
     return ret;
 }
 
-void MainWindow::OpenDatabase()
+bool MainWindow::OpenDatabase()
 {
     OpenDb dialog(this);
     dialog.exec();
@@ -98,23 +111,41 @@ void MainWindow::OpenDatabase()
         db.setPort(dialog.Port());
         db.setDatabaseName(dialog.Dbname());
         db.open();
-
-        obsobj = new Obsobj(this, db);
-        ui->tableView->setModel(obsobj);
+        if (db.isOpen()) return true;
+        db.close();
 
     }
+
+    return false;
+}
+
+void MainWindow::OpenObsobj()
+{
+//    delete obsobj;
+    obsobj = new Obsobj(this, db);
+    ui->tableView->setModel(obsobj);
 
 }
 
 void MainWindow::InitializeDatabase()
 {
-    OpenDb dialog(this);
-    dialog.exec();
-
-    if (dialog.result() == OpenDb::Accepted)
+    if (ChkOpenDatabase() != true)
     {
-
+        if (this->OpenDatabase() != true) return;
     }
+
+    QMessageBox dialog(this);
+    dialog.setWindowTitle(tr("Confirmation"));
+    dialog.setText(tr("Obsobj will be recreated. Continue?"));
+    dialog.setStandardButtons(QMessageBox::Cancel|QMessageBox::Ok);
+    dialog.exec();
+    if (dialog.result() != QMessageBox::Ok) return;
+
+    QSqlQuery query(db);
+    query.exec((const QString)mSqlDropObsobj);
+    query.exec((const QString)mSqlCreateObsobj);
+
+    this->OpenObsobj();
 
 }
 
@@ -173,7 +204,10 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_actionOpenDatabase_triggered()
 {
-    this->OpenDatabase();
+    if (this->OpenDatabase() == true)
+    {
+        this->OpenObsobj();
+    }
 }
 
 void MainWindow::on_actionAddObsobj_triggered()

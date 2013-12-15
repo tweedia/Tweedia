@@ -71,7 +71,8 @@ private slots:
     void on_actionInitialize_Database_triggered();
 
 private:
-    void OpenDatabase();
+    bool OpenDatabase();
+    void OpenObsobj();
     void InitializeDatabase();
 
     void AddObsobj();
@@ -92,6 +93,9 @@ private:
 
     QSqlDatabase db;
     Obsobj *obsobj;
+
+    QString mSqlDropObsobj;
+    QString mSqlCreateObsobj;
 
     QString bufActualText;
 
