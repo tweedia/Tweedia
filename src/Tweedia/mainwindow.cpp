@@ -249,6 +249,16 @@ void MainWindow::on_actionOpenDatabase_triggered()
     }
 }
 
+void MainWindow::on_actionInitialize_Database_triggered()
+{
+    this->InitializeDatabase();
+}
+
+void MainWindow::on_actionOpen_Script_triggered()
+{
+    this->OpenCommand();
+}
+
 void MainWindow::on_actionAddObsobj_triggered()
 {
     this->AddObsobj();
@@ -267,11 +277,6 @@ void MainWindow::on_actionRunObsobj_triggered()
 void MainWindow::on_actionOpen_TextView_triggered()
 {
     this->OpenTextview();
-}
-
-void MainWindow::on_actionInitialize_Database_triggered()
-{
-    this->InitializeDatabase();
 }
 
 
