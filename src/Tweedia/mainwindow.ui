@@ -153,9 +153,9 @@
      <string>File</string>
     </property>
     <addaction name="actionOpenDatabase"/>
-    <addaction name="actionOpen_Script"/>
-    <addaction name="actionCreate_ResultTable"/>
     <addaction name="actionCreate_ObsobjTable"/>
+    <addaction name="actionCreate_ResultTable"/>
+    <addaction name="actionOpen_Script"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
