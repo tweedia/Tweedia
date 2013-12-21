@@ -158,6 +158,10 @@ void MainWindow::CreateResultTable()
     DlgCreateResultTable dialog(this);
     dialog.exec();
 
+    if (dialog.result() == DlgCreateResultTable::Accepted)
+    {
+
+    }
 
 
 }
