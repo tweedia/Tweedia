@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     command.cpp \
     exec-obsobj.cpp \
     mdichild/txtvw-stdout.cpp \
-    open-db.cpp
+    open-db.cpp \
+    dlg-create-resulttable.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -51,8 +52,10 @@ HEADERS  += mainwindow.h \
     obsobj.h \
     parse-xml.h \
     mdichild/txtvw-stdout.h \
-    open-db.h
+    open-db.h \
+    dlg-create-resulttable.h
 
 FORMS    += mainwindow.ui \
     mdichild/txtvw-stdout.ui \
-    open-db.ui
+    open-db.ui \
+    dlg-create-resulttable.ui

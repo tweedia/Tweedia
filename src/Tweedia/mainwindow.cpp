@@ -151,6 +151,17 @@ void MainWindow::InitializeDatabase()
 
 }
 
+void MainWindow::CreateResultTable()
+{
+    if (ChkOpenDatabase() != true) return;
+
+    DlgCreateResultTable dialog(this);
+    dialog.exec();
+
+
+
+}
+
 void MainWindow::AddObsobj()
 {
     if (ChkOpenDatabase() == false) return;
@@ -282,7 +293,7 @@ void MainWindow::on_actionOpen_TextView_triggered()
 
 void MainWindow::on_actionCreate_ResultTable_triggered()
 {
-
+    this->CreateResultTable();
 }
 
 

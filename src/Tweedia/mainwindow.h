@@ -37,6 +37,7 @@
 #include "parse-xml.h"
 #include "obsobj.h"
 #include "open-db.h"
+#include "dlg-create-resulttable.h"
 #include "mdichild/txtvw-stdout.h"
 
 namespace Ui {
@@ -76,6 +77,7 @@ private:
     bool OpenDatabase();
     void OpenObsobj();
     void InitializeDatabase();
+    void CreateResultTable();
 
     void AddObsobj();
     void DeleteObsobj();
