@@ -131,10 +131,10 @@ void MainWindow::OpenObsobj()
 
 void MainWindow::InitializeDatabase()
 {
-    if (ChkOpenDatabase() != true)
-    {
-        if (this->OpenDatabase() != true) return;
-    }
+    if (ChkOpenDatabase() != true) return;
+//    {
+//        if (this->OpenDatabase() != true) return;
+//    }
 
     QMessageBox dialog(this);
     dialog.setWindowTitle(tr("Confirmation"));
