@@ -280,6 +280,10 @@ void MainWindow::on_actionOpen_TextView_triggered()
     this->OpenTextview();
 }
 
+void MainWindow::on_actionCreate_ResultTable_triggered()
+{
+
+}
 
 
 

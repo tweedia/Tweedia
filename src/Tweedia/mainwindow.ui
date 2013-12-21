@@ -155,6 +155,7 @@
     <addaction name="actionOpenDatabase"/>
     <addaction name="actionInitialize_Database"/>
     <addaction name="actionOpen_Script"/>
+    <addaction name="actionCreate_ResultTable"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -258,6 +259,11 @@
   <action name="actionOpen_Script">
    <property name="text">
     <string>Open Script</string>
+   </property>
+  </action>
+  <action name="actionCreate_ResultTable">
+   <property name="text">
+    <string>Create ResultTable</string>
    </property>
   </action>
  </widget>
