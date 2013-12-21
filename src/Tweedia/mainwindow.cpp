@@ -49,8 +49,8 @@ MainWindow::MainWindow(QWidget *parent) :
     mSqlCreateObsobj.append("file_name character varying,");
     mSqlCreateObsobj.append("path_name character varying,");
     mSqlCreateObsobj.append("argument character varying,");
-    mSqlCreateObsobj.append("table_actual character varying,");
-    mSqlCreateObsobj.append("table_expected character varying,");
+    mSqlCreateObsobj.append("result_actual character varying,");
+    mSqlCreateObsobj.append("result_expected character varying,");
     mSqlCreateObsobj.append("CONSTRAINT obsobj_pkey PRIMARY KEY (id)");
     mSqlCreateObsobj.append(")");
 
