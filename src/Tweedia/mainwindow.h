@@ -67,9 +67,10 @@ private slots:
     void on_actionOpen_TextView_triggered();
 
     void on_actionOpenDatabase_triggered();
-    void on_actionInitialize_Database_triggered();
-    void on_actionOpen_Script_triggered();
+    void on_actionCreate_ObsobjTable_triggered();
     void on_actionCreate_ResultTable_triggered();
+    void on_actionOpen_Script_triggered();
+
 
 private:
     bool OpenDatabase();

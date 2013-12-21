@@ -153,9 +153,9 @@
      <string>File</string>
     </property>
     <addaction name="actionOpenDatabase"/>
-    <addaction name="actionInitialize_Database"/>
     <addaction name="actionOpen_Script"/>
     <addaction name="actionCreate_ResultTable"/>
+    <addaction name="actionCreate_ObsobjTable"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
@@ -253,7 +253,7 @@
   </action>
   <action name="actionInitialize_Database">
    <property name="text">
-    <string>Initialize Database</string>
+    <string>Create ObsobjTable</string>
    </property>
   </action>
   <action name="actionOpen_Script">
@@ -264,6 +264,11 @@
   <action name="actionCreate_ResultTable">
    <property name="text">
     <string>Create ResultTable</string>
+   </property>
+  </action>
+  <action name="actionCreate_ObsobjTable">
+   <property name="text">
+    <string>Create ObsobjTable</string>
    </property>
   </action>
  </widget>

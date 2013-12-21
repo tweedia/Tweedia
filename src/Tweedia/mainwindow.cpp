@@ -250,7 +250,7 @@ void MainWindow::on_actionOpenDatabase_triggered()
     }
 }
 
-void MainWindow::on_actionInitialize_Database_triggered()
+void MainWindow::on_actionCreate_ObsobjTable_triggered()
 {
     this->InitializeDatabase();
 }
@@ -291,6 +291,7 @@ void MainWindow::on_actionCreate_ResultTable_triggered()
 
 /* References, Quotation:
  */
+
 
 
 
