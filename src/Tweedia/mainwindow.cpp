@@ -55,9 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mSqlCreateObsobj.append("CONSTRAINT obsobj_pkey PRIMARY KEY (id)");
     mSqlCreateObsobj.append(")");
 
-    mSqlDropResultTbl = QString("DROP TABLE ");
-
-    mSqlCreateResultTbl = QString("CREATE TABLE ");
+    mSqlDropResultTbl = QString("DROP TABLE %1");
 
     mdichilds = new QList<QWidget*>;
 
@@ -165,9 +163,9 @@ void MainWindow::CreateResultTable()
 
     if (dialog.result() == DlgCreateResultTable::Accepted)
     {
-
+        QSqlQuery query(db);
+        query.exec((const QString)dialog.SqlCreateResultTbl());
     }
-
 
 }
 
