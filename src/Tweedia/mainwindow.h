@@ -103,6 +103,8 @@ private:
 
     QString mSqlDropObsobj;
     QString mSqlCreateObsobj;
+    QString mSqlDropResultTbl;
+    QString mSqlCreateResultTbl;
 
     QString bufActualText;
 

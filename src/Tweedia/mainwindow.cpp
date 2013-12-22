@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     reader.setErrorHandler(&handler);
 
     mSqlDropObsobj = QString("DROP TABLE obsobj");
+
     mSqlCreateObsobj = QString("CREATE TABLE obsobj");
     mSqlCreateObsobj.append("(");
     mSqlCreateObsobj.append("id integer NOT NULL,");
@@ -53,6 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
     mSqlCreateObsobj.append("result_expected character varying,");
     mSqlCreateObsobj.append("CONSTRAINT obsobj_pkey PRIMARY KEY (id)");
     mSqlCreateObsobj.append(")");
+
+    mSqlDropResultTbl = QString("DROP TABLE ");
+
+    mSqlCreateResultTbl = QString("CREATE TABLE ");
 
     mdichilds = new QList<QWidget*>;
 
