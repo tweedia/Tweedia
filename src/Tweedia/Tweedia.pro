@@ -59,3 +59,9 @@ FORMS    += mainwindow.ui \
     mdichild/txtvw-stdout.ui \
     open-db.ui \
     dlg-create-resulttable.ui
+
+RESOURCES +=
+
+mac{
+ICON = res/icon.icns
+}
