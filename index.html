@@ -10,8 +10,33 @@
 
     <title>Tweedia</title>
   </head>
+  
+  <script type="text/javascript">
+  function changelang(id,lang) {
+    if ( lang == "jp" ) {
+        document.getElementById(id + "_en").style.display = "none";
+        document.getElementById(id + "_jp").style.display = "block";
+    } else {
+        document.getElementById(id + "_en").style.display = "block";
+        document.getElementById(id + "_jp").style.display = "none";
+    }
+  }
+  function changelangall(lang){
+    changelang("screenshot",lang);
+    changelang("welcome",lang);
+    changelang("welcome_description",lang);
+    changelang("requirement",lang);
+    changelang("requirement_description",lang);
+    changelang("download",lang);
+    changelang("download_mac1",lang);
+    changelang("download_oldver",lang);
+    changelang("note",lang);
+    changelang("note_description1",lang);
+    changelang("note_description2",lang);
+  }
+  </script>
 
-  <body>
+  <body onLoad="changelangall('jp');">
 
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
@@ -19,37 +44,77 @@
           <a id="forkme_banner" href="https://github.com/tweedia/Tweedia">View on GitHub</a>
 
           <h1 id="project_title">Tweedia</h1>
-          <h2 id="project_tagline"></h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/tweedia/Tweedia/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/tweedia/Tweedia/tarball/master">Download this project as a tar.gz file</a>
-            </section>
+            <p style="text-align:right;">
+            <a href="javascript:void(0);" onclick="changelangall('en');">[English]</a>/
+            <a href="javascript:void(0);" onclick="changelangall('jp');">[Japanese]</a>
+            </p>
+
+<!--          <h2 id="project_tagline"></h2> -->
+
+<!--            <section id="downloads"> -->
+<!--              <a class="zip_download_link" href="https://github.com/tweedia/Tweedia/zipball/master">Download this project as a .zip file</a> -->
+<!--              <a class="tar_download_link" href="https://github.com/tweedia/Tweedia/tarball/master">Download this project as a tar.gz file</a> -->
+<!--            </section> -->
         </header>
     </div>
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-tweedia-site" class="anchor" href="#welcome-to-tweedia-site"><span class="octicon octicon-link"></span></a>Welcome to Tweedia Site.</h3>
+        <h3 id="welcome_en" style="display:none;">Welcome to Tweedia!</h3>
+        <h3 id="welcome_jp" style="display:none;">概要</h3>
+            <p id="welcome_description_en" style="display:none;">Tweedia is a GUI-base shell tool specialized for analyzing results of called programs.</p>
+            <p id="welcome_description_jp" style="display:none;">Tweediaは、実行プログラムの出力内容の分析に特化したGUIベースのシェルツールです。</p>
 
-<p>Tweedia is a GUI-base shell software specialized for analyzing results of invoked programs.</p>
+        <h3 id="screenshot_en" style="display:none;">Screenshot</h3>
+        <h3 id="screenshot_jp" style="display:none;">スクリーンショット</h3>
+            <p><img src="./images/screenshot.png" alt="screenshot"></p>
 
-<ul>
-<li>Operaiton of Tweedia is validated on Mac OS X (Snow Leoperd).</li>
-<li>Tweedia is a free software distributed under GPL.</li>
-</ul><p><img src="./images/screenshot.png" alt="screenshot"></p>
+        <h3 id="requirement_en" style="display:none;">Requirement</h3>
+        <h3 id="requirement_jp" style="display:none;">動作環境</h3>
+            <p id="requirement_description_en" style="display:none;">Operaiton of Tweedia is validated on Mac OS X (Snow Leoperd).</p>
+            <p id="requirement_description_jp" style="display:none;">Mac OS X (Snow Leoperd)で動作確認しています。</p>
 
-<p>Twitter: <a href="https://twitter.com/tweediaproj">@tweediaproj</a></p>
+        <h3 id="download_en" style="display:none;">Download</h3>
+        <h3 id="download_jp" style="display:none;">ダウンロード</h3>
+            <ul>
+            <li>
+            <a href="https://github.com/tweedia/Tweedia/releases/download/v0.9.0-beta.1/Tweedia-v0.9.0-beta.1.dmg">
+                <span id="download_mac1_en" style="display:none;">28-Dec-2013 v0.9.0-beta.1 (Pre-release, For MacOSX)</span>
+                <span id="download_mac1_jp" style="display:none;">2013年12月28日 v0.9.0-beta.1 （プレリリース版、MacOSX用）</span>
+            </a>
+            </li>
+            <li>
+            <a href="https://github.com/tweedia/Tweedia/releases">
+                <span id="download_oldver_en" style="display:none;">Old Releases</span>
+                <span id="download_oldver_jp" style="display:none;">過去のバージョン</span>
+            </a>
+            </li>
+            </ul>
+
+        <h3 id="note_en" style="display:none;">Note</h3>
+        <h3 id="note_jp" style="display:none;">備考</h3>
+            <ul>
+            <li>
+                <span id="note_description1_en" style="display:none;">Tweedia is a free software distributed under GPL.</span>
+                <span id="note_description1_jp" style="display:none;">GPLで配布しています。</span>
+            </li>
+            <li>
+                <span id="note_description2_en" style="display:none;">Tweedia uses C++ and Qt.</span>
+                <span id="note_description2_jp" style="display:none;">C++とQtで開発しています。</span>
+            </li>
+            </ul>
+
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Tweedia maintained by <a href="https://github.com/tweedia">tweedia</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p class="copyright">Tweedia maintained by <a href="https://github.com/tweedia">tweedia</a> (Twitter: <a href="https://twitter.com/tweediaproj">@tweediaproj</a>)</p>
+<!--        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p> -->
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a> and customized</p>
       </footer>
     </div>
 
