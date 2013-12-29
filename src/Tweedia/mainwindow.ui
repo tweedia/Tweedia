@@ -139,15 +139,6 @@
     </property>
     <addaction name="actionRunObsobj"/>
    </widget>
-   <widget class="QMenu" name="menuTest">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="title">
-     <string>Test</string>
-    </property>
-    <addaction name="actionOpen_TextView"/>
-   </widget>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
@@ -185,7 +176,6 @@
    <addaction name="menuRun"/>
    <addaction name="menuWindow"/>
    <addaction name="menuHelp"/>
-   <addaction name="menuTest"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -244,6 +234,9 @@
   <action name="actionOpen_TextView">
    <property name="text">
     <string>Open TextView</string>
+   </property>
+   <property name="visible">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionOpenDatabase">
