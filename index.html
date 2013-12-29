@@ -12,27 +12,27 @@
   </head>
   
   <script type="text/javascript">
-  function changelang(id,lang) {
+  function changelang(id,lang,type) {
     if ( lang == "jp" ) {
         document.getElementById(id + "_en").style.display = "none";
-        document.getElementById(id + "_jp").style.display = "block";
+        document.getElementById(id + "_jp").style.display = type;
     } else {
-        document.getElementById(id + "_en").style.display = "block";
+        document.getElementById(id + "_en").style.display = type;
         document.getElementById(id + "_jp").style.display = "none";
     }
   }
   function changelangall(lang){
-    changelang("screenshot",lang);
-    changelang("welcome",lang);
-    changelang("welcome_description",lang);
-    changelang("requirement",lang);
-    changelang("requirement_description",lang);
-    changelang("download",lang);
-    changelang("download_mac1",lang);
-    changelang("download_oldver",lang);
-    changelang("note",lang);
-    changelang("note_description1",lang);
-    changelang("note_description2",lang);
+    changelang("screenshot",lang,"block");
+    changelang("welcome",lang,"block");
+    changelang("welcome_description",lang,"block");
+    changelang("requirement",lang,"block");
+    changelang("requirement_description",lang,"block");
+    changelang("download",lang,"block");
+    changelang("download_mac1",lang,"inline");
+    changelang("download_oldver",lang,"inline");
+    changelang("note",lang,"block");
+    changelang("note_description1",lang,"inline");
+    changelang("note_description2",lang,"inline");
   }
   </script>
 
