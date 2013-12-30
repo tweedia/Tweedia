@@ -38,7 +38,8 @@ SOURCES += main.cpp\
     exec-obsobj.cpp \
     mdichild/txtvw-stdout.cpp \
     open-db.cpp \
-    dlg-create-resulttable.cpp
+    dlg-create-resulttable.cpp \
+    dlg-about.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -53,14 +54,17 @@ HEADERS  += mainwindow.h \
     parse-xml.h \
     mdichild/txtvw-stdout.h \
     open-db.h \
-    dlg-create-resulttable.h
+    dlg-create-resulttable.h \
+    dlg-about.h
 
 FORMS    += mainwindow.ui \
     mdichild/txtvw-stdout.ui \
     open-db.ui \
-    dlg-create-resulttable.ui
+    dlg-create-resulttable.ui \
+    dlg-about.ui
 
-RESOURCES +=
+RESOURCES += \
+    res/icon.qrc
 
 mac{
 ICON = res/icon.icns

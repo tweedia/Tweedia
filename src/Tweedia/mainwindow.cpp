@@ -26,6 +26,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "dlg-about.h"
+
 #include <QFileDialog>
 #include <QFile>
 #include <QMessageBox>
@@ -105,8 +107,8 @@ bool MainWindow::ChkTableView()
 
 void MainWindow::AboutTweedia()
 {
-    QMessageBox msgBox(this);
-    msgBox.exec();
+    DlgAbout dialog(this);
+    dialog.exec();
 }
 
 bool MainWindow::OpenDatabase()
