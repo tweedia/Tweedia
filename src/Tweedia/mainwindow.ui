@@ -164,6 +164,13 @@
      <string>View</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuTweedia">
+    <property name="title">
+     <string>Tweedia</string>
+    </property>
+    <addaction name="actionAbout_Tweedia"/>
+   </widget>
+   <addaction name="menuTweedia"/>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
@@ -256,6 +263,11 @@
   <action name="actionCreate_ObsobjTable">
    <property name="text">
     <string>Create ObsobjTable</string>
+   </property>
+  </action>
+  <action name="actionAbout_Tweedia">
+   <property name="text">
+    <string>About Tweedia</string>
    </property>
   </action>
  </widget>

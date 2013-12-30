@@ -103,6 +103,12 @@ bool MainWindow::ChkTableView()
     return ret;
 }
 
+void MainWindow::AboutTweedia()
+{
+    QMessageBox msgBox(this);
+    msgBox.exec();
+}
+
 bool MainWindow::OpenDatabase()
 {
     OpenDb dialog(this);
@@ -265,6 +271,11 @@ void MainWindow::on_pushButton_4_clicked()
     this->RunObsobj();
 }
 
+void MainWindow::on_actionAbout_Tweedia_triggered()
+{
+    this->AboutTweedia();
+}
+
 void MainWindow::on_actionOpenDatabase_triggered()
 {
     if (this->OpenDatabase() == true)
@@ -314,6 +325,7 @@ void MainWindow::on_actionCreate_ResultTable_triggered()
 
 /* References, Quotation:
  */
+
 
 
 

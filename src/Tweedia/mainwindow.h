@@ -61,6 +61,8 @@ private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
 
+    void on_actionAbout_Tweedia_triggered();
+
     void on_actionAddObsobj_triggered();
     void on_actionDeleteObsobj_triggered();
     void on_actionRunObsobj_triggered();
@@ -72,10 +74,11 @@ private slots:
     void on_actionCreate_ResultTable_triggered();
     void on_actionOpen_Script_triggered();
 
-
     void on_pushButton_4_clicked();
 
 private:
+    void AboutTweedia();
+
     bool OpenDatabase();
     void OpenObsobj();
     void InitializeDatabase();
