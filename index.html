@@ -26,7 +26,8 @@
     changelang("welcome",lang,"block");
     changelang("welcome_description",lang,"block");
     changelang("requirement",lang,"block");
-    changelang("requirement_description",lang,"block");
+    changelang("requirement_description1",lang,"inline");
+    changelang("requirement_description2",lang,"inline");
     changelang("download",lang,"block");
     changelang("download_mac1",lang,"inline");
     changelang("download_oldver",lang,"inline");
@@ -73,8 +74,16 @@
 
         <h3 id="requirement_en" style="display:none;">Requirement</h3>
         <h3 id="requirement_jp" style="display:none;">動作環境</h3>
-            <p id="requirement_description_en" style="display:none;">Operaiton of Tweedia is validated on Mac OS X (Snow Leoperd).</p>
-            <p id="requirement_description_jp" style="display:none;">Mac OS X (Snow Leoperd)で動作確認しています。</p>
+            <ul>
+            <li>
+            <span id="requirement_description1_en" style="display:none;">OS: Mac OS X (Operaiton is validated on Snow Leoperd)</span>
+            <span id="requirement_description1_jp" style="display:none;">OS: Mac OS X (Snow Leoperdで動作確認しています)</span>
+            </li>
+            <li>
+            <span id="requirement_description2_en" style="display:none;">Database: PostgreSQL (Operaiton is validated on 8.4.10)</span>
+            <span id="requirement_description2_jp" style="display:none;">データベース: PostgreSQL (8.4.10で動作確認しています)</span>
+            </li>
+            </ul>
 
         <h3 id="download_en" style="display:none;">Download</h3>
         <h3 id="download_jp" style="display:none;">ダウンロード</h3>
