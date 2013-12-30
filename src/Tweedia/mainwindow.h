@@ -73,6 +73,8 @@ private slots:
     void on_actionOpen_Script_triggered();
 
 
+    void on_pushButton_4_clicked();
+
 private:
     bool OpenDatabase();
     void OpenObsobj();

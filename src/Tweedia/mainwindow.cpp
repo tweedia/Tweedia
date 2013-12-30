@@ -260,6 +260,11 @@ void MainWindow::on_pushButton_3_clicked()
     this->AddObsobj();
 }
 
+void MainWindow::on_pushButton_4_clicked()
+{
+    this->RunObsobj();
+}
+
 void MainWindow::on_actionOpenDatabase_triggered()
 {
     if (this->OpenDatabase() == true)
@@ -309,6 +314,7 @@ void MainWindow::on_actionCreate_ResultTable_triggered()
 
 /* References, Quotation:
  */
+
 
 
 
