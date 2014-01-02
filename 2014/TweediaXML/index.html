@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Tweedia : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/stylesheet.css">
+
+    <title>TweediaXML namespace</title>
+  </head>
+  
+  <script type="text/javascript">
+  function changelang(id,lang,type) {
+    if ( lang == "jp" ) {
+        document.getElementById(id + "_en").style.display = "none";
+        document.getElementById(id + "_jp").style.display = type;
+    } else {
+        document.getElementById(id + "_en").style.display = type;
+        document.getElementById(id + "_jp").style.display = "none";
+    }
+  }
+  function changelangall(lang){
+    changelang("about",lang,"block");
+    changelang("about_description",lang,"block");
+  }
+  </script>
+
+  <body onLoad="changelangall('en');">
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <h1 id="project_title"><img id="iconimg" src="../../images/icon.png">TweediaXML namespace</h1>
+
+            <p style="text-align:right;">
+            <a href="javascript:void(0);" onclick="changelangall('en');">[English]</a>/
+            <a href="javascript:void(0);" onclick="changelangall('jp');">[Japanese]</a>
+            </p>
+
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3 id="about_en" style="display:none;">About the namespace</h3>
+        <h3 id="about_jp" style="display:none;">概要</h3>
+            <p id="about_description_en" style="display:none;">The namespace name http://tweedia.github.io/Tweedia/2013/TweediaXML is intended for use on <a href="http://tweedia.github.io/Tweedia">Tweedia</a> so far.</p>
+            <p id="about_description_jp" style="display:none;">名前空間 http://tweedia.github.io/Tweedia/2013/TweediaXML は、現時点で <a href="http://tweedia.github.io/Tweedia">Tweedia</a> 上での使用を想定しています。</p>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Tweedia maintained by <a href="https://github.com/tweedia">tweedia</a> (Twitter: <a href="https://twitter.com/tweediaproj">@tweediaproj</a>)</p>
+<!--        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p> -->
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a> and customized</p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
