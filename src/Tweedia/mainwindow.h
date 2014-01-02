@@ -76,6 +76,12 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_actionTweediaWebsite_triggered();
+
+    void on_actionReportBug_triggered();
+
+    void on_actionTweediaWiki_triggered();
+
 private:
     void AboutTweedia();
 

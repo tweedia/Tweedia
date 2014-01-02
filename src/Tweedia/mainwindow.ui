@@ -158,6 +158,10 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionTweediaWiki"/>
+    <addaction name="actionTweediaWebsite"/>
+    <addaction name="separator"/>
+    <addaction name="actionReportBug"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -268,6 +272,21 @@
   <action name="actionAbout_Tweedia">
    <property name="text">
     <string>About Tweedia</string>
+   </property>
+  </action>
+  <action name="actionTweediaWebsite">
+   <property name="text">
+    <string>Tweedia Website</string>
+   </property>
+  </action>
+  <action name="actionReportBug">
+   <property name="text">
+    <string>Report Bug</string>
+   </property>
+  </action>
+  <action name="actionTweediaWiki">
+   <property name="text">
+    <string>Tweedia Help (Wiki)</string>
    </property>
   </action>
  </widget>
