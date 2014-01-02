@@ -113,6 +113,11 @@ void MainWindow::AboutTweedia()
     dialog.exec();
 }
 
+void MainWindow::Preferences()
+{
+
+}
+
 bool MainWindow::OpenDatabase()
 {
     OpenDb dialog(this);
@@ -278,6 +283,11 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_actionAbout_Tweedia_triggered()
 {
     this->AboutTweedia();
+}
+
+void MainWindow::on_actionPreferences_triggered()
+{
+    this->Preferences();
 }
 
 void MainWindow::on_actionOpenDatabase_triggered()

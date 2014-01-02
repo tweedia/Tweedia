@@ -173,6 +173,7 @@
      <string>Tweedia</string>
     </property>
     <addaction name="actionAbout_Tweedia"/>
+    <addaction name="actionPreferences"/>
    </widget>
    <addaction name="menuTweedia"/>
    <addaction name="menuFile"/>
@@ -287,6 +288,11 @@
   <action name="actionTweediaWiki">
    <property name="text">
     <string>Tweedia Help (Wiki)</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
    </property>
   </action>
  </widget>
