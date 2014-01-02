@@ -27,6 +27,7 @@
 #include "ui_mainwindow.h"
 
 #include "dlg-about.h"
+#include "dlg-preferences.h"
 
 #include <QFileDialog>
 #include <QFile>
@@ -115,7 +116,8 @@ void MainWindow::AboutTweedia()
 
 void MainWindow::Preferences()
 {
-
+    DlgPreferences dialog(this);
+    dialog.exec();
 }
 
 bool MainWindow::OpenDatabase()

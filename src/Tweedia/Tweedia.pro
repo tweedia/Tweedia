@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     mdichild/txtvw-stdout.cpp \
     open-db.cpp \
     dlg-create-resulttable.cpp \
-    dlg-about.cpp
+    dlg-about.cpp \
+    dlg-preferences.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -55,13 +56,15 @@ HEADERS  += mainwindow.h \
     mdichild/txtvw-stdout.h \
     open-db.h \
     dlg-create-resulttable.h \
-    dlg-about.h
+    dlg-about.h \
+    dlg-preferences.h
 
 FORMS    += mainwindow.ui \
     mdichild/txtvw-stdout.ui \
     open-db.ui \
     dlg-create-resulttable.ui \
-    dlg-about.ui
+    dlg-about.ui \
+    dlg-preferences.ui
 
 RESOURCES += \
     res/icon.qrc
