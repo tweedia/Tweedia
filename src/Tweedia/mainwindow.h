@@ -60,6 +60,7 @@ private slots:
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();
+    void on_pushButton_4_clicked();
 
     void on_actionAbout_Tweedia_triggered();
     void on_actionPreferences_triggered();
@@ -75,13 +76,9 @@ private slots:
     void on_actionCreate_ResultTable_triggered();
     void on_actionOpen_Script_triggered();
 
-    void on_pushButton_4_clicked();
-
-    void on_actionTweediaWebsite_triggered();
-
-    void on_actionReportBug_triggered();
-
     void on_actionTweediaWiki_triggered();
+    void on_actionTweediaWebsite_triggered();
+    void on_actionReportBug_triggered();
 
 private:
     void AboutTweedia();

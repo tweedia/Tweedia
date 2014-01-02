@@ -333,6 +333,11 @@ void MainWindow::on_actionCreate_ResultTable_triggered()
     this->CreateResultTable();
 }
 
+void MainWindow::on_actionTweediaWiki_triggered()
+{
+    QDesktopServices::openUrl(QUrl("https://github.com/tweedia/Tweedia/wiki", QUrl::TolerantMode));
+}
+
 void MainWindow::on_actionTweediaWebsite_triggered()
 {
     QDesktopServices::openUrl(QUrl("http://tweedia.github.io/Tweedia/", QUrl::TolerantMode));
@@ -343,10 +348,7 @@ void MainWindow::on_actionReportBug_triggered()
     QDesktopServices::openUrl(QUrl("https://github.com/tweedia/Tweedia/issues", QUrl::TolerantMode));
 }
 
-void MainWindow::on_actionTweediaWiki_triggered()
-{
-    QDesktopServices::openUrl(QUrl("https://github.com/tweedia/Tweedia/wiki", QUrl::TolerantMode));
-}
+
 
 
 
