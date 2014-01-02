@@ -35,8 +35,8 @@ int main(int argc, char *argv[])
     Log plog;
     int ret;
 
-    a.setApplicationVersion("(development branch)");
-//    a.setApplicationVersion("v0.9.0");
+//    a.setApplicationVersion("(development branch)");
+    a.setApplicationVersion("v0.9.1");
 
     plog.WriteLog(LOG_NOTICE, "Tweedia starting...");
 
