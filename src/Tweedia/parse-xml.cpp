@@ -32,9 +32,12 @@ ParseXml::ParseXml()
 
 bool ParseXml::startElement(const QString &namespaceURI, const QString &localName, const QString &qName, const QXmlAttributes &atts)
 {
-    if (qName == "stdin")
+    if (namespaceURI != "http://tweedia.github.io/Tweedia/2014/TweediaXML") return true;
+
+    if (localName == "stdin")
     {
         command->settype(cm_stdin);
+        return true;
     }
 
     return true;
@@ -42,7 +45,13 @@ bool ParseXml::startElement(const QString &namespaceURI, const QString &localNam
 
 bool ParseXml::endElement(const QString &namespaceURI, const QString &localName, const QString &qName)
 {
-    exec->submitCommand(command);
+    if (namespaceURI != "http://tweedia.github.io/Tweedia/2014/TweediaXML") return true;
+
+    if (localName == "stdin")
+    {
+        exec->submitCommand(command);
+        return true;
+    }
 
     return true;
 }
