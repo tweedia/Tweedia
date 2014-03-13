@@ -65,7 +65,7 @@ void ExecObsobj::setTablename(QString tablename)
 {
     mTablename = tablename;
 
-    mTable = new QSqlTableModel::QSqlTableModel(this, mDb);
+    mTable = new QSqlTableModel(this, mDb);
     mTable->setTable((const QString)mTablename);
     mTable->setEditStrategy(QSqlTableModel::OnManualSubmit);
     mTable->select();
