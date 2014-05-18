@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>160</height>
+    <width>321</width>
+    <height>165</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Open Database</string>
   </property>
   <property name="locale">
    <locale language="C" country="AnyCountry"/>
@@ -21,14 +21,14 @@
     <widget class="QComboBox" name="uiDbmsname"/>
    </item>
    <item row="0" column="0">
-    <widget class="QLabel" name="label_4">
+    <widget class="QLabel" name="lblDbmsname">
      <property name="text">
       <string>Dbms Name</string>
      </property>
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="lblHostname">
      <property name="text">
       <string>Host Name</string>
      </property>
@@ -38,7 +38,7 @@
     <widget class="QLineEdit" name="uiHostname"/>
    </item>
    <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
+    <widget class="QLabel" name="lblPort">
      <property name="text">
       <string>Port</string>
      </property>
@@ -61,7 +61,7 @@
     </widget>
    </item>
    <item row="3" column="0">
-    <widget class="QLabel" name="label_3">
+    <widget class="QLabel" name="lblDbName">
      <property name="text">
       <string>Database Name</string>
      </property>

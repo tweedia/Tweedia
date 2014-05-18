@@ -32,11 +32,10 @@ OpenDb::OpenDb(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    mOptionmDbmsname.append("SQLite");
     mOptionmDbmsname.append("PostgreSQL");
     ui->uiDbmsname->addItems(mOptionmDbmsname);
-    ui->uiHostname->setText(QString("localhost"));
-    ui->uiPort->setText(QString("5432"));
-    ui->uiDbName->setText(QString("postgres"));
+    ui->uiDbName->setText(QString("tweediadb"));
 //    mOptionDbname.append("");
 //    ui->uiDbname->addItems(mOptionDbname);
 }
@@ -49,10 +48,11 @@ OpenDb::~OpenDb()
 void OpenDb::on_buttonBox_accepted()
 {
     mDbmsname.clear();
-    if (ui->uiDbmsname->currentText() == "PostgreSQL")
-    {
-        mDbmsname.append("QPSQL");
-    }
+
+    QString strdbmsname = ui->uiDbmsname->currentText();
+
+    if (strdbmsname == "SQLite") mDbmsname.append("QSQLITE");
+    else if (strdbmsname == "PostgreSQL") mDbmsname.append("QPSQL");
 
     mHostname.clear();
     mHostname.append(ui->uiHostname->text());
@@ -61,5 +61,27 @@ void OpenDb::on_buttonBox_accepted()
 
     mDbname.clear();
     mDbname.append(ui->uiDbName->text());
+
+}
+
+void OpenDb::on_uiDbmsname_currentIndexChanged(const QString &arg1)
+{
+    QString strdbmsname = ui->uiDbmsname->currentText();
+
+    if (strdbmsname == "SQLite") {
+        ui->lblHostname->hide();
+        ui->uiHostname->hide();
+        ui->lblPort->hide();
+        ui->uiPort->hide();
+        ui->uiDbName->setText(QString("tweediadb"));
+    } else if (strdbmsname == "PostgreSQL") {
+        ui->lblHostname->show();
+        ui->uiHostname->show();
+        ui->uiHostname->setText(QString("localhost"));
+        ui->lblPort->show();
+        ui->uiPort->show();
+        ui->uiPort->setText(QString("5432"));
+        ui->uiDbName->setText(QString("postgres"));
+    }
 
 }

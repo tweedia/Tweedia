@@ -52,6 +52,8 @@ private slots:
 
     void on_buttonBox_accepted();
 
+    void on_uiDbmsname_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::OpenDb *ui;
 
