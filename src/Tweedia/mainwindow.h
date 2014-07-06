@@ -114,6 +114,7 @@ private:
     QString mSqlDropObsobj;
     QString mSqlCreateObsobj;
 
+    QString mSqlCreateResultTbl;
     QString mSqlDropResultTbl;
 
     QString bufActualText;

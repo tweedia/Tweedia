@@ -165,9 +165,12 @@ ExecObsobj* Obsobj::findExecObsobjById(int argId)
     return ret;
 }
 
-void Obsobj::addObsobj(QString argPathname)
+int Obsobj::addObsobj(QString argPathname)
 {
     QFileInfo fi(argPathname);
+
+    QString resultfilename;
+    resultfilename = QString("result_%1");
 
     int newid = Maxid() + 1;
     int row = 0;
@@ -175,11 +178,16 @@ void Obsobj::addObsobj(QString argPathname)
     this->setData(this->index(row,0),newid);
     this->setData(this->index(row,1),fi.fileName());
     this->setData(this->index(row,2),argPathname);
+
+    this->setData(this->index(row,4),resultfilename.arg(newid));
+
     this->submitAll();
 
     newExecObsobj(newid);
 
     mErrcode = OBSOBJ_RC_NOERROR;
+
+    return newid;
 }
 
 void Obsobj::delObsobj(int row)

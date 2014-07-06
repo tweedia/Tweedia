@@ -53,7 +53,7 @@ public:
     QString TableExpected(int row);
     QString Argument(int row);
 
-    void addObsobj(QString argPathname);
+    int addObsobj(QString argPathname);
     void delObsobj(int row);
 
     void newExecObsobj(int id);

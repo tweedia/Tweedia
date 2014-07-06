@@ -60,6 +60,13 @@ MainWindow::MainWindow(QWidget *parent) :
     mSqlCreateObsobj.append("CONSTRAINT obsobj_pkey PRIMARY KEY (id)");
     mSqlCreateObsobj.append(")");
 
+    mSqlCreateResultTbl = QString("CREATE TABLE result_%1");
+    mSqlCreateResultTbl.append("(");
+    mSqlCreateResultTbl.append("id integer NOT NULL,");
+    mSqlCreateResultTbl.append("result bytea,");
+    mSqlCreateResultTbl.append("CONSTRAINT result_%1_pkey PRIMARY KEY (id)");
+    mSqlCreateResultTbl.append(")");
+
     mSqlDropResultTbl = QString("DROP TABLE %1");
 
     mdichilds = new QList<QWidget*>;
@@ -189,21 +196,40 @@ void MainWindow::CreateResultTable()
 void MainWindow::AddObsobj()
 {
     if (ChkOpenDatabase() == false) return;
+
+    int newid;
+    newid = 0;
+
     QString pathname = QFileDialog::getOpenFileName(
                 this,
                 tr("Open Executable File")
                 );
 
     if (!pathname.isEmpty()) {
-        obsobj->addObsobj(pathname);
+        newid = obsobj->addObsobj(pathname);
     }
 
+    QSqlQuery query(db);
+
+    if (newid != 0) {
+        query.exec((const QString)mSqlCreateResultTbl.arg(newid));
+    }
 }
 
 void MainWindow::DeleteObsobj()
 {
     if (ChkTableView() == false) return;
+
     obsobj->delObsobj(ui->tableView->currentIndex().row());
+
+    QSqlQuery query(db);
+    QString resulttablename;
+//    resulttablename =
+//
+//    if (theid != 0) {
+//        query.exec((const QString)mSqlDropResultTbl.arg(resulttablename));
+//    }
+
 }
 
 void MainWindow::RunObsobj()
@@ -211,7 +237,7 @@ void MainWindow::RunObsobj()
     if (ChkTableView() == false) return;
 //    obsobj->startProcess(ui->tableView->currentIndex().row());
     obsobj->startExecObsobj(ui->tableView->currentIndex().row());
-    this->OpenTextview();
+//    this->OpenTextview();
 }
 
 void MainWindow::OpenCommand()
