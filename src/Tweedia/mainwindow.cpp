@@ -129,10 +129,10 @@ void MainWindow::Preferences()
 
 bool MainWindow::OpenDatabase()
 {
-    OpenDb dialog(this);
+    DlgOpenDb dialog(this);
     dialog.exec();
 
-    if (dialog.result() == OpenDb::Accepted)
+    if (dialog.result() == DlgOpenDb::Accepted)
     {
         QString dbms(dialog.Dbmsname());
         db = QSqlDatabase::addDatabase(dbms);

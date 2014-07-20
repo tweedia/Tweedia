@@ -1,4 +1,4 @@
-/* open-db.h */
+/* dlg-open-db.h */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,23 +23,23 @@
    Initial author: Takenobu Noda
  */
 
-#ifndef OPENDB_H
-#define OPENDB_H
+#ifndef DLGOPENDB_H
+#define DLGOPENDB_H
 
 #include <QDialog>
 #include <QString>
 
 namespace Ui {
-class OpenDb;
+class DlgOpenDb;
 }
 
-class OpenDb : public QDialog
+class DlgOpenDb : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit OpenDb(QWidget *parent = 0);
-    ~OpenDb();
+    explicit DlgOpenDb(QWidget *parent = 0);
+    ~DlgOpenDb();
 
     QString Dbmsname(){return mDbmsname;}
     QString Hostname(){return mHostname;}
@@ -55,7 +55,7 @@ private slots:
     void on_uiDbmsname_currentIndexChanged(const QString &arg1);
 
 private:
-    Ui::OpenDb *ui;
+    Ui::DlgOpenDb *ui;
 
     QStringList mOptionmDbmsname;
     QStringList mOptionDbname;
@@ -67,4 +67,4 @@ private:
 
 };
 
-#endif // OPENDB_H
+#endif // DLGOPENDB_H

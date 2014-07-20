@@ -36,7 +36,7 @@
 #include "command.h"
 #include "parse-xml.h"
 #include "obsobj.h"
-#include "open-db.h"
+#include "dlg-open-db.h"
 #include "dlg-create-resulttable.h"
 #include "mdichild/txtvw-stdout.h"
 

@@ -1,4 +1,4 @@
-/* open-db.cpp */
+/* dlg-open-db.cpp */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,12 +23,12 @@
    Initial author: Takenobu Noda
  */
 
-#include "open-db.h"
-#include "ui_open-db.h"
+#include "dlg-open-db.h"
+#include "ui_dlg-open-db.h"
 
-OpenDb::OpenDb(QWidget *parent) :
+DlgOpenDb::DlgOpenDb(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::OpenDb)
+    ui(new Ui::DlgOpenDb)
 {
     ui->setupUi(this);
 
@@ -40,12 +40,12 @@ OpenDb::OpenDb(QWidget *parent) :
 //    ui->uiDbname->addItems(mOptionDbname);
 }
 
-OpenDb::~OpenDb()
+DlgOpenDb::~DlgOpenDb()
 {
     delete ui;
 }
 
-void OpenDb::on_buttonBox_accepted()
+void DlgOpenDb::on_buttonBox_accepted()
 {
     mDbmsname.clear();
 
@@ -64,7 +64,7 @@ void OpenDb::on_buttonBox_accepted()
 
 }
 
-void OpenDb::on_uiDbmsname_currentIndexChanged(const QString &arg1)
+void DlgOpenDb::on_uiDbmsname_currentIndexChanged(const QString &arg1)
 {
     QString strdbmsname = ui->uiDbmsname->currentText();
 
