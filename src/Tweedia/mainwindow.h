@@ -38,7 +38,7 @@
 #include "obsobj.h"
 #include "dlg-open-db.h"
 #include "dlg-create-resulttable.h"
-#include "mdichild/view-string-page.h"
+#include "mdichild/stringview-page.h"
 
 namespace Ui {
 class MainWindow;
@@ -78,7 +78,7 @@ private slots:
     void on_actionTweediaWebsite_triggered();
     void on_actionReportBug_triggered();
 
-    void on_actionOpen_View_of_String_as_Page_triggered();
+    void on_actionString_View_Page_triggered();
 
 private:
     void AboutTweedia();
@@ -96,7 +96,7 @@ private:
     void OpenCommand();
     void SubmitCommand();
 
-    void OpenViewStringPage();
+    void OpenStringviewPage();
 
     bool ChkOpenDatabase();
     bool ChkTableView();

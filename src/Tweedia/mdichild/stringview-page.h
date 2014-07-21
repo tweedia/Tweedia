@@ -1,4 +1,4 @@
-/* view-string-page.h */
+/* stringview-page.h */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,8 +23,8 @@
    Initial author: Takenobu Noda
 */
 
-#ifndef VIEWSTRINGPAGE_H
-#define VIEWSTRINGPAGE_H
+#ifndef STRINGVIEWPAGE_H
+#define STRINGVIEWPAGE_H
 
 #include <QWidget>
 
@@ -32,16 +32,16 @@
 #include "exec-obsobj.h"
 
 namespace Ui {
-class ViewStringPage;
+class StringviewPage;
 }
 
-class ViewStringPage : public QWidget
+class StringviewPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ViewStringPage(QWidget *parent = 0, Obsobj *obsobj = 0, int rowOfTableView = 0);
-    ~ViewStringPage();
+    explicit StringviewPage(QWidget *parent = 0, Obsobj *obsobj = 0, int rowOfTableView = 0);
+    ~StringviewPage();
 
     void setCurrentRow(int arg){ mRowOfTableView = arg; }
 
@@ -56,7 +56,7 @@ private slots:
     void on_spinBox_valueChanged(int arg1);
 
 private:
-    Ui::ViewStringPage *ui;
+    Ui::StringviewPage *ui;
 
     Obsobj *mObsobj;
     int mRowOfTableView;
@@ -68,7 +68,7 @@ private:
     QString mValueAsQString;
 };
 
-#endif // VIEWSTRINGPAGE_H
+#endif // STRINGVIEWPAGE_H
 
 
 /* References, Quotation:

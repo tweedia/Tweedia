@@ -1,4 +1,4 @@
-/* view-string-page.cpp */
+/* stringview-page.cpp */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,12 +23,12 @@
    Initial author: Takenobu Noda
 */
 
-#include "view-string-page.h"
-#include "ui_view-string-page.h"
+#include "stringview-page.h"
+#include "ui_stringview-page.h"
 
-ViewStringPage::ViewStringPage(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
+StringviewPage::StringviewPage(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
     QWidget(parent),
-    ui(new Ui::ViewStringPage)
+    ui(new Ui::StringviewPage)
 {
     ui->setupUi(this);
 
@@ -40,7 +40,7 @@ ViewStringPage::ViewStringPage(QWidget *parent, Obsobj *obsobj, int rowOfTableVi
 
 }
 
-void ViewStringPage::refreashWithRowOfTableView()
+void StringviewPage::refreashWithRowOfTableView()
 {
     mExecObsobj = mObsobj->updatedExecObsobj(mRowOfTableView);
 
@@ -55,22 +55,22 @@ void ViewStringPage::refreashWithRowOfTableView()
 
 }
 
-ViewStringPage::~ViewStringPage()
+StringviewPage::~StringviewPage()
 {
     delete ui;
 }
 
-void ViewStringPage::on_pushButton_clicked()
+void StringviewPage::on_pushButton_clicked()
 {
     refreashWithRowOfTableView();
 }
 
-void ViewStringPage::on_DatabaseUpdated()
+void StringviewPage::on_DatabaseUpdated()
 {
-    ViewStringPage::refreashWithRowOfTableView();
+    StringviewPage::refreashWithRowOfTableView();
 }
 
-void ViewStringPage::on_spinBox_valueChanged(int arg1)
+void StringviewPage::on_spinBox_valueChanged(int arg1)
 {
     mExecObsobj = mObsobj->updatedExecObsobj(mRowOfTableView);
 

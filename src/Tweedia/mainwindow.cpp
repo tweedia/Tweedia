@@ -277,14 +277,14 @@ void MainWindow::SubmitCommand()
 
 }
 
-void MainWindow::OpenViewStringPage()
+void MainWindow::OpenStringviewPage()
 {
     if (ChkTableView() == false) return;
-    ViewStringPage *viewStringPage1 = new ViewStringPage(this, obsobj, ui->tableView->currentIndex().row());
-    ui->mdiArea->addSubWindow(viewStringPage1);
-    mdichilds->append(viewStringPage1);
-    obsobj->connectToAllExecObsobj(viewStringPage1, SLOT(on_DatabaseUpdated()));
-    viewStringPage1->show();
+    StringviewPage *StringviewPage1 = new StringviewPage(this, obsobj, ui->tableView->currentIndex().row());
+    ui->mdiArea->addSubWindow(StringviewPage1);
+    mdichilds->append(StringviewPage1);
+    obsobj->connectToAllExecObsobj(StringviewPage1, SLOT(on_DatabaseUpdated()));
+    StringviewPage1->show();
 
 }
 
@@ -351,11 +351,6 @@ void MainWindow::on_actionRunObsobj_triggered()
     this->RunObsobj();
 }
 
-void MainWindow::on_actionOpen_View_of_String_as_Page_triggered()
-{
-    this->OpenViewStringPage();
-}
-
 void MainWindow::on_actionCreate_ResultTable_triggered()
 {
     this->CreateResultTable();
@@ -376,6 +371,10 @@ void MainWindow::on_actionReportBug_triggered()
     QDesktopServices::openUrl(QUrl("https://github.com/tweedia/Tweedia/issues", QUrl::TolerantMode));
 }
 
+void MainWindow::on_actionString_View_Page_triggered()
+{
+    this->OpenStringviewPage();
+}
 
 
 
@@ -388,7 +387,6 @@ void MainWindow::on_actionReportBug_triggered()
 
 /* References, Quotation:
  */
-
 
 
 
