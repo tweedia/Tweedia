@@ -153,7 +153,7 @@
     <property name="title">
      <string>Window</string>
     </property>
-    <addaction name="actionOpen_TextView"/>
+    <addaction name="actionOpen_View_of_String_as_Page"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -233,7 +233,7 @@
     <string>Run Obsobj</string>
    </property>
   </action>
-  <action name="actionOpen_TextView">
+  <action name="actionOpen_ViewString">
    <property name="text">
     <string>Open TextView</string>
    </property>
@@ -289,6 +289,11 @@
   <action name="actionPreferences">
    <property name="text">
     <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionOpen_View_of_String_as_Page">
+   <property name="text">
+    <string>Open View of String as Page</string>
    </property>
   </action>
  </widget>

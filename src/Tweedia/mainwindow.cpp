@@ -277,14 +277,14 @@ void MainWindow::SubmitCommand()
 
 }
 
-void MainWindow::OpenTextview()
+void MainWindow::OpenViewStringPage()
 {
     if (ChkTableView() == false) return;
-    TxtvwStdout *txtvwStdout1 = new TxtvwStdout(this, obsobj, ui->tableView->currentIndex().row());
-    ui->mdiArea->addSubWindow(txtvwStdout1);
-    mdichilds->append(txtvwStdout1);
-    obsobj->connectToAllExecObsobj(txtvwStdout1, SLOT(on_DatabaseUpdated()));
-    txtvwStdout1->show();
+    ViewStringPage *viewStringPage1 = new ViewStringPage(this, obsobj, ui->tableView->currentIndex().row());
+    ui->mdiArea->addSubWindow(viewStringPage1);
+    mdichilds->append(viewStringPage1);
+    obsobj->connectToAllExecObsobj(viewStringPage1, SLOT(on_DatabaseUpdated()));
+    viewStringPage1->show();
 
 }
 
@@ -351,9 +351,9 @@ void MainWindow::on_actionRunObsobj_triggered()
     this->RunObsobj();
 }
 
-void MainWindow::on_actionOpen_TextView_triggered()
+void MainWindow::on_actionOpen_View_of_String_as_Page_triggered()
 {
-    this->OpenTextview();
+    this->OpenViewStringPage();
 }
 
 void MainWindow::on_actionCreate_ResultTable_triggered()

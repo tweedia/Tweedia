@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TxtvwStdout</class>
- <widget class="QWidget" name="TxtvwStdout">
+ <class>ViewStringPage</class>
+ <widget class="QWidget" name="ViewStringPage">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>242</width>
+    <width>287</width>
     <height>320</height>
    </rect>
   </property>

@@ -1,4 +1,4 @@
-/* txtvw-stdout.cpp */
+/* view-string-page.cpp */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,12 +23,12 @@
    Initial author: Takenobu Noda
 */
 
-#include "txtvw-stdout.h"
-#include "ui_txtvw-stdout.h"
+#include "view-string-page.h"
+#include "ui_view-string-page.h"
 
-TxtvwStdout::TxtvwStdout(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
+ViewStringPage::ViewStringPage(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
     QWidget(parent),
-    ui(new Ui::TxtvwStdout)
+    ui(new Ui::ViewStringPage)
 {
     ui->setupUi(this);
 
@@ -40,7 +40,7 @@ TxtvwStdout::TxtvwStdout(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
 
 }
 
-void TxtvwStdout::refreashWithRowOfTableView()
+void ViewStringPage::refreashWithRowOfTableView()
 {
     mExecObsobj = mObsobj->updatedExecObsobj(mRowOfTableView);
 
@@ -55,22 +55,22 @@ void TxtvwStdout::refreashWithRowOfTableView()
 
 }
 
-TxtvwStdout::~TxtvwStdout()
+ViewStringPage::~ViewStringPage()
 {
     delete ui;
 }
 
-void TxtvwStdout::on_pushButton_clicked()
+void ViewStringPage::on_pushButton_clicked()
 {
     refreashWithRowOfTableView();
 }
 
-void TxtvwStdout::on_DatabaseUpdated()
+void ViewStringPage::on_DatabaseUpdated()
 {
-    TxtvwStdout::refreashWithRowOfTableView();
+    ViewStringPage::refreashWithRowOfTableView();
 }
 
-void TxtvwStdout::on_spinBox_valueChanged(int arg1)
+void ViewStringPage::on_spinBox_valueChanged(int arg1)
 {
     mExecObsobj = mObsobj->updatedExecObsobj(mRowOfTableView);
 

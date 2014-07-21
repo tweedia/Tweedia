@@ -1,4 +1,4 @@
-/* txtvw-stdout.h */
+/* view-string-page.h */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,8 +23,8 @@
    Initial author: Takenobu Noda
 */
 
-#ifndef TXTVWSTDOUT_H
-#define TXTVWSTDOUT_H
+#ifndef VIEWSTRINGPAGE_H
+#define VIEWSTRINGPAGE_H
 
 #include <QWidget>
 
@@ -32,16 +32,16 @@
 #include "exec-obsobj.h"
 
 namespace Ui {
-class TxtvwStdout;
+class ViewStringPage;
 }
 
-class TxtvwStdout : public QWidget
+class ViewStringPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit TxtvwStdout(QWidget *parent = 0, Obsobj *obsobj = 0, int rowOfTableView = 0);
-    ~TxtvwStdout();
+    explicit ViewStringPage(QWidget *parent = 0, Obsobj *obsobj = 0, int rowOfTableView = 0);
+    ~ViewStringPage();
 
     void setCurrentRow(int arg){ mRowOfTableView = arg; }
 
@@ -56,7 +56,7 @@ private slots:
     void on_spinBox_valueChanged(int arg1);
 
 private:
-    Ui::TxtvwStdout *ui;
+    Ui::ViewStringPage *ui;
 
     Obsobj *mObsobj;
     int mRowOfTableView;
@@ -68,7 +68,7 @@ private:
     QString mValueAsQString;
 };
 
-#endif // TXTVWSTDOUT_H
+#endif // VIEWSTRINGPAGE_H
 
 
 /* References, Quotation:

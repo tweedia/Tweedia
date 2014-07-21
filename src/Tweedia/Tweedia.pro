@@ -36,11 +36,11 @@ SOURCES += main.cpp\
     parse-xml.cpp \
     command.cpp \
     exec-obsobj.cpp \
-    mdichild/txtvw-stdout.cpp \
     dlg-create-resulttable.cpp \
     dlg-about.cpp \
     dlg-preferences.cpp \
-    dlg-open-db.cpp
+    dlg-open-db.cpp \
+    mdichild/view-string-page.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -53,18 +53,18 @@ HEADERS  += mainwindow.h \
     log.h \
     obsobj.h \
     parse-xml.h \
-    mdichild/txtvw-stdout.h \
     dlg-create-resulttable.h \
     dlg-about.h \
     dlg-preferences.h \
-    dlg-open-db.h
+    dlg-open-db.h \
+    mdichild/view-string-page.h
 
 FORMS    += mainwindow.ui \
-    mdichild/txtvw-stdout.ui \
     dlg-create-resulttable.ui \
     dlg-about.ui \
     dlg-preferences.ui \
-    dlg-open-db.ui
+    dlg-open-db.ui \
+    mdichild/view-string-page.ui
 
 RESOURCES += \
     res/icon.qrc
