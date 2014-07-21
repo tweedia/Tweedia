@@ -44,6 +44,7 @@ void StringviewPage::refreashWithRowOfTableView()
 {
     mExecObsobj = mObsobj->updatedExecObsobj(mRowOfTableView);
 
+    this->setWindowTitle(mExecObsobj->Pathname());
     ui->lblTableName->setText(mExecObsobj->Tablename());
     ui->spinBox->setValue(mExecObsobj->Maxid());
 
