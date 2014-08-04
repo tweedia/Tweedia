@@ -288,6 +288,17 @@ void MainWindow::OpenStringviewPage()
 
 }
 
+void MainWindow::OpenStringviewScroll()
+{
+    if (ChkTableView() == false) return;
+    StringviewScroll *StringviewScroll1 = new StringviewScroll(this, obsobj, ui->tableView->currentIndex().row());
+    ui->mdiArea->addSubWindow(StringviewScroll1);
+    mdichilds->append(StringviewScroll1);
+    obsobj->connectToAllExecObsobj(StringviewScroll1, SLOT(on_DatabaseUpdated()));
+    StringviewScroll1->show();
+
+}
+
 void MainWindow::on_pushButton_clicked()
 {
     this->SubmitCommand();
@@ -376,6 +387,10 @@ void MainWindow::on_actionString_View_Page_triggered()
     this->OpenStringviewPage();
 }
 
+void MainWindow::on_actionString_View_Scroll_triggered()
+{
+    this->OpenStringviewScroll();
+}
 
 
 
@@ -387,6 +402,8 @@ void MainWindow::on_actionString_View_Page_triggered()
 
 /* References, Quotation:
  */
+
+
 
 
 

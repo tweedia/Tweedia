@@ -154,6 +154,7 @@
      <string>Window</string>
     </property>
     <addaction name="actionString_View_Page"/>
+    <addaction name="actionString_View_Scroll"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -286,6 +287,11 @@
   <action name="actionString_View_Page">
    <property name="text">
     <string>String View (Page)</string>
+   </property>
+  </action>
+  <action name="actionString_View_Scroll">
+   <property name="text">
+    <string>String View (Scroll)</string>
    </property>
   </action>
  </widget>

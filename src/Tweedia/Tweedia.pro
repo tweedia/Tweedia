@@ -40,7 +40,8 @@ SOURCES += main.cpp\
     dlg-about.cpp \
     dlg-preferences.cpp \
     dlg-open-db.cpp \
-    mdichild/stringview-page.cpp
+    mdichild/stringview-page.cpp \
+    mdichild/stringview-scroll.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -57,14 +58,16 @@ HEADERS  += mainwindow.h \
     dlg-about.h \
     dlg-preferences.h \
     dlg-open-db.h \
-    mdichild/stringview-page.h
+    mdichild/stringview-page.h \
+    mdichild/stringview-scroll.h
 
 FORMS    += mainwindow.ui \
     dlg-create-resulttable.ui \
     dlg-about.ui \
     dlg-preferences.ui \
     dlg-open-db.ui \
-    mdichild/stringview-page.ui
+    mdichild/stringview-page.ui \
+    mdichild/stringview-scroll.ui
 
 RESOURCES += \
     res/icon.qrc
