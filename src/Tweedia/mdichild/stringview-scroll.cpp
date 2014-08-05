@@ -17,6 +17,8 @@ StringviewScroll::StringviewScroll(QWidget *parent, Obsobj *obsobj, int rowOfTab
 
     refreashWithRowOfTableView();
 
+    this->on_checkBox_stateChanged(0);
+
 }
 
 void StringviewScroll::refreashWithRowOfTableView()
@@ -49,4 +51,14 @@ StringviewScroll::~StringviewScroll()
 void StringviewScroll::on_DatabaseUpdated()
 {
     StringviewScroll::refreashWithRowOfTableView();
+}
+
+void StringviewScroll::on_checkBox_stateChanged(int arg1)
+{
+    if(ui->checkBox->isChecked()){
+        ui->tableView->setColumnHidden(0,false);
+    }else{
+        ui->tableView->setColumnHidden(0,true);
+    }
+
 }
