@@ -71,6 +71,12 @@ int Obsobj::Maxid()
     return id;                                  // ref.1
 }
 
+int Obsobj::IdByRow(int row)
+{
+    int id = this->data(this->index(row,0)).toInt();
+    return id;
+}
+
 ExecObsobj* Obsobj::findExecObsobj(int row)
 {
     int id = this->data(this->index(row,0)).toInt();

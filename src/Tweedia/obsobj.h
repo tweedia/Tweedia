@@ -47,6 +47,7 @@ public:
 
     int Errcode(){return mErrcode;}
     int Maxid();
+    int IdByRow(int row);
     ExecObsobj* findExecObsobj(int row);
     ExecObsobj* updatedExecObsobj(int row);
     QString TableActual(int row);

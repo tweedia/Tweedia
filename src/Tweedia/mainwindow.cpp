@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mSqlCreateResultTbl.append("CONSTRAINT result_%1_pkey PRIMARY KEY (id)");
     mSqlCreateResultTbl.append(")");
 
-    mSqlDropResultTbl = QString("DROP TABLE %1");
+    mSqlDropResultTbl = QString("DROP TABLE result_%1");
 
     mdichilds = new QList<QWidget*>;
 
@@ -221,15 +221,19 @@ void MainWindow::DeleteObsobj()
 {
     if (ChkTableView() == false) return;
 
-    obsobj->delObsobj(ui->tableView->currentIndex().row());
+    int row;
+    row = ui->tableView->currentIndex().row();
+
+    int theid;
+    theid = obsobj->IdByRow(row);
+
+    obsobj->delObsobj(row);
 
     QSqlQuery query(db);
-    QString resulttablename;
-//    resulttablename =
-//
-//    if (theid != 0) {
-//        query.exec((const QString)mSqlDropResultTbl.arg(resulttablename));
-//    }
+
+    if (theid != 0) {
+        query.exec((const QString)mSqlDropResultTbl.arg(theid));
+    }
 
 }
 
