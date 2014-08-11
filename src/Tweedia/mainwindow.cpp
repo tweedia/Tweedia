@@ -275,10 +275,18 @@ void MainWindow::SubmitCommand()
 {
     if (ChkOpenDatabase() == false) return;
 
-    handler.setExecobsobj(obsobj->findExecObsobj(ui->tableView->currentIndex().row()));
-    inputSource.setData(ui->plainTextEdit->toPlainText());
+    obsobj->submitAll();
 
-    reader.parse(inputSource);
+    int i;
+    int nrows = obsobj->rowCount();
+    for (i=0;i<nrows;i++)
+    {
+        if (obsobj->FlgSelect(i) == true) {
+            inputSource.setData(ui->plainTextEdit->toPlainText());
+            handler.setExecobsobj(obsobj->findExecObsobj(i));
+            reader.parse(inputSource);
+        }
+    }
 
 }
 

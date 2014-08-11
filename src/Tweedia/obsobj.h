@@ -50,6 +50,7 @@ public:
     int IdByRow(int row);
     ExecObsobj* findExecObsobj(int row);
     ExecObsobj* updatedExecObsobj(int row);
+    bool FlgSelect(int row);
     QString TableActual(int row);
     QString TableExpected(int row);
     QString Argument(int row);

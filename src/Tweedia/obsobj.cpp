@@ -84,6 +84,12 @@ ExecObsobj* Obsobj::findExecObsobj(int row)
     return ret;
 }
 
+bool Obsobj::FlgSelect(int row)
+{
+    bool ret = this->data(this->index(row,1)).toBool();
+    return ret;
+}
+
 QString Obsobj::TableActual(int row)
 {
     QModelIndex id = this->index(row,5);
