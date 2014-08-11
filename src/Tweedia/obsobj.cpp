@@ -80,7 +80,7 @@ ExecObsobj* Obsobj::findExecObsobj(int row)
 
 QString Obsobj::TableActual(int row)
 {
-    QModelIndex id = this->index(row,4);
+    QModelIndex id = this->index(row,5);
     QVariant val = this->data(id);
     mTableActual.clear();
     mTableActual.append(val.toString());
@@ -108,9 +108,9 @@ void Obsobj::newExecObsobj(int argId)
 ExecObsobj* Obsobj::updatedExecObsobj(int row)
 {
     ExecObsobj* theThread = this->findExecObsobj(row);
-    theThread->setPathname(this->data(this->index(row,2)).toString());
-    theThread->setArgument(this->data(this->index(row,3)).toString());
-    theThread->setTablename(this->data(this->index(row,4)).toString());
+    theThread->setPathname(this->data(this->index(row,3)).toString());
+    theThread->setArgument(this->data(this->index(row,4)).toString());
+    theThread->setTablename(this->data(this->index(row,5)).toString());
     return theThread;
 }
 
