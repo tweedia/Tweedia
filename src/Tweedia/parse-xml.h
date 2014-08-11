@@ -37,7 +37,7 @@ public:
     ParseXml();
 
     void setCommand(Command *arg){command=arg;}
-    void setExecobjobj(ExecObsobj *arg){exec=arg;}
+    void setExecobsobj(ExecObsobj *arg){exec=arg;}
 
     bool startElement(const QString &namespaceURI,
                       const QString &localName,

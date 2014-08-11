@@ -271,7 +271,7 @@ void MainWindow::SubmitCommand()
 {
     if (ChkOpenDatabase() == false) return;
 
-    handler.setExecobjobj(obsobj->findExecObsobj(ui->tableView->currentIndex().row()));
+    handler.setExecobsobj(obsobj->findExecObsobj(ui->tableView->currentIndex().row()));
     inputSource.setData(ui->plainTextEdit->toPlainText());
 
     reader.parse(inputSource);
