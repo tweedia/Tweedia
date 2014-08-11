@@ -193,6 +193,10 @@ int Obsobj::addObsobj(QString argPathname)
 
 void Obsobj::delObsobj(int row)
 {
+    ExecObsobj *wkobj;
+    wkobj = findExecObsobj(row);
+    mExecObsobjs.removeOne(wkobj);
+
     this->removeRow(row);
     this->submitAll();
 
