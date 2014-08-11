@@ -176,10 +176,11 @@ int Obsobj::addObsobj(QString argPathname)
     int row = 0;
     this->insertRow(row);
     this->setData(this->index(row,0),newid);
-    this->setData(this->index(row,1),fi.fileName());
-    this->setData(this->index(row,2),argPathname);
+    this->setData(this->index(row,1),true);
+    this->setData(this->index(row,2),fi.fileName());
+    this->setData(this->index(row,3),argPathname);
 
-    this->setData(this->index(row,4),resultfilename.arg(newid));
+    this->setData(this->index(row,5),resultfilename.arg(newid));
 
     this->submitAll();
 

@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mSqlCreateObsobj = QString("CREATE TABLE obsobj");
     mSqlCreateObsobj.append("(");
     mSqlCreateObsobj.append("id integer NOT NULL,");
+    mSqlCreateObsobj.append("flg_selected boolean NOT NULL,");
 //    mSqlCreateObsobj.append("pid integer,");
     mSqlCreateObsobj.append("file_name character varying,");
     mSqlCreateObsobj.append("path_name character varying,");
