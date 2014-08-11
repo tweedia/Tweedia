@@ -77,7 +77,7 @@ protected:
     QString mTableExpected;
     QString mArgument;
 
-    QList<ExecObsobj*> mExecObsobjs;
+    QList<ExecObsobj*> mListExecObsobj;
     ExecObsobj* findExecObsobjById(int argId);
 
 //    QProcess *mProcess;

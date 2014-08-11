@@ -106,7 +106,7 @@ QString Obsobj::Argument(int row)
 void Obsobj::newExecObsobj(int argId)
 {
     ExecObsobj *app = new ExecObsobj(argId, this->database(), this);
-    mExecObsobjs.append(app);
+    mListExecObsobj.append(app);
 
     mErrcode = OBSOBJ_RC_NOERROR;
 }
@@ -134,7 +134,7 @@ void Obsobj::stopExecObsobj(int row)
 
 void Obsobj::connectToAllExecObsobj(QObject *mdichild,  const char* method)
 {
-    QListIterator<ExecObsobj*> i(mExecObsobjs);
+    QListIterator<ExecObsobj*> i(mListExecObsobj);
     while (i.hasNext())
         QObject::connect(i.next(), SIGNAL(DatabaseUpdated()), mdichild, method);
 }
@@ -144,7 +144,7 @@ ExecObsobj* Obsobj::findExecObsobjById(int argId)
     mErrcode = OBSOBJ_RC_FAILEDTOFIND;
     ExecObsobj* ret = 0;
     int theId;
-//    int nthreads = mExecObsobjs.count();
+//    int nthreads = mListExecObsobj.count();
 //    for (int i=0; i<nthreads; i++)
 //    {
 //        theId = mAppvec[i]->Id();
@@ -156,7 +156,7 @@ ExecObsobj* Obsobj::findExecObsobjById(int argId)
 //        }
 //    }
     ExecObsobj* wkobj;
-    QListIterator<ExecObsobj*> i(mExecObsobjs);
+    QListIterator<ExecObsobj*> i(mListExecObsobj);
     while (i.hasNext())
     {
         wkobj = i.next();
@@ -201,7 +201,7 @@ void Obsobj::delObsobj(int row)
 {
     ExecObsobj *wkobj;
     wkobj = findExecObsobj(row);
-    mExecObsobjs.removeOne(wkobj);
+    mListExecObsobj.removeOne(wkobj);
 
     this->removeRow(row);
     this->submitAll();
