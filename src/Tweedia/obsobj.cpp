@@ -182,8 +182,8 @@ int Obsobj::addObsobj(QString argPathname)
 {
     QFileInfo fi(argPathname);
 
-    QString resultfilename;
-    resultfilename = QString(TBL_OBSERVATION_WITH_PREFIX);
+    QString tblobservationname;
+    tblobservationname = QString(TBL_OBSERVATION_WITH_PREFIX);
 
     int newid = Maxid() + 1;
     int row = 0;
@@ -193,7 +193,7 @@ int Obsobj::addObsobj(QString argPathname)
     this->setData(this->index(row,2),fi.fileName());
     this->setData(this->index(row,3),argPathname);
 
-    this->setData(this->index(row,5),resultfilename.arg(newid));
+    this->setData(this->index(row,5),tblobservationname.arg(newid));
 
     this->submitAll();
 

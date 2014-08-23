@@ -1,4 +1,4 @@
-/* dlg-create-resulttable.h */
+/* dlg-create-tbl-observation.h */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,8 +23,8 @@
    Initial author: Takenobu Noda
  */
 
-#ifndef DLGCREATERESULTTABLE_H
-#define DLGCREATERESULTTABLE_H
+#ifndef DLGCREATETBLOBSERVATION_H
+#define DLGCREATETBLOBSERVATION_H
 
 #include "global.h"
 
@@ -32,31 +32,31 @@
 #include <QString>
 
 namespace Ui {
-class DlgCreateResultTable;
+class DlgCreateTblObservation;
 }
 
-class DlgCreateResultTable : public QDialog
+class DlgCreateTblObservation : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit DlgCreateResultTable(QWidget *parent = 0);
-    ~DlgCreateResultTable();
+    explicit DlgCreateTblObservation(QWidget *parent = 0);
+    ~DlgCreateTblObservation();
 
-    QString SqlCreateResultTbl(){return mSqlCreateResultTbl;}
+    QString SqlCreateTblObservation(){return mSqlCreateTblObservation;}
 
 private slots:
     void on_buttonBox_accepted();
 
 private:
-    Ui::DlgCreateResultTable *ui;
+    Ui::DlgCreateTblObservation *ui;
 
     QStringList mOptionTableType;
 
-    QString mSqlCreateResultTbl;
+    QString mSqlCreateTblObservation;
 
     QString mSqlCreateObsobj;
 
 };
 
-#endif // DLGCREATERESULTTABLE_H
+#endif // DLGCREATETBLOBSERVATION_H

@@ -49,10 +49,10 @@ public:
     enum EErrcode {NoErr = 0, OtherErr = 99};
     EErrcode Errcode(){return mErrcode;}
     int Maxid();
-    QByteArray ResultWhereMaxid();
+    QByteArray ObservationWhereMaxid();
     int Id(){return mId;}
-    QByteArray ResultWhereTheid(int id);
-    QByteArray ResultWhereTheid(QString strid);
+    QByteArray ObservationWhereTheid(int id);
+    QByteArray ObservationWhereTheid(QString strid);
     QString Pathname(){return mPathname;}
     void setPathname(QString arg){mPathname=arg;}
     QString Argument(){return mArgument;}
@@ -79,10 +79,10 @@ private:
 
     QSqlTableModel *mTable;
     QString mSqlSelectmaxid;
-    QString mSqlSelectresultwheretheid;
+    QString mSqlSelectobservationwheretheid;
 
     QByteArray mOutputbuffer;
-    QByteArray mResultWhereTheid;
+    QByteArray mObservationWhereTheid;
 
 signals:
     void DatabaseUpdated();
@@ -90,7 +90,7 @@ signals:
 public slots:
 
 private slots:
-    void saveresult();
+    void saveobservation();
     void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
     void processError(QProcess::ProcessError error);
 

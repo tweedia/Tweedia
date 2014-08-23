@@ -35,9 +35,9 @@ ExecObsobj::ExecObsobj(int id, QSqlDatabase db, QObject *parent) :
     mId = id;
     mProcess = new QProcess(this);
 
-//    connect(mProcess, SIGNAL(readyRead()), this, SLOT(saveresult()));
+//    connect(mProcess, SIGNAL(readyRead()), this, SLOT(saveobservation()));
     connect(mProcess, SIGNAL(readyReadStandardOutput()),
-            this, SLOT(saveresult()));                                  // ref.2
+            this, SLOT(saveobservation()));                                  // ref.2
     connect(mProcess, SIGNAL(finished(int, QProcess::ExitStatus)),
             this, SLOT(processFinished(int, QProcess::ExitStatus)));    // ref.2
     connect(mProcess, SIGNAL(error(QProcess::ProcessError)),
@@ -45,7 +45,7 @@ ExecObsobj::ExecObsobj(int id, QSqlDatabase db, QObject *parent) :
 
 //    mMainWindow = this->parent()->parent();
 
-    mResultWhereTheid = QByteArray();
+    mObservationWhereTheid = QByteArray();
 
     mLog = new Log();
 
@@ -84,7 +84,7 @@ int ExecObsobj::Maxid()
     return id;                                  // ref.1
 }
 
-QByteArray ExecObsobj::ResultWhereMaxid()
+QByteArray ExecObsobj::ObservationWhereMaxid()
 {
     mErrcode = ExecObsobj::NoErr;
 
@@ -96,32 +96,32 @@ QByteArray ExecObsobj::ResultWhereMaxid()
     if (query.next())                           // ref.1
         strid = query.value(0).toString();
 
-    return this->ResultWhereTheid(strid);
+    return this->ObservationWhereTheid(strid);
 }
 
-QByteArray ExecObsobj::ResultWhereTheid(int id)
+QByteArray ExecObsobj::ObservationWhereTheid(int id)
 {
     mErrcode = ExecObsobj::NoErr;
 
     QString strid;
     strid.setNum(id);
 
-    return this->ResultWhereTheid(strid);
+    return this->ObservationWhereTheid(strid);
 }
 
-QByteArray ExecObsobj::ResultWhereTheid(QString strid)
+QByteArray ExecObsobj::ObservationWhereTheid(QString strid)
 {
     mErrcode = ExecObsobj::NoErr;
 
     QSqlQuery query(mDb);
 
-    mResultWhereTheid.clear();
-    mSqlSelectresultwheretheid = QString("SELECT result FROM " + mTablename + " WHERE id = " + strid);
-    query.exec((const QString)mSqlSelectresultwheretheid);
+    mObservationWhereTheid.clear();
+    mSqlSelectobservationwheretheid = QString("SELECT " COL_OBSERVATION_OBSERVATION " FROM " + mTablename + " WHERE id = " + strid);
+    query.exec((const QString)mSqlSelectobservationwheretheid);
     if (query.next())
-        mResultWhereTheid.append(query.value(0).toByteArray());
+        mObservationWhereTheid.append(query.value(0).toByteArray());
 
-    return mResultWhereTheid;
+    return mObservationWhereTheid;
 }
 
 void ExecObsobj::submitCommand(Command *command)
@@ -164,7 +164,7 @@ void ExecObsobj::stop()
 
 }
 
-void ExecObsobj::saveresult()
+void ExecObsobj::saveobservation()
 {
     mOutputbuffer.clear();
     mOutputbuffer.append(mProcess->readAll());
@@ -182,7 +182,7 @@ void ExecObsobj::saveresult()
 
 void ExecObsobj::processFinished(int exitCode, QProcess::ExitStatus exitStatus) // ref.3
 {
-    this->saveresult();
+    this->saveobservation();
 
     if (exitStatus == QProcess::CrashExit) {
         mLog->WriteLog(LOG_ERR, "Program crashed");
@@ -197,7 +197,7 @@ void ExecObsobj::processFinished(int exitCode, QProcess::ExitStatus exitStatus) 
 
 void ExecObsobj::processError(QProcess::ProcessError error) // ref.4
 {
-    this->saveresult();
+    this->saveobservation();
 
     if (error == QProcess::FailedToStart) {
         mLog->WriteLog(LOG_ERR, "Program not found");

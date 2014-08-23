@@ -35,7 +35,7 @@
          <item row="0" column="0">
           <widget class="QLabel" name="label_3">
            <property name="text">
-            <string>Script</string>
+            <string>Command/Input</string>
            </property>
           </widget>
          </item>
@@ -83,7 +83,7 @@
          <item row="0" column="0">
           <widget class="QLabel" name="label">
            <property name="text">
-            <string>Observation Object</string>
+            <string>Observation Objects</string>
            </property>
           </widget>
          </item>
@@ -139,7 +139,7 @@
     </property>
     <addaction name="actionOpenDatabase"/>
     <addaction name="actionCreate_ObsobjTable"/>
-    <addaction name="actionCreate_ResultTable"/>
+    <addaction name="actionCreate_TblObservation"/>
     <addaction name="actionOpen_Script"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -249,9 +249,12 @@
     <string>Open Script</string>
    </property>
   </action>
-  <action name="actionCreate_ResultTable">
+  <action name="actionCreate_TblObservation">
    <property name="text">
-    <string>Create ResultTable</string>
+    <string>Create ObservationTable</string>
+   </property>
+   <property name="toolTip">
+    <string>Create ObservationTable</string>
    </property>
   </action>
   <action name="actionCreate_ObsobjTable">

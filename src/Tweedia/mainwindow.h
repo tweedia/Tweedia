@@ -39,7 +39,7 @@
 #include "parse-xml.h"
 #include "obsobj.h"
 #include "dlg-open-db.h"
-#include "dlg-create-resulttable.h"
+#include "dlg-create-tbl-observation.h"
 
 #include "mdichild/stringview-page.h"
 #include "mdichild/stringview-scroll.h"
@@ -75,7 +75,7 @@ private slots:
 
     void on_actionOpenDatabase_triggered();
     void on_actionCreate_ObsobjTable_triggered();
-    void on_actionCreate_ResultTable_triggered();
+    void on_actionCreate_TblObservation_triggered();
     void on_actionOpen_Script_triggered();
 
     void on_actionTweediaWiki_triggered();
@@ -92,7 +92,7 @@ private:
     bool OpenDatabase();
     void OpenObsobj();
     void InitializeDatabase();
-    void CreateResultTable();
+    void CreateTblObservation();
 
     void AddObsobj();
     void DeleteObsobj();
@@ -120,8 +120,8 @@ private:
     QString mSqlDropObsobj;
     QString mSqlCreateObsobj;
 
-    QString mSqlCreateResultTbl;
-    QString mSqlDropResultTbl;
+    QString mSqlCreateTblObservation;
+    QString mSqlDropTblObservation;
 
     QString bufActualText;
 

@@ -28,6 +28,30 @@
 
 #include "config.h"
 
+#define COL_OBSOBJ_ID "id"
+#define COL_OBSOBJ_ID_TYPE_SQLITE "integer NOT NULL"
+#define COL_OBSOBJ_FLGSELECTED "flg_selected"
+#define COL_OBSOBJ_FLGSELECTED_TYPE_SQLITE "boolean NOT NULL"
+#define COL_OBSOBJ_PID "pid"
+#define COL_OBSOBJ_PID_TYPE_SQLITE "integer"
+#define COL_OBSOBJ_OBJNAME "obj_name"
+#define COL_OBSOBJ_OBJNAME_TYPE_SQLITE "character varying"
+#define COL_OBSOBJ_OBJPATH "obj_path"
+#define COL_OBSOBJ_OBJPATH_TYPE_SQLITE "character varying"
+#define COL_OBSOBJ_ARGUMENT "argument"
+#define COL_OBSOBJ_ARGUMENT_TYPE_SQLITE "character varying"
+#define COL_OBSOBJ_OBSTBL "obs_tbl"
+#define COL_OBSOBJ_OBSTBL_TYPE_SQLITE "character varying"
+#define COL_OBSOBJ_EXPTBL "exp_tbl"
+#define COL_OBSOBJ_EXPTBL_TYPE_SQLITE "character varying"
+
 #define TBL_OBSERVATION_WITH_PREFIX TBL_OBSERVATION "_%1"
+
+#define COL_OBSERVATION_ID "id"
+#define COL_OBSERVATION_ID_TYPE_SQLITE "integer NOT NULL"
+#define COL_OBSERVATION_OBSERVATION "observation"
+#define COL_OBSERVATION_OBSERVATION_TYPE_SQLITE "bytea"
+
+
 
 #endif // GLOBAL_H

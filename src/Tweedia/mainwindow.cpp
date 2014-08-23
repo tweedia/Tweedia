@@ -50,25 +50,25 @@ MainWindow::MainWindow(QWidget *parent) :
 
     mSqlCreateObsobj = QString("CREATE TABLE " TBL_OBSOBJ);
     mSqlCreateObsobj.append("(");
-    mSqlCreateObsobj.append("id integer NOT NULL,");
-    mSqlCreateObsobj.append("flg_selected boolean NOT NULL,");
-//    mSqlCreateObsobj.append("pid integer,");
-    mSqlCreateObsobj.append("file_name character varying,");
-    mSqlCreateObsobj.append("path_name character varying,");
-    mSqlCreateObsobj.append("argument character varying,");
-    mSqlCreateObsobj.append("result_actual character varying,");
-    mSqlCreateObsobj.append("result_expected character varying,");
-    mSqlCreateObsobj.append("CONSTRAINT " TBL_OBSOBJ "_pkey PRIMARY KEY (id)");
+    mSqlCreateObsobj.append(COL_OBSOBJ_ID " " COL_OBSOBJ_ID_TYPE_SQLITE ",");
+    mSqlCreateObsobj.append(COL_OBSOBJ_FLGSELECTED " " COL_OBSOBJ_FLGSELECTED_TYPE_SQLITE ",");
+//    mSqlCreateObsobj.append(COL_OBSOBJ_PID " " COL_OBSOBJ_PID_TYPE_SQLITE ",");
+    mSqlCreateObsobj.append(COL_OBSOBJ_OBJNAME " " COL_OBSOBJ_OBJNAME_TYPE_SQLITE ",");
+    mSqlCreateObsobj.append(COL_OBSOBJ_OBJPATH " " COL_OBSOBJ_OBJPATH_TYPE_SQLITE ",");
+    mSqlCreateObsobj.append(COL_OBSOBJ_ARGUMENT " " COL_OBSOBJ_ARGUMENT_TYPE_SQLITE ",");
+    mSqlCreateObsobj.append(COL_OBSOBJ_OBSTBL " " COL_OBSOBJ_OBSTBL_TYPE_SQLITE ",");
+    mSqlCreateObsobj.append(COL_OBSOBJ_EXPTBL " " COL_OBSOBJ_EXPTBL_TYPE_SQLITE ",");
+    mSqlCreateObsobj.append("CONSTRAINT " TBL_OBSOBJ "_pkey PRIMARY KEY (" COL_OBSOBJ_ID ")");
     mSqlCreateObsobj.append(")");
 
-    mSqlCreateResultTbl = QString("CREATE TABLE " TBL_OBSERVATION_WITH_PREFIX);
-    mSqlCreateResultTbl.append("(");
-    mSqlCreateResultTbl.append("id integer NOT NULL,");
-    mSqlCreateResultTbl.append("result bytea,");
-    mSqlCreateResultTbl.append("CONSTRAINT " TBL_OBSERVATION_WITH_PREFIX "_pkey PRIMARY KEY (id)");
-    mSqlCreateResultTbl.append(")");
+    mSqlDropTblObservation = QString("DROP TABLE " TBL_OBSERVATION_WITH_PREFIX);
 
-    mSqlDropResultTbl = QString("DROP TABLE " TBL_OBSERVATION_WITH_PREFIX);
+    mSqlCreateTblObservation = QString("CREATE TABLE " TBL_OBSERVATION_WITH_PREFIX);
+    mSqlCreateTblObservation.append("(");
+    mSqlCreateTblObservation.append(COL_OBSERVATION_ID " " COL_OBSERVATION_ID_TYPE_SQLITE ",");
+    mSqlCreateTblObservation.append(COL_OBSERVATION_OBSERVATION " " COL_OBSERVATION_OBSERVATION_TYPE_SQLITE ",");
+    mSqlCreateTblObservation.append("CONSTRAINT " TBL_OBSERVATION_WITH_PREFIX "_pkey PRIMARY KEY (" COL_OBSERVATION_ID ")");
+    mSqlCreateTblObservation.append(")");
 
     mdichilds = new QList<QWidget*>;
 
@@ -179,17 +179,17 @@ void MainWindow::InitializeDatabase()
 
 }
 
-void MainWindow::CreateResultTable()
+void MainWindow::CreateTblObservation()
 {
     if (ChkOpenDatabase() != true) return;
 
-    DlgCreateResultTable dialog(this);
+    DlgCreateTblObservation dialog(this);
     dialog.exec();
 
-    if (dialog.result() == DlgCreateResultTable::Accepted)
+    if (dialog.result() == DlgCreateTblObservation::Accepted)
     {
         QSqlQuery query(db);
-        query.exec((const QString)dialog.SqlCreateResultTbl());
+        query.exec((const QString)dialog.SqlCreateTblObservation());
     }
 
 }
@@ -213,7 +213,7 @@ void MainWindow::AddObsobj()
     QSqlQuery query(db);
 
     if (newid != 0) {
-        query.exec((const QString)mSqlCreateResultTbl.arg(newid));
+        query.exec((const QString)mSqlCreateTblObservation.arg(newid));
     }
 }
 
@@ -232,7 +232,7 @@ void MainWindow::DeleteObsobj()
     QSqlQuery query(db);
 
     if (theid != 0) {
-        query.exec((const QString)mSqlDropResultTbl.arg(theid));
+        query.exec((const QString)mSqlDropTblObservation.arg(theid));
     }
 
 }
@@ -375,9 +375,9 @@ void MainWindow::on_actionRunObsobj_triggered()
     this->RunObsobj();
 }
 
-void MainWindow::on_actionCreate_ResultTable_triggered()
+void MainWindow::on_actionCreate_TblObservation_triggered()
 {
-    this->CreateResultTable();
+    this->CreateTblObservation();
 }
 
 void MainWindow::on_actionTweediaWiki_triggered()

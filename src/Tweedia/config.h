@@ -5,7 +5,7 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define TBL_OBSERVATION "result"
+#define TBL_OBSERVATION "observation"
 #define TBL_OBSOBJ "obsobj"
 
 #endif // CONFIG_H

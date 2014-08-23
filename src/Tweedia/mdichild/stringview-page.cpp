@@ -50,7 +50,7 @@ void StringviewPage::refreashWithRowOfTableView()
 
     // Cast for QString
     mValueAsQString.clear();
-    mValueAsQString.append(mExecObsobj->ResultWhereMaxid().constData());
+    mValueAsQString.append(mExecObsobj->ObservationWhereMaxid().constData());
 
     ui->textBrowser->setText(mValueAsQString);
 
@@ -80,7 +80,7 @@ void StringviewPage::on_spinBox_valueChanged(int arg1)
 
     // Cast for QString
     mValueAsQString.clear();
-    mValueAsQString.append(mExecObsobj->ResultWhereTheid(arg1));
+    mValueAsQString.append(mExecObsobj->ObservationWhereTheid(arg1));
 
     ui->textBrowser->setText(mValueAsQString);
 

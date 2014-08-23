@@ -1,4 +1,4 @@
-/* dlg-create-resulttable.cpp */
+/* dlg-create-tbl-observation.cpp */
 
 /* Copyright (C) 2013 Takenobu Noda
 
@@ -23,44 +23,44 @@
    Initial author: Takenobu Noda
  */
 
-#include "dlg-create-resulttable.h"
-#include "ui_dlg-create-resulttable.h"
+#include "dlg-create-tbl-observation.h"
+#include "ui_dlg-create-tbl-observation.h"
 
-DlgCreateResultTable::DlgCreateResultTable(QWidget *parent) :
+DlgCreateTblObservation::DlgCreateTblObservation(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DlgCreateResultTable)
+    ui(new Ui::DlgCreateTblObservation)
 {
     ui->setupUi(this);
 
     mOptionTableType.append("Simple");
     ui->uiTableType->addItems(mOptionTableType);
 
-    ui->uiTableName->setText("result1");
+    ui->uiTableName->setText(TBL_OBSERVATION);
 
-    mSqlCreateResultTbl = QString();
+    mSqlCreateTblObservation = QString();
 
 }
 
-DlgCreateResultTable::~DlgCreateResultTable()
+DlgCreateTblObservation::~DlgCreateTblObservation()
 {
     delete ui;
 }
 
-void DlgCreateResultTable::on_buttonBox_accepted()
+void DlgCreateTblObservation::on_buttonBox_accepted()
 {
     QString selectedType(ui->uiTableType->currentText());
     QString tableName(ui->uiTableName->text());
 
-    mSqlCreateResultTbl.clear();
+    mSqlCreateTblObservation.clear();
 
     if (selectedType=="Simple")
     {
-        mSqlCreateResultTbl.append("CREATE TABLE " + tableName);
-        mSqlCreateResultTbl.append("(");
-        mSqlCreateResultTbl.append("id integer NOT NULL,");
-        mSqlCreateResultTbl.append("result bytea,");
-        mSqlCreateResultTbl.append("CONSTRAINT " + tableName + "_pkey PRIMARY KEY (id)");
-        mSqlCreateResultTbl.append(")");
+        mSqlCreateTblObservation.append("CREATE TABLE " + tableName);
+        mSqlCreateTblObservation.append("(");
+        mSqlCreateTblObservation.append(COL_OBSERVATION_ID " " COL_OBSERVATION_ID_TYPE_SQLITE ",");
+        mSqlCreateTblObservation.append(COL_OBSERVATION_OBSERVATION " " COL_OBSERVATION_OBSERVATION_TYPE_SQLITE ",");
+        mSqlCreateTblObservation.append("CONSTRAINT " + tableName + "_pkey PRIMARY KEY (" COL_OBSERVATION_ID ")");
+        mSqlCreateTblObservation.append(")");
 
     }
 

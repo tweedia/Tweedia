@@ -36,12 +36,12 @@ SOURCES += main.cpp\
     parse-xml.cpp \
     command.cpp \
     exec-obsobj.cpp \
-    dlg-create-resulttable.cpp \
     dlg-about.cpp \
     dlg-preferences.cpp \
     dlg-open-db.cpp \
     mdichild/stringview-page.cpp \
-    mdichild/stringview-scroll.cpp
+    mdichild/stringview-scroll.cpp \
+    dlg-create-tbl-observation.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -54,22 +54,22 @@ HEADERS  += mainwindow.h \
     log.h \
     obsobj.h \
     parse-xml.h \
-    dlg-create-resulttable.h \
     dlg-about.h \
     dlg-preferences.h \
     dlg-open-db.h \
     mdichild/stringview-page.h \
     mdichild/stringview-scroll.h \
     global.h \
-    config.h
+    config.h \
+    dlg-create-tbl-observation.h
 
 FORMS    += mainwindow.ui \
-    dlg-create-resulttable.ui \
     dlg-about.ui \
     dlg-preferences.ui \
     dlg-open-db.ui \
     mdichild/stringview-page.ui \
-    mdichild/stringview-scroll.ui
+    mdichild/stringview-scroll.ui \
+    dlg-create-tbl-observation.ui
 
 RESOURCES += \
     res/icon.qrc
