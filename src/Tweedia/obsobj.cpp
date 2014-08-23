@@ -23,6 +23,7 @@
    Initial author: Takenobu Noda
  */
 
+#include "global.h"
 #include "obsobj.h"
 
 #include <QDebug>
@@ -182,7 +183,7 @@ int Obsobj::addObsobj(QString argPathname)
     QFileInfo fi(argPathname);
 
     QString resultfilename;
-    resultfilename = QString("result_%1");
+    resultfilename = QString(TBL_OBSERVATION_WITH_PREFIX);
 
     int newid = Maxid() + 1;
     int row = 0;

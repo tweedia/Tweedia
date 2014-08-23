@@ -26,6 +26,8 @@
 #ifndef DLGPREFERENCES_H
 #define DLGPREFERENCES_H
 
+#include "global.h"
+
 #include <QDialog>
 
 namespace Ui {

@@ -33,6 +33,8 @@
 #include <QList>
 #include <QMessageBox>
 
+#include "global.h"
+
 #include "command.h"
 #include "parse-xml.h"
 #include "obsobj.h"

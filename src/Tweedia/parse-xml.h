@@ -28,6 +28,8 @@
 
 #include <QXmlDefaultHandler>
 
+#include "global.h"
+
 #include "command.h"
 #include "exec-obsobj.h"
 

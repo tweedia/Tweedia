@@ -26,6 +26,8 @@
 #ifndef DLGABOUT_H
 #define DLGABOUT_H
 
+#include "global.h"
+
 #include <QDialog>
 #include <QPixmap>
 

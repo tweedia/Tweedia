@@ -26,6 +26,8 @@
 #ifndef OBSOBJ_H
 #define OBSOBJ_H
 
+#include "global.h"
+
 #include <QSqlTableModel>
 #include <QFileInfo>
 #include <QSqlQuery>

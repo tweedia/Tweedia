@@ -1,6 +1,6 @@
-/* dlg-create-resulttable.h */
+/* global.h */
 
-/* Copyright (C) 2013 Takenobu Noda
+/* Copyright (C) 2014 Takenobu Noda
 
    This file is part of Tweedia.
 
@@ -19,44 +19,15 @@
 */
 
 /* Birthdate:
-   Dec 20, 2013; Saitama, Japan
+   Saturday, August 23rd, 2014; Tokyo, Japan
    Initial author: Takenobu Noda
  */
 
-#ifndef DLGCREATERESULTTABLE_H
-#define DLGCREATERESULTTABLE_H
+#ifndef GLOBAL_H
+#define GLOBAL_H
 
-#include "global.h"
+#include "config.h"
 
-#include <QDialog>
-#include <QString>
+#define TBL_OBSERVATION_WITH_PREFIX TBL_OBSERVATION "_%1"
 
-namespace Ui {
-class DlgCreateResultTable;
-}
-
-class DlgCreateResultTable : public QDialog
-{
-    Q_OBJECT
-
-public:
-    explicit DlgCreateResultTable(QWidget *parent = 0);
-    ~DlgCreateResultTable();
-
-    QString SqlCreateResultTbl(){return mSqlCreateResultTbl;}
-
-private slots:
-    void on_buttonBox_accepted();
-
-private:
-    Ui::DlgCreateResultTable *ui;
-
-    QStringList mOptionTableType;
-
-    QString mSqlCreateResultTbl;
-
-    QString mSqlCreateObsobj;
-
-};
-
-#endif // DLGCREATERESULTTABLE_H
+#endif // GLOBAL_H

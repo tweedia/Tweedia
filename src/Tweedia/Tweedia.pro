@@ -59,7 +59,9 @@ HEADERS  += mainwindow.h \
     dlg-preferences.h \
     dlg-open-db.h \
     mdichild/stringview-page.h \
-    mdichild/stringview-scroll.h
+    mdichild/stringview-scroll.h \
+    global.h \
+    config.h
 
 FORMS    += mainwindow.ui \
     dlg-create-resulttable.ui \

@@ -33,6 +33,8 @@
 #include <QSqlTableModel>
 #include <QSqlQuery>
 
+#include "global.h"
+
 //#include "mainwindow.h"
 #include "log.h"
 #include "command.h"

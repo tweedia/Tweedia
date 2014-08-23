@@ -46,9 +46,9 @@ MainWindow::MainWindow(QWidget *parent) :
     reader.setContentHandler(&handler);
     reader.setErrorHandler(&handler);
 
-    mSqlDropObsobj = QString("DROP TABLE obsobj");
+    mSqlDropObsobj = QString("DROP TABLE " TBL_OBSOBJ);
 
-    mSqlCreateObsobj = QString("CREATE TABLE obsobj");
+    mSqlCreateObsobj = QString("CREATE TABLE " TBL_OBSOBJ);
     mSqlCreateObsobj.append("(");
     mSqlCreateObsobj.append("id integer NOT NULL,");
     mSqlCreateObsobj.append("flg_selected boolean NOT NULL,");
@@ -58,17 +58,17 @@ MainWindow::MainWindow(QWidget *parent) :
     mSqlCreateObsobj.append("argument character varying,");
     mSqlCreateObsobj.append("result_actual character varying,");
     mSqlCreateObsobj.append("result_expected character varying,");
-    mSqlCreateObsobj.append("CONSTRAINT obsobj_pkey PRIMARY KEY (id)");
+    mSqlCreateObsobj.append("CONSTRAINT " TBL_OBSOBJ "_pkey PRIMARY KEY (id)");
     mSqlCreateObsobj.append(")");
 
-    mSqlCreateResultTbl = QString("CREATE TABLE result_%1");
+    mSqlCreateResultTbl = QString("CREATE TABLE " TBL_OBSERVATION_WITH_PREFIX);
     mSqlCreateResultTbl.append("(");
     mSqlCreateResultTbl.append("id integer NOT NULL,");
     mSqlCreateResultTbl.append("result bytea,");
-    mSqlCreateResultTbl.append("CONSTRAINT result_%1_pkey PRIMARY KEY (id)");
+    mSqlCreateResultTbl.append("CONSTRAINT " TBL_OBSERVATION_WITH_PREFIX "_pkey PRIMARY KEY (id)");
     mSqlCreateResultTbl.append(")");
 
-    mSqlDropResultTbl = QString("DROP TABLE result_%1");
+    mSqlDropResultTbl = QString("DROP TABLE " TBL_OBSERVATION_WITH_PREFIX);
 
     mdichilds = new QList<QWidget*>;
 

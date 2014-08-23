@@ -26,6 +26,8 @@
 #ifndef DLGOPENDB_H
 #define DLGOPENDB_H
 
+#include "global.h"
+
 #include <QDialog>
 #include <QString>
 

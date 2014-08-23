@@ -26,6 +26,8 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+#include "global.h"
+
 #include <QString>
 
 /* Command Types: */    // ref.1
