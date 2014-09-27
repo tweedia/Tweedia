@@ -153,8 +153,8 @@
     <property name="title">
      <string>Window</string>
     </property>
-    <addaction name="actionString_View_Page"/>
-    <addaction name="actionString_View_Scroll"/>
+    <addaction name="actionPage_Widget_String"/>
+    <addaction name="actionScroll_Widget_String"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -295,6 +295,16 @@
   <action name="actionString_View_Scroll">
    <property name="text">
     <string>String View (Scroll)</string>
+   </property>
+  </action>
+  <action name="actionPage_Widget_String">
+   <property name="text">
+    <string>Page Widget (String)</string>
+   </property>
+  </action>
+  <action name="actionScroll_Widget_String">
+   <property name="text">
+    <string>Scroll Widget (String)</string>
    </property>
   </action>
  </widget>

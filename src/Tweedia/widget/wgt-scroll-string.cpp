@@ -1,9 +1,34 @@
-#include "stringview-scroll.h"
-#include "ui_stringview-scroll.h"
+/* wgt-scroll-string.cpp */
 
-StringviewScroll::StringviewScroll(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
+/* Copyright (C) 2013 Takenobu Noda
+
+   This file is part of Tweedia.
+
+   Tweedia is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   Tweedia is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with Tweedia. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/* Birthdate:
+   Monday, Aug 4th, 2013; Saitama, Japan
+   Initial author: Takenobu Noda
+*/
+
+#include "wgt-scroll-string.h"
+#include "ui_wgt-scroll-string.h"
+
+WgtScrollString::WgtScrollString(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
     QWidget(parent),
-    ui(new Ui::StringviewScroll)
+    ui(new Ui::WgtScrollString)
 {
     ui->setupUi(this);
 
@@ -21,7 +46,7 @@ StringviewScroll::StringviewScroll(QWidget *parent, Obsobj *obsobj, int rowOfTab
 
 }
 
-void StringviewScroll::refreashWithRowOfTableView()
+void WgtScrollString::refreashWithRowOfTableView()
 {
     mExecObsobj = mObsobj->updatedExecObsobj(mRowOfTableView);
 
@@ -43,17 +68,17 @@ void StringviewScroll::refreashWithRowOfTableView()
 
 }
 
-StringviewScroll::~StringviewScroll()
+WgtScrollString::~WgtScrollString()
 {
     delete ui;
 }
 
-void StringviewScroll::on_DatabaseUpdated()
+void WgtScrollString::on_DatabaseUpdated()
 {
-    StringviewScroll::refreashWithRowOfTableView();
+    WgtScrollString::refreashWithRowOfTableView();
 }
 
-void StringviewScroll::on_checkBox_stateChanged(int arg1)
+void WgtScrollString::on_checkBox_stateChanged(int arg1)
 {
     if(ui->checkBox->isChecked()){
         ui->tableView->setColumnHidden(0,false);

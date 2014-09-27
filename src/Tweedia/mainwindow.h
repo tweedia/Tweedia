@@ -41,8 +41,10 @@
 #include "dlg-open-db.h"
 #include "dlg-create-tbl-observation.h"
 
-#include "mdichild/stringview-page.h"
-#include "mdichild/stringview-scroll.h"
+#include "widget/wgt-page-string.h"
+#include "widget/wgt-scroll-string.h"
+//#include "mdichild/stringview-page.h"
+//#include "mdichild/stringview-scroll.h"
 
 namespace Ui {
 class MainWindow;
@@ -82,8 +84,10 @@ private slots:
     void on_actionTweediaWebsite_triggered();
     void on_actionReportBug_triggered();
 
-    void on_actionString_View_Page_triggered();
-    void on_actionString_View_Scroll_triggered();
+    void on_actionPage_Widget_String_triggered();
+    void on_actionScroll_Widget_String_triggered();
+//    void on_actionString_View_Page_triggered();
+//    void on_actionString_View_Scroll_triggered();
 
 private:
     void AboutTweedia();
@@ -101,8 +105,10 @@ private:
     void OpenCommand();
     void SubmitCommand();
 
-    void OpenStringviewPage();
-    void OpenStringviewScroll();
+    void OpenWgtPageString();
+    void OpenWgtPageScroll();
+//    void OpenStringviewPage();
+//    void OpenStringviewScroll();
 
     bool ChkOpenDatabase();
     bool ChkTableView();

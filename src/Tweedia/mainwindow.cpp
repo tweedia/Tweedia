@@ -290,27 +290,34 @@ void MainWindow::SubmitCommand()
 
 }
 
+/*
 void MainWindow::OpenStringviewPage()
+*/
+void MainWindow::OpenWgtPageString()
 {
     if (ChkTableView() == false) return;
-    StringviewPage *StringviewPage1 = new StringviewPage(this, obsobj, ui->tableView->currentIndex().row());
-    ui->mdiArea->addSubWindow(StringviewPage1);
-    mdichilds->append(StringviewPage1);
-    obsobj->connectToAllExecObsobj(StringviewPage1, SLOT(on_DatabaseUpdated()));
-    StringviewPage1->show();
+    WgtPageString *wgtPageString1 = new WgtPageString(this, obsobj, ui->tableView->currentIndex().row());
+    ui->mdiArea->addSubWindow(wgtPageString1);
+    mdichilds->append(wgtPageString1);
+    obsobj->connectToAllExecObsobj(wgtPageString1, SLOT(on_DatabaseUpdated()));
+    wgtPageString1->show();
 
 }
 
+/*
 void MainWindow::OpenStringviewScroll()
+*/
+void MainWindow::OpenWgtPageScroll()
 {
     if (ChkTableView() == false) return;
-    StringviewScroll *StringviewScroll1 = new StringviewScroll(this, obsobj, ui->tableView->currentIndex().row());
-    ui->mdiArea->addSubWindow(StringviewScroll1);
-    mdichilds->append(StringviewScroll1);
-    obsobj->connectToAllExecObsobj(StringviewScroll1, SLOT(on_DatabaseUpdated()));
-    StringviewScroll1->show();
+    WgtScrollString *wgtScrollString1 = new WgtScrollString(this, obsobj, ui->tableView->currentIndex().row());
+    ui->mdiArea->addSubWindow(wgtScrollString1);
+    mdichilds->append(wgtScrollString1);
+    obsobj->connectToAllExecObsobj(wgtScrollString1, SLOT(on_DatabaseUpdated()));
+    wgtScrollString1->show();
 
 }
+
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -395,16 +402,29 @@ void MainWindow::on_actionReportBug_triggered()
     QDesktopServices::openUrl(QUrl("https://github.com/tweedia/Tweedia/issues", QUrl::TolerantMode));
 }
 
+/*
 void MainWindow::on_actionString_View_Page_triggered()
 {
     this->OpenStringviewPage();
 }
+*/
 
+void MainWindow::on_actionPage_Widget_String_triggered()
+{
+    this->OpenWgtPageString();
+}
+
+/*
 void MainWindow::on_actionString_View_Scroll_triggered()
 {
     this->OpenStringviewScroll();
 }
+*/
 
+void MainWindow::on_actionScroll_Widget_String_triggered()
+{
+    this->OpenWgtPageScroll();
+}
 
 
 
@@ -415,11 +435,6 @@ void MainWindow::on_actionString_View_Scroll_triggered()
 
 /* References, Quotation:
  */
-
-
-
-
-
 
 
 
