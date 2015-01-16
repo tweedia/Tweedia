@@ -45,6 +45,7 @@
 #include "widget/wgt-scroll-string.h"
 //#include "mdichild/stringview-page.h"
 //#include "mdichild/stringview-scroll.h"
+#include "widget/wgt-histgram-number.h"
 
 namespace Ui {
 class MainWindow;
@@ -89,6 +90,8 @@ private slots:
 //    void on_actionString_View_Page_triggered();
 //    void on_actionString_View_Scroll_triggered();
 
+    void on_actionHistogram_Widget_Number_triggered();
+
 private:
     void AboutTweedia();
     void Preferences();
@@ -109,6 +112,7 @@ private:
     void OpenWgtPageScroll();
 //    void OpenStringviewPage();
 //    void OpenStringviewScroll();
+    void OpenWgtHistogramNumber();
 
     bool ChkOpenDatabase();
     bool ChkTableView();

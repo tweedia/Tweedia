@@ -41,7 +41,8 @@ SOURCES += main.cpp\
     dlg-open-db.cpp \
     dlg-create-tbl-observation.cpp \
     widget/wgt-page-string.cpp \
-    widget/wgt-scroll-string.cpp
+    widget/wgt-scroll-string.cpp \
+    widget/wgt-histgram-number.cpp
 
 HEADERS  += mainwindow.h \
     log.h \
@@ -61,7 +62,8 @@ HEADERS  += mainwindow.h \
     config.h \
     dlg-create-tbl-observation.h \
     widget/wgt-page-string.h \
-    widget/wgt-scroll-string.h
+    widget/wgt-scroll-string.h \
+    widget/wgt-histgram-number.h
 
 FORMS    += mainwindow.ui \
     dlg-about.ui \
@@ -69,7 +71,8 @@ FORMS    += mainwindow.ui \
     dlg-open-db.ui \
     dlg-create-tbl-observation.ui \
     widget/wgt-page-string.ui \
-    widget/wgt-scroll-string.ui
+    widget/wgt-scroll-string.ui \
+    widget/wgt-histgram-number.ui
 
 RESOURCES += \
     res/icon.qrc

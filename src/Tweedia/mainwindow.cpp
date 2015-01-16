@@ -318,6 +318,16 @@ void MainWindow::OpenWgtPageScroll()
 
 }
 
+void MainWindow::OpenWgtHistogramNumber()
+{
+    if (ChkTableView() == false) return;
+    WgtHistgramNumber *wgtHistgramNumber1 = new WgtHistgramNumber(this, obsobj, ui->tableView->currentIndex().row());
+    ui->mdiArea->addSubWindow(wgtHistgramNumber1);
+    mdichilds->append(wgtHistgramNumber1);
+    obsobj->connectToAllExecObsobj(wgtHistgramNumber1, SLOT(on_DatabaseUpdated()));
+    wgtHistgramNumber1->show();
+
+}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -426,6 +436,10 @@ void MainWindow::on_actionScroll_Widget_String_triggered()
     this->OpenWgtPageScroll();
 }
 
+void MainWindow::on_actionHistogram_Widget_Number_triggered()
+{
+    this->OpenWgtHistogramNumber();
+}
 
 
 
@@ -435,7 +449,4 @@ void MainWindow::on_actionScroll_Widget_String_triggered()
 
 /* References, Quotation:
  */
-
-
-
 

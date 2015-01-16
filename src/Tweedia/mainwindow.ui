@@ -155,6 +155,7 @@
     </property>
     <addaction name="actionPage_Widget_String"/>
     <addaction name="actionScroll_Widget_String"/>
+    <addaction name="actionHistogram_Widget_Number"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -305,6 +306,11 @@
   <action name="actionScroll_Widget_String">
    <property name="text">
     <string>Scroll Widget (String)</string>
+   </property>
+  </action>
+  <action name="actionHistogram_Widget_Number">
+   <property name="text">
+    <string>Histogram Widget (Number)</string>
    </property>
   </action>
  </widget>
