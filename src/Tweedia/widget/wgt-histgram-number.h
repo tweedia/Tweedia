@@ -26,7 +26,12 @@ public slots:
     void on_DatabaseUpdated();
 
 protected:
+    void paintEvent_drawHistgram();
+    void paintEvent_drawAxis();
     void paintEvent(QPaintEvent *);
+
+private slots:
+    void on_spinBox_valueChanged(int arg1);
 
 private:
     Ui::WgtHistgramNumber *ui;
@@ -36,6 +41,9 @@ private:
     Obsobj *mObsobj;
     int mRowOfTableView;
     ExecObsobj *mExecObsobj;
+
+    int mResolution;
+    int mWidth, mHeight, mXmargin, mYmargin, mXpadding, mYpadding;
 
     QList<int> mlist;
 };

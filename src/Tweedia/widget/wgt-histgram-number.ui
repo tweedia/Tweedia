@@ -1,8 +1,5 @@
-<?xml version='1.0'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>WgtHistgramNumber</class>
  <widget class="QWidget" name="WgtHistgramNumber">
   <property name="geometry">
@@ -16,7 +13,33 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QSpinBox" name="spinBox">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>10</y>
+     <width>49</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>-99</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Resolution: 10^</string>
+   </property>
+  </widget>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>
