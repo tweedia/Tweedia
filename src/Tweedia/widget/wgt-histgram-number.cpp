@@ -10,7 +10,15 @@ WgtHistgramNumber::WgtHistgramNumber(QWidget *parent, Obsobj *obsobj, int rowOfT
 {
     ui->setupUi(this);
 
-    mResolution = ui->spinBox->value();
+    mXmargin = 40;
+    mYmargin = 40;
+    mSizeDivisionS = 2;
+    mSizeDivisionL = 5;
+    mHistgramWidth = 5;
+
+    mResolution = ui->spinBox_Resolution->value();
+    mXintDivision = 10;
+    mYintDivision = 10;
 
     mObsobj = obsobj;
     mRowOfTableView = rowOfTableView;
@@ -91,41 +99,84 @@ void WgtHistgramNumber::paintEvent_drawHistgram()
             }
         } else {
         }
-        rect_x = mXmargin + mXpadding + cnt*5;
-        rect_y = mHeight - val - mYpadding - mYmargin;
-        rect_width = 5;
-        rect_height = val;
+        rect_x = mXmargin + cnt*mHistgramWidth;
+        rect_width = mHistgramWidth;
+        if (val < mHeight - mYmargin*2) {
+            rect_y = mHeight - val - mYmargin;
+            rect_height = val;
+        } else {
+            rect_y = mYmargin;
+            rect_height = mHeight - mYmargin*2;
+        }
         if (rect_y < 0)
         {
             rect_y = 0;
-            rect_height = mHeight - mYpadding - mYmargin;
+            rect_height = mHeight - mYmargin;
         }
         painter.drawRect(rect_x, rect_y, rect_width, rect_height);
 
         cnt++;
-
     }
-
 }
 
-void WgtHistgramNumber::paintEvent_drawAxis()
+void WgtHistgramNumber::paintEvent_drawAxisX()
 {
     QPainter painter(this);
 
     painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::SquareCap));
 
     int x1,y1,x2,y2;
-    x1 = mXmargin + mXpadding;
-    y1 = mHeight - mYmargin - mYpadding;
-    x2 = x1;
-    y2 = mYmargin + mYpadding;
+    x1 = mXmargin;
+    y1 = mHeight - mYmargin;
+    x2 = mWidth - mXmargin;
+    y2 = y1;
+
     painter.drawLine(x1,y1,x2,y2);
 
-    x1 = mXmargin + mXpadding;
-    y1 = mHeight - mYmargin - mYpadding;
-    x2 = mWidth - mXmargin - mXpadding;
-    y2 = y1;
+    int x,y;
+    QPainterPath path;
+    x = x1;
+    y = y1;
+
+    while(x < mWidth - mXmargin) {
+        path.moveTo(x, y);
+        path.lineTo(x, y + mSizeDivisionL);
+        x = x + mXintDivision*mHistgramWidth;
+    }
+    painter.drawPath(path);
+}
+
+void WgtHistgramNumber::paintEvent_drawAxisY()
+{
+    QPainter painter(this);
+
+    painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::SquareCap));
+
+    int x1,y1,x2,y2;
+    x1 = mXmargin;
+    y1 = mHeight - mYmargin;
+    x2 = x1;
+    y2 = mYmargin;
+
     painter.drawLine(x1,y1,x2,y2);
+
+    int x,y,cnt;
+    QPainterPath path;
+    x = x1;
+    y = y1;
+    cnt = 0;
+
+    while(y > mYmargin) {
+        path.moveTo(x, y);
+        if (cnt%10==0) {
+            path.lineTo(x - mSizeDivisionL, y);
+        }else{
+            path.lineTo(x - mSizeDivisionS, y);
+        }
+        y = y - mYintDivision;
+        cnt++;
+    }
+    painter.drawPath(path);
 }
 
 void WgtHistgramNumber::paintEvent(QPaintEvent *)
@@ -133,19 +184,14 @@ void WgtHistgramNumber::paintEvent(QPaintEvent *)
     mWidth = this->width();
     mHeight = this->height();
 
-    mXmargin = 10;
-    mYmargin = 10;
-    mXpadding = 10;
-    mYpadding = 10;
-
     this->paintEvent_drawHistgram();
-    this->paintEvent_drawAxis();
-
+    this->paintEvent_drawAxisX();
+    this->paintEvent_drawAxisY();
 }
 
-void WgtHistgramNumber::on_spinBox_valueChanged(int arg1)
+void WgtHistgramNumber::on_spinBox_Resolution_valueChanged(int arg1)
 {
-    mResolution = ui->spinBox->value();
+    mResolution = ui->spinBox_Resolution->value();
 
     this->update();
 }

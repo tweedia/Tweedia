@@ -27,11 +27,12 @@ public slots:
 
 protected:
     void paintEvent_drawHistgram();
-    void paintEvent_drawAxis();
+    void paintEvent_drawAxisX();
+    void paintEvent_drawAxisY();
     void paintEvent(QPaintEvent *);
 
 private slots:
-    void on_spinBox_valueChanged(int arg1);
+    void on_spinBox_Resolution_valueChanged(int arg1);
 
 private:
     Ui::WgtHistgramNumber *ui;
@@ -43,7 +44,9 @@ private:
     ExecObsobj *mExecObsobj;
 
     int mResolution;
-    int mWidth, mHeight, mXmargin, mYmargin, mXpadding, mYpadding;
+    int mWidth, mHeight, mXmargin, mYmargin;
+    int mSizeDivisionS, mSizeDivisionL, mXintDivision, mYintDivision;
+    int mHistgramWidth;
 
     QList<int> mlist;
 };
