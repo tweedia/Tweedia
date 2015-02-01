@@ -46,6 +46,7 @@ private:
     int mResolution;
     int mWidth, mHeight, mXmargin, mYmargin;
     int mSizeDivisionS, mSizeDivisionL, mXintDivision, mYintDivision;
+    int mYDivisionLabel;
     int mHistgramWidth;
 
     QList<int> mlist;

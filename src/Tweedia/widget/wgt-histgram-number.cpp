@@ -4,13 +4,15 @@
 #include <QSqlRecord>
 #include <QSqlField>
 
+#include <qmath.h>
+
 WgtHistgramNumber::WgtHistgramNumber(QWidget *parent, Obsobj *obsobj, int rowOfTableView) :
     QWidget(parent),
     ui(new Ui::WgtHistgramNumber)
 {
     ui->setupUi(this);
 
-    mXmargin = 40;
+    mXmargin = 70;
     mYmargin = 40;
     mSizeDivisionS = 2;
     mSizeDivisionL = 5;
@@ -19,6 +21,7 @@ WgtHistgramNumber::WgtHistgramNumber(QWidget *parent, Obsobj *obsobj, int rowOfT
     mResolution = ui->spinBox_Resolution->value();
     mXintDivision = 10;
     mYintDivision = 10;
+    mYDivisionLabel = 60;
 
     mObsobj = obsobj;
     mRowOfTableView = rowOfTableView;
@@ -133,17 +136,25 @@ void WgtHistgramNumber::paintEvent_drawAxisX()
 
     painter.drawLine(x1,y1,x2,y2);
 
-    int x,y;
     QPainterPath path;
+    int x,y;
     x = x1;
     y = y1;
 
+    QString s;
+    int cnt;
+    cnt = 0;
+
     while(x < mWidth - mXmargin) {
+        s = QString("%1").arg(cnt);
+        painter.drawText(QRect(x - 14, y + mSizeDivisionL + 2, 30, 20), Qt::AlignHCenter, s);
         path.moveTo(x, y);
         path.lineTo(x, y + mSizeDivisionL);
         x = x + mXintDivision*mHistgramWidth;
+        cnt = cnt + mXintDivision;
     }
     painter.drawPath(path);
+
 }
 
 void WgtHistgramNumber::paintEvent_drawAxisY()
@@ -160,15 +171,22 @@ void WgtHistgramNumber::paintEvent_drawAxisY()
 
     painter.drawLine(x1,y1,x2,y2);
 
-    int x,y,cnt;
+    int x,y;
     QPainterPath path;
     x = x1;
     y = y1;
+
+    qreal r;
+    QString s;
+    int cnt;
     cnt = 0;
 
     while(y > mYmargin) {
         path.moveTo(x, y);
         if (cnt%10==0) {
+            r = mYintDivision * cnt * (qPow(10,-1*mResolution));
+            s = QString("%1").arg(r);
+            painter.drawText(QRect(x - mSizeDivisionL - 2 - mYDivisionLabel, y - 9, mYDivisionLabel, 20), Qt::AlignCenter, s);
             path.lineTo(x - mSizeDivisionL, y);
         }else{
             path.lineTo(x - mSizeDivisionS, y);
@@ -191,7 +209,7 @@ void WgtHistgramNumber::paintEvent(QPaintEvent *)
 
 void WgtHistgramNumber::on_spinBox_Resolution_valueChanged(int arg1)
 {
-    mResolution = ui->spinBox_Resolution->value();
+    mResolution = arg1;
 
     this->update();
 }
