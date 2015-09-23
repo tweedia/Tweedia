@@ -140,9 +140,6 @@ void MainWindow::SetPreferences()
 
     mDlgPreferences->exec();
 //    this->ReloadAllWidgetPlugins();
-    QMessageBox msgBox(this);
-    msgBox.setText(tr("Restart Tweedia to load the plugins"));
-    msgBox.exec();
 
 }
 

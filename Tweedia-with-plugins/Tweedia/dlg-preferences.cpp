@@ -23,6 +23,8 @@
    Initial author: Takenobu Noda
  */
 
+#include <QMessageBox>
+
 #include "dlg-preferences.h"
 #include "ui_dlg-preferences.h"
 
@@ -80,6 +82,11 @@ void DlgPreferences::on_buttonAdd_plugin_clicked()
         mPluginTableModel->setData(mPluginTableModel->index(row,1),pathname);
         mPluginTableModel->submit();
     }
+
+    QMessageBox msgBox(this);
+    msgBox.setText(tr("Restart Tweedia to load the plugins"));
+    msgBox.exec();
+
 }
 
 /* References, Quotation:
