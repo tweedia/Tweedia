@@ -98,8 +98,6 @@ private:
     void AboutTweedia();
     void SetPreferences();
 
-    void LoadAllWidgetPlugins();
-
     bool OpenDatabase();
     void OpenObsobj();
     void InitializeDatabase();
@@ -118,7 +116,10 @@ private:
     void OpenWgtHistogramNumber();
 
     bool ChkOpenDatabase();
+    bool ChkTables(const QString argTableName);
     bool ChkTableView();
+
+    void loadAllWidgetPlugins();
 
     Ui::MainWindow *ui;
 
@@ -138,6 +139,7 @@ private:
     QString bufActualText;
 
     QList<WidgetPluginInterface*> pWidgetPlugins;
+    QList<QAction*> pWidgetPluginActions;
     QList<QWidget*> *mdichilds;
 
     QString widgetPluginPath;

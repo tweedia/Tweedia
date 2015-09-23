@@ -80,7 +80,6 @@ void DlgPreferences::on_buttonAdd_plugin_clicked()
         mPluginTableModel->setData(mPluginTableModel->index(row,1),pathname);
         mPluginTableModel->submit();
     }
-
 }
 
 /* References, Quotation:

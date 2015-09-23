@@ -57,10 +57,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->on_actionOpenDatabase_triggered();
 
-//    dbPreferences = QSqlDatabase::addDatabase(QString(DBMSNAME_PREFERENCES));
-//    dbPreferences.setDatabaseName(QString(DBNAME_PREFERENCES));
-//    this->LoadAllWidgetPlugins();
     mDlgPreferences = new DlgPreferences(this, &db);
+
+    this->loadAllWidgetPlugins();
 
 }
 
@@ -91,6 +90,19 @@ bool MainWindow::ChkOpenDatabase()
 
 }
 
+bool MainWindow::ChkTables(const QString argTableName)
+{
+    bool flgPluginTable = false;
+    foreach (QString tableName, db.tables(QSql::Tables)) {
+//        if (tableName.compare((const QString)metadataOfPluginFiles.Tablename) == 0) {
+        if (tableName.compare(argTableName) == 0) {
+            flgPluginTable = true;
+        }
+    }
+    return flgPluginTable;
+
+}
+
 bool MainWindow::ChkTableView()
 {
     bool ret = ui->tableView->currentIndex().isValid();
@@ -114,31 +126,24 @@ void MainWindow::AboutTweedia()
 
 void MainWindow::SetPreferences()
 {
-//    dbPreferences.open();
-//    if (dbPreferences.isOpen()) {
-
-        int flgPluginTable = 0;
-        foreach (QString tableName, db.tables(QSql::Tables)) {
-            if (tableName.compare((const QString)metadataOfPluginFiles.Tablename) == 0) {
-                flgPluginTable = 1;
-            }
-        }
-        if (flgPluginTable == 0) {
+    if (!ChkTables((const QString)metadataOfPluginFiles.Tablename)) {
+        QMessageBox msgBox(this);
+        msgBox.setText(tr("Plugin table not found. Is it OK to create it?"));
+        msgBox.exec();
+        if (msgBox.result() == QMessageBox::Accepted) {
             QSqlQuery query(db);
             query.exec((const QString)metadataOfPluginFiles.SqlCreate());
+        }else{
+            return;
         }
+    }
 
-//        DlgPreferences dialog(this, &db);
-        mDlgPreferences->exec();
+    mDlgPreferences->exec();
+//    this->ReloadAllWidgetPlugins();
+    QMessageBox msgBox(this);
+    msgBox.setText(tr("Restart Tweedia to load the plugins"));
+    msgBox.exec();
 
-        if (mDlgPreferences->result() == DlgPreferences::Accepted)
-        {
-//            preferences.PluginDir.clear();
-//            preferences.PluginDir.append(dialog.PluginDir());
-        }
-//    }
-//    dbPreferences.close();
-    this->LoadAllWidgetPlugins();
 }
 
 bool MainWindow::OpenDatabase()
@@ -172,43 +177,44 @@ bool MainWindow::OpenDatabase()
     return false;
 }
 
-void MainWindow::LoadAllWidgetPlugins()
+void MainWindow::loadAllWidgetPlugins()
 {
+    foreach (QAction* thisAction, pWidgetPluginActions ) {
+        ui->menuWindow->removeAction(thisAction);
+    }
+    pWidgetPluginActions.clear();
+
+    foreach (WidgetPluginInterface* thisPlugins, pWidgetPlugins) {
+        delete thisPlugins;
+    }
     pWidgetPlugins.clear();
+
     int pluginID = 0;
 
-//    QDir pluginDir(widgetPluginPath);
-//    foreach (QString fileName, pluginDir.entryList((QDir::Files))) {
-//        QPluginLoader loader(pluginDir.absoluteFilePath(fileName));
+    QSqlTableModel pluginTableModel(this, db);
+    pluginTableModel.setTable((const QString)metadataOfPluginFiles.Tablename);
+    pluginTableModel.select();
+    int rowcnt = pluginTableModel.rowCount();
+    int i;
+    for (i=0;i<rowcnt;i++) {
+        QString path(pluginTableModel.record(i).value((const QString)metadataOfPluginFiles.Col_PATH_name).toString());
+        QPluginLoader loader(path);
+        if (WidgetPluginInterface* pWidgetPluginInterface = qobject_cast<WidgetPluginInterface *>(loader.instance()))
+        {
+            pWidgetPluginInterface->set_dbinstance(&db);
+            pWidgetPlugins.append(pWidgetPluginInterface);
 
-//    dbPreferences.open();
-//    if (dbPreferences.isOpen()) {
-        QSqlTableModel pluginTableModel(this, db);
-        pluginTableModel.setTable((const QString)metadataOfPluginFiles.Tablename);
-        pluginTableModel.select();
-        int rowcnt = pluginTableModel.rowCount();
-        int i;
-        for (i=0;i<rowcnt;i++) {
-            QString path(pluginTableModel.record(i).value((const QString)metadataOfPluginFiles.Col_PATH_name).toString());
-            QPluginLoader loader(path);
-            if (WidgetPluginInterface* pWidgetPluginInterface = qobject_cast<WidgetPluginInterface *>(loader.instance()))
-            {
-                pWidgetPluginInterface->set_dbinstance(&db);
-                pWidgetPlugins.append(pWidgetPluginInterface);
+            QAction *actionOpenWidget = new QAction(pWidgetPluginInterface->getMenuText(), this);
+            connect(actionOpenWidget, SIGNAL(triggered()), this, SLOT(on_actionOpenWidget_trggered()));
+            ui->menuWindow->addAction(actionOpenWidget);
+            pWidgetPluginActions.append(actionOpenWidget);
 
-                QAction* actionOpenWidget = new QAction(pWidgetPluginInterface->getMenuText(), this);
-                connect(actionOpenWidget, SIGNAL(triggered()), this, SLOT(on_actionOpenWidget_trggered()));
-                ui->menuWindow->addAction(actionOpenWidget);
+            pWidgetPluginInterface->setCorrespondingAction(actionOpenWidget);
 
-                pWidgetPluginInterface->setCorrespondingAction(actionOpenWidget);
+            pluginID++;
 
-                pluginID++;
-
-            }
         }
-//    }
-//    dbPreferences.close();
-
+    }
 }
 
 void MainWindow::OpenObsobj()
@@ -426,6 +432,8 @@ void MainWindow::on_actionReportBug_triggered()
 
 void MainWindow::on_actionOpenWidget_trggered()
 {
+    if (!ChkTableView()) return;
+
     QObject* pSenderAction = QObject::sender();
     int obsobjid;
     QWidget* pWidget;
