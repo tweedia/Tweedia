@@ -47,6 +47,7 @@ ScrollWidget::ScrollWidget(QWidget *parent, QSqlDatabase *argDatabase, int argOb
     mTableModel->setEditStrategy(QSqlTableModel::OnManualSubmit);
     mTableModel->select();
     ui->tableView->setModel(mTableModel);
+    ui->tableView->scrollToBottom();
 
 }
 
