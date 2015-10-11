@@ -67,6 +67,8 @@ public:
     void setArgument(QString arg){mArgument=arg;}
     QString Tablename(){return mTablename;}
     void setTablename(QString tablename);
+    TweediaConf::TypeOfObsformat Obsformat(){return mObsformat;}
+    void setObsformat(QString arg);
 
     void submitCommand(Command *command);
 
@@ -85,6 +87,7 @@ private:
     QString mPathname;
     QString mArgument;
     QString mTablename;
+    TweediaConf::TypeOfObsformat mObsformat;
     QProcess *mProcess;
 
     QSqlTableModel *mTable;
@@ -94,9 +97,12 @@ private:
     QByteArray mOutputbuffer;
     QByteArray mObservationWhereTheid;
 
+    TweediaConf tweediaConf;
     MetadataOfObservation *mMetadataOfObservation;
     MetadataOfObsObj *mMetadataOfObsObj;
 //    Preferences *mPreferences;
+
+    void submitRecord(QString arg);
 
 signals:
     void DatabaseUpdated(int);

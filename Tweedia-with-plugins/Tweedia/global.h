@@ -30,6 +30,41 @@
 #include "config.h"
 #include <QString>
 
+class TweediaConf {
+public:
+    enum TypeOfObsformat {
+        TXT = 1,
+        CSV = 2,
+        Default
+    };
+
+    QString getTitleOfObsformat(TypeOfObsformat arg) {
+        QString result = QString();
+        result.clear();
+        switch (arg) {
+        case TweediaConf::TXT:
+            result.append("txt");
+            break;
+        case TweediaConf::CSV:
+            result.append("csv");
+            break;
+        default:
+            break;
+        }
+        return result;
+    }
+
+    TypeOfObsformat getTypeOfObsformat(QString arg){
+        for (int i = 0; i < TweediaConf::Default; i++)
+            if (arg.compare((const QString)this->getTitleOfObsformat((TypeOfObsformat)i)) == 0)
+                return (TypeOfObsformat)i;
+        return TweediaConf::TXT;
+    }
+
+private:
+
+};
+
 class MetadataOfObsObj {
 public:
     QString Tablename;
@@ -41,7 +76,7 @@ public:
     QString Col_OBJPATH_name;
     QString Col_ARGUMENT_name;
     QString Col_OBSTBL_name;
-    QString Col_EXPTBL_name;
+    QString Col_OBSFMT_name;
 
     QString Col_ID_type;
     QString Col_FLGSELECTED_type;
@@ -50,7 +85,7 @@ public:
     QString Col_OBJPATH_type;
     QString Col_ARGUMENT_type;
     QString Col_OBSTBL_type;
-    QString Col_EXPTBL_type;
+    QString Col_OBSFMT_type;
 
     QString SqlDrop() { return mSqlDrop; }
     QString SqlCreate() { return mSqlCreate; }
@@ -78,7 +113,7 @@ public:
         Col_OBJPATH_name = QString("obj_path");
         Col_ARGUMENT_name = QString("argument");
         Col_OBSTBL_name = QString("obs_tbl");
-        Col_EXPTBL_name = QString("exp_tbl");
+        Col_OBSFMT_name = QString("obs_fmt");
 
         Col_ID_type = QString("integer NOT NULL");
         Col_FLGSELECTED_type = QString("boolean NOT NULL");
@@ -87,7 +122,7 @@ public:
         Col_OBJPATH_type = QString("character varying");
         Col_ARGUMENT_type = QString("character varying");
         Col_OBSTBL_type = QString("character varying");
-        Col_EXPTBL_type = QString("character varying");
+        Col_OBSFMT_type = QString("character varying");
 
         mSqlDrop.clear();
         mSqlDrop.append("DROP TABLE ");
@@ -121,9 +156,9 @@ public:
         mSqlCreate.append(" ");
         mSqlCreate.append(Col_OBSTBL_type);
         mSqlCreate.append(",");
-        mSqlCreate.append(Col_EXPTBL_name);
+        mSqlCreate.append(Col_OBSFMT_name);
         mSqlCreate.append(" ");
-        mSqlCreate.append(Col_EXPTBL_type);
+        mSqlCreate.append(Col_OBSFMT_type);
         mSqlCreate.append(",");
         mSqlCreate.append(Col_PID_name);
         mSqlCreate.append(" ");
@@ -148,7 +183,8 @@ public:
     QString Tablename_prefix;
 
     QString Col_ID_name;
-    QString Col_OBSERVATION_name;
+    QString Col_OBSERVATION_prefix;
+    int NumColsDefault;
 
     QString Col_ID_type;
     QString Col_OBSERVATION_type;
@@ -156,8 +192,9 @@ public:
     MetadataOfObservation() {
         Tablename_prefix = QString("observation_");
 
-        Col_ID_name = QString("id");
-        Col_OBSERVATION_name = QString("observation");
+        Col_ID_name = QString("_id");
+        Col_OBSERVATION_prefix = QString("col");
+        NumColsDefault = 16;
 
         Col_ID_type = QString("integer NOT NULL");
         Col_OBSERVATION_type = QString("bytea");
@@ -174,7 +211,7 @@ public:
         return mSqlDrop;
     }
 
-    QString SqlCreate(int arg) {
+    QString SqlCreate(int arg, int argNumCols) {
         mSqlCreate.clear();
         mSqlCreate.append("CREATE TABLE ");
         mSqlCreate.append(Tablename_prefix);
@@ -183,10 +220,13 @@ public:
         mSqlCreate.append(Col_ID_name);
         mSqlCreate.append(" ");
         mSqlCreate.append(Col_ID_type);
-        mSqlCreate.append(",");
-        mSqlCreate.append(Col_OBSERVATION_name);
-        mSqlCreate.append(" ");
-        mSqlCreate.append(Col_OBSERVATION_type);
+        for (int i = 0; i < argNumCols; i++) {
+            mSqlCreate.append(",");
+            mSqlCreate.append(Col_OBSERVATION_prefix);
+            mSqlCreate.append(QString::number(i+1));
+            mSqlCreate.append(" ");
+            mSqlCreate.append(Col_OBSERVATION_type);
+        }
         mSqlCreate.append(",");
         mSqlCreate.append("CONSTRAINT ");
         mSqlCreate.append(Tablename_prefix);
@@ -198,9 +238,41 @@ public:
         return mSqlCreate;
     }
 
-    QString SqlSelectWhereId(int argObsobjId, int argObservationId){
+    QString SqlSelectMaxId(int argObsobjId) {
+        mSqlSelectMaxId.clear();
+        mSqlSelectMaxId.append("SELECT MAX(");
+        mSqlSelectMaxId.append(Col_ID_name);
+        mSqlSelectMaxId.append(") FROM ");
+        mSqlSelectMaxId.append(Tablename_prefix);
+        mSqlSelectMaxId.append(QString::number(argObsobjId));
+        return mSqlSelectMaxId;
+    }
+
+    QString SqlSelectAll(int argObsobjId, int argNumCols) {
+        mSqlSelectAll.clear();
+        mSqlSelectAll.append("SELECT ");
+        mSqlSelectAll.append(Col_ID_name);
+        for (int i = 0; i < argNumCols; i++) {
+            mSqlSelectAll.append(",");
+            mSqlSelectAll.append(Col_OBSERVATION_prefix);
+            mSqlSelectAll.append(QString::number(i+1));
+        }
+        mSqlSelectAll.append(" FROM ");
+        mSqlSelectAll.append(Tablename_prefix);
+        mSqlSelectAll.append(QString::number(argObsobjId));
+        return mSqlSelectAll;
+    }
+
+    QString SqlSelectWhereId(int argObsobjId, int argObservationId, int argNumCols){
         mSqlSelectWhereId.clear();
-        mSqlSelectWhereId.append("SELECT * FROM ");
+        mSqlSelectWhereId.append("SELECT ");
+        mSqlSelectWhereId.append(Col_ID_name);
+        for (int i = 0; i < argNumCols; i++) {
+            mSqlSelectWhereId.append(",");
+            mSqlSelectWhereId.append(Col_OBSERVATION_prefix);
+            mSqlSelectWhereId.append(QString::number(i+1));
+        }
+        mSqlSelectWhereId.append(" FROM ");
         mSqlSelectWhereId.append(Tablename_prefix);
         mSqlSelectWhereId.append(QString::number(argObsobjId));
         mSqlSelectWhereId.append(" WHERE ");
@@ -211,9 +283,16 @@ public:
 
     }
 
-    QString SqlSelectLastObservation(int argObsobjId){
+    QString SqlSelectLastObservation(int argObsobjId, int argNumCols){
         mSqlSelectLastObservation.clear();
-        mSqlSelectLastObservation.append("SELECT * FROM ");
+        mSqlSelectLastObservation.append("SELECT ");
+        mSqlSelectLastObservation.append(Col_ID_name);
+        for (int i = 0; i < argNumCols; i++) {
+            mSqlSelectLastObservation.append(",");
+            mSqlSelectLastObservation.append(Col_OBSERVATION_prefix);
+            mSqlSelectLastObservation.append(QString::number(i+1));
+        }
+        mSqlSelectLastObservation.append(" FROM ");
         mSqlSelectLastObservation.append(Tablename_prefix);
         mSqlSelectLastObservation.append(QString::number(argObsobjId));
         mSqlSelectLastObservation.append(" WHERE ");
@@ -240,6 +319,8 @@ public:
 private:
     QString mSqlDrop;
     QString mSqlCreate;
+    QString mSqlSelectAll;
+    QString mSqlSelectMaxId;
     QString mSqlSelectWhereId;
     QString mSqlSelectLastObservation;
     QString mTablename;
@@ -255,7 +336,6 @@ private:
 //    }
 //};
 
-#define DBNAME_PREFERENCES "prefrences"
 #define DBMSNAME_PREFERENCES "QSQLITE"
 
 class MetadataOfPluginFiles {
@@ -316,5 +396,6 @@ private:
     QString mSqlCreate;
     QString mSqlMaxID;
 };
+
 
 #endif // GLOBAL_H

@@ -263,7 +263,7 @@ void MainWindow::AddObsobj()
     QSqlQuery query(db);
 
     if (newid != 0) {
-        query.exec((const QString)metadataOfObservation.SqlCreate(newid));
+        query.exec((const QString)metadataOfObservation.SqlCreate(newid, metadataOfObservation.NumColsDefault));
     }
 }
 
@@ -440,8 +440,10 @@ void MainWindow::on_actionOpenWidget_trggered()
         if (pWidgetPlugin->getCorrespondingAction() == pSenderAction) {
             obsobjid = obsobj->findExecObsobj(ui->tableView->currentIndex().row())->Id();
             pWidget = pWidgetPlugin->new_widget(obsobjid);
-            ui->mdiArea->addSubWindow(pWidget);
-            pWidget->show();
+            if (pWidget) {
+                ui->mdiArea->addSubWindow(pWidget);
+                pWidget->show();
+            }
         }
     }
 }

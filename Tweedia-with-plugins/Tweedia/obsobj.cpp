@@ -129,6 +129,7 @@ ExecObsobj* Obsobj::updatedExecObsobj(int row)
     theThread->setPathname(this->data(this->index(row,3)).toString());
     theThread->setArgument(this->data(this->index(row,4)).toString());
     theThread->setTablename(this->data(this->index(row,5)).toString());
+    theThread->setObsformat(this->data(this->index(row,6)).toString());
     return theThread;
 }
 
@@ -196,6 +197,7 @@ int Obsobj::addObsobj(QString argPathname)
     this->setData(this->index(row,3),argPathname);
 
     this->setData(this->index(row,5),mMetadataOfObservation->Tablename(newid));
+    this->setData(this->index(row,6),tweediaConf.getTitleOfObsformat(TweediaConf::TXT));
 
     this->submitAll();
 

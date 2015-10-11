@@ -71,7 +71,7 @@ void PageWidget::refreshWithLastObservation()
 {
     QSqlQuery query(*mDatabase);
 
-    query.exec((const QString)metadataOfObservation.SqlSelectLastObservation(mObsobjID));
+    query.exec((const QString)metadataOfObservation.SqlSelectLastObservation(mObsobjID,1));
     if (query.next()){
         mObservationAsQString.clear();
         mObservationAsQString.append(query.value(1).toByteArray());
@@ -86,7 +86,7 @@ void PageWidget::refreshWithThisObservation(int argObservationId)
 {
     QSqlQuery query(*mDatabase);
 
-    query.exec((const QString)metadataOfObservation.SqlSelectWhereId(mObsobjID,argObservationId));
+    query.exec((const QString)metadataOfObservation.SqlSelectWhereId(mObsobjID,argObservationId,1));
     if (query.next()){
         mObservationAsQString.clear();
         mObservationAsQString.append(query.value(1).toByteArray());

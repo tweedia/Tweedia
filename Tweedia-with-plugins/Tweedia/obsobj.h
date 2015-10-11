@@ -85,6 +85,7 @@ protected:
     QString mTableExpected;
     QString mArgument;
 
+    TweediaConf tweediaConf;
     MetadataOfObservation *mMetadataOfObservation;
     MetadataOfObsObj *mMetadataOfObsObj;
 

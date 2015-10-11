@@ -80,6 +80,11 @@ void ExecObsobj::setTablename(QString tablename)
     mTable->select();
 }
 
+void ExecObsobj::setObsformat(QString arg)
+{
+    mObsformat = tweediaConf.getTypeOfObsformat(arg);
+}
+
 //void ExecObsobj::addWidgetPlugin(QObject* argWidgetPlugin)
 //{
 //    mWidgetPlugins.append();
@@ -90,8 +95,7 @@ int ExecObsobj::Maxid()
     mErrcode = ExecObsobj::NoErr;
 
     QSqlQuery query(mDb);
-    mSqlSelectmaxid = QString("SELECT MAX(id) FROM " + mTablename); // ref.1
-    query.exec((const QString)mSqlSelectmaxid); // ref.1
+    query.exec((const QString)mMetadataOfObservation->SqlSelectMaxId(mId)); // ref.1
     int id = 0;                                 // ref.1
     if (query.next())                           // ref.1
         id = query.value(0).toInt();            // ref.1
@@ -183,25 +187,59 @@ void ExecObsobj::stop()
 
 }
 
+void ExecObsobj::submitRecord(QString arg)
+{
+    int newid = Maxid() + 1;
+    int row = 0;
+    mTable->insertRow(row);
+    mTable->setData(mTable->index(row,0),newid);
+
+    switch (mObsformat) {
+    case TweediaConf::TXT:
+        mTable->setData(mTable->index(row,1),arg);
+        break;
+    case TweediaConf::CSV:
+        {
+            int i = 1;
+            QStringList lines = arg.split(",");
+            foreach (QString line, lines) {
+                mTable->setData(mTable->index(row,i),line);
+                i++;
+            }
+        }
+        break;
+    default:
+//        mTable->setData(mTable->index(row,1),mOutputbuffer.constData());
+        break;
+    }
+
+    mTable->submitAll();
+
+}
+
 void ExecObsobj::saveobservation()
 {
     mOutputbuffer.clear();
     mOutputbuffer.append(mProcess->readAll());
 
-    int newid = Maxid() + 1;
-    int row = 0;
-    mTable->insertRow(row);
-    mTable->setData(mTable->index(row,0),newid);
-    mTable->setData(mTable->index(row,1),mOutputbuffer.constData());
-    mTable->submitAll();
+    QString buffer = QString(mOutputbuffer.constData());
 
+    switch (mObsformat) {
+    case TweediaConf::TXT:
+        this->submitRecord(buffer);
+        break;
+    case TweediaConf::CSV:
+        {
+            QStringList lines = buffer.split("\n", QString::SkipEmptyParts);
+            foreach (QString line, lines)
+                this->submitRecord(line);
+        }
+        break;
+    default:
+        this->submitRecord(buffer);
+        break;
+    }
     ExecObsobj::DatabaseUpdated(mId);
-
-//    WidgetPluginInterface *plugin;
-//    for (int i = 0; i < plugins.size(); ++i) {
-//        plugin = qobject_cast<WidgetPluginInterface *>(plugins.at(i));
-//        plugin->called_when_DatabaseUpdated(mId);
-//    }
 
 }
 
