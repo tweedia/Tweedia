@@ -127,10 +127,13 @@ void MainWindow::AboutTweedia()
 void MainWindow::SetPreferences()
 {
     if (!ChkTables((const QString)metadataOfPluginFiles.Tablename)) {
-        QMessageBox msgBox(this);
-        msgBox.setText(tr("Plugin table not found. Is it OK to create it?"));
-        msgBox.exec();
-        if (msgBox.result() == QMessageBox::Accepted) {
+        QMessageBox msgBox;
+        msgBox.setText(tr("Plugin table not found."));
+        msgBox.setInformativeText(tr("Is it OK to create it?"));
+        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msgBox.setDefaultButton(QMessageBox::Save);
+        int ret = msgBox.exec();
+        if (ret == QMessageBox::Save) {
             QSqlQuery query(db);
             query.exec((const QString)metadataOfPluginFiles.SqlCreate());
         }else{
