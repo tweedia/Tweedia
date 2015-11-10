@@ -201,7 +201,7 @@ void ExecObsobj::submitRecord(QString arg)
     case TweediaConf::CSV:
         {
             int i = 1;
-            QStringList lines = arg.split(",");
+            QStringList lines = arg.split(";");
             foreach (QString line, lines) {
                 mTable->setData(mTable->index(row,i),line);
                 i++;
