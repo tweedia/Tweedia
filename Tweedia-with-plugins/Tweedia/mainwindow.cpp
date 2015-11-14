@@ -234,12 +234,26 @@ void MainWindow::InitializeDatabase()
 
     QMessageBox dialog(this);
     dialog.setWindowTitle(tr("Confirmation"));
-    dialog.setText(tr("Obsobj table will be recreated if already exists. Continue?"));
+    dialog.setText(tr("Obsobj table will be recreated, but also all Observation tables are dropped. Continue?"));
     dialog.setStandardButtons(QMessageBox::Cancel|QMessageBox::Ok);
     dialog.exec();
     if (dialog.result() != QMessageBox::Ok) return;
 
     QSqlQuery query(db);
+
+    for (int row = ui->tableView->model()->rowCount() - 1; row >= 0 ; row--)
+    {
+        int theid;
+        theid = obsobj->IdByRow(row);
+
+        obsobj->delObsobj(row);
+
+        if (theid != 0) {
+            query.exec((const QString)metadataOfObservation.SqlDrop(theid));
+        }
+
+    }
+
     query.exec((const QString)metadataOfObsobj.SqlDrop());
     query.exec((const QString)metadataOfObsobj.SqlCreate());
 
