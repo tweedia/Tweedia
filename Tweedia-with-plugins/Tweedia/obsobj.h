@@ -85,7 +85,6 @@ protected:
     QString mTableExpected;
     QString mArgument;
 
-    TweediaConf tweediaConf;
     MetadataOfObservation *mMetadataOfObservation;
     MetadataOfObsObj *mMetadataOfObsObj;
 
@@ -94,6 +93,9 @@ protected:
 
 //    QProcess *mProcess;
 
+private:
+    TweediaEnum getType(QString arg);
+    QString getDeaultMethodTitle(QString arg);
 
 signals:
 

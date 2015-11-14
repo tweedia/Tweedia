@@ -30,38 +30,17 @@
 #include "config.h"
 #include <QString>
 
-class TweediaConf {
-public:
-    enum TypeOfObsformat {
-        TXT = 1,
-        CSV = 2,
-        Default
-    };
+#define TITLE_METHOD_RUN "run"
+#define TITLE_METHOD_IMPORT "import"
+#define TITLE_OBSFMT_TXT "txt"
+#define TITLE_OBSFMT_CSV "csv"
 
-    QString getTitleOfObsformat(TypeOfObsformat arg) {
-        QString result = QString();
-        result.clear();
-        switch (arg) {
-        case TweediaConf::TXT:
-            result.append("txt");
-            break;
-        case TweediaConf::CSV:
-            result.append("csv");
-            break;
-        default:
-            break;
-        }
-        return result;
-    }
-
-    TypeOfObsformat getTypeOfObsformat(QString arg){
-        for (int i = 0; i < TweediaConf::Default; i++)
-            if (arg.compare((const QString)this->getTitleOfObsformat((TypeOfObsformat)i)) == 0)
-                return (TypeOfObsformat)i;
-        return TweediaConf::TXT;
-    }
-
-private:
+enum TweediaEnum {
+    METHOD_RUN,
+    METHOD_IMPORT,
+    OBSFMT_TXT,
+    OBSFMT_CSV,
+    Default
 
 };
 
@@ -77,6 +56,7 @@ public:
     QString Col_ARGUMENT_name;
     QString Col_OBSTBL_name;
     QString Col_OBSFMT_name;
+    QString Col_METHOD_name;
 
     QString Col_ID_type;
     QString Col_FLGSELECTED_type;
@@ -86,6 +66,7 @@ public:
     QString Col_ARGUMENT_type;
     QString Col_OBSTBL_type;
     QString Col_OBSFMT_type;
+    QString Col_METHOD_type;
 
     QString SqlDrop() { return mSqlDrop; }
     QString SqlCreate() { return mSqlCreate; }
@@ -114,6 +95,7 @@ public:
         Col_ARGUMENT_name = QString("argument");
         Col_OBSTBL_name = QString("obs_tbl");
         Col_OBSFMT_name = QString("obs_fmt");
+        Col_METHOD_name = QString("method");
 
         Col_ID_type = QString("integer NOT NULL");
         Col_FLGSELECTED_type = QString("boolean NOT NULL");
@@ -123,6 +105,7 @@ public:
         Col_ARGUMENT_type = QString("character varying");
         Col_OBSTBL_type = QString("character varying");
         Col_OBSFMT_type = QString("character varying");
+        Col_METHOD_type = QString("character varying");
 
         mSqlDrop.clear();
         mSqlDrop.append("DROP TABLE ");
@@ -159,6 +142,10 @@ public:
         mSqlCreate.append(Col_OBSFMT_name);
         mSqlCreate.append(" ");
         mSqlCreate.append(Col_OBSFMT_type);
+        mSqlCreate.append(",");
+        mSqlCreate.append(Col_METHOD_name);
+        mSqlCreate.append(" ");
+        mSqlCreate.append(Col_METHOD_type);
         mSqlCreate.append(",");
         mSqlCreate.append(Col_PID_name);
         mSqlCreate.append(" ");

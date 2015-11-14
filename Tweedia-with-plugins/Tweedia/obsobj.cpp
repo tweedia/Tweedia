@@ -129,7 +129,7 @@ ExecObsobj* Obsobj::updatedExecObsobj(int row)
     theThread->setPathname(this->data(this->index(row,3)).toString());
     theThread->setArgument(this->data(this->index(row,4)).toString());
     theThread->setTablename(this->data(this->index(row,5)).toString());
-    theThread->setObsformat(this->data(this->index(row,6)).toString());
+    theThread->setObsformat(this->getType(this->data(this->index(row,6)).toString()));
     return theThread;
 }
 
@@ -197,7 +197,8 @@ int Obsobj::addObsobj(QString argPathname)
     this->setData(this->index(row,3),argPathname);
 
     this->setData(this->index(row,5),mMetadataOfObservation->Tablename(newid));
-    this->setData(this->index(row,6),tweediaConf.getTitleOfObsformat(TweediaConf::TXT));
+    this->setData(this->index(row,6),QString(TITLE_OBSFMT_TXT));
+    this->setData(this->index(row,7),this->getDeaultMethodTitle(fi.fileName()));
 
     this->submitAll();
 
@@ -220,8 +221,27 @@ void Obsobj::delObsobj(int row)
     mErrcode = OBSOBJ_RC_NOERROR;
 }
 
+TweediaEnum Obsobj::getType(QString arg){
 
+    if (!arg.compare(TITLE_METHOD_RUN))      return METHOD_RUN;
+    if (!arg.compare(TITLE_METHOD_IMPORT))   return METHOD_IMPORT;
+    if (!arg.compare(TITLE_OBSFMT_TXT))      return OBSFMT_TXT;
+    if (!arg.compare(TITLE_OBSFMT_CSV))      return OBSFMT_CSV;
 
+    return Default;
+}
+
+QString Obsobj::getDeaultMethodTitle(QString arg){
+    QString ret = QString(TITLE_METHOD_IMPORT);
+    QString wkstr = QString(arg.split(".").last());
+
+    if (!wkstr.compare(TITLE_OBSFMT_TXT) ) return ret;
+    if (!wkstr.compare(TITLE_OBSFMT_CSV)) return ret;
+
+    ret.clear();
+    ret.append(TITLE_METHOD_RUN);
+    return ret;
+}
 
 /* References, Quotation:
    1.   Jasmin Blanchette, Mark Summerfield, "C++ GUI Programming with Qt4,"

@@ -80,11 +80,6 @@ void ExecObsobj::setTablename(QString tablename)
     mTable->select();
 }
 
-void ExecObsobj::setObsformat(QString arg)
-{
-    mObsformat = tweediaConf.getTypeOfObsformat(arg);
-}
-
 //void ExecObsobj::addWidgetPlugin(QObject* argWidgetPlugin)
 //{
 //    mWidgetPlugins.append();
@@ -195,10 +190,10 @@ void ExecObsobj::submitRecord(QString arg)
     mTable->setData(mTable->index(row,0),newid);
 
     switch (mObsformat) {
-    case TweediaConf::TXT:
+    case OBSFMT_TXT:
         mTable->setData(mTable->index(row,1),arg);
         break;
-    case TweediaConf::CSV:
+    case OBSFMT_CSV:
         {
             int i = 1;
             QStringList lines = arg.split(";");
@@ -225,10 +220,10 @@ void ExecObsobj::saveobservation()
     QString buffer = QString(mOutputbuffer.constData());
 
     switch (mObsformat) {
-    case TweediaConf::TXT:
+    case OBSFMT_TXT:
         this->submitRecord(buffer);
         break;
-    case TweediaConf::CSV:
+    case OBSFMT_CSV:
         {
             QStringList lines = buffer.split("\n", QString::SkipEmptyParts);
             foreach (QString line, lines)
