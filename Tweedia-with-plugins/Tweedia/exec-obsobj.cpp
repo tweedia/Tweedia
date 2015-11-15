@@ -80,11 +80,6 @@ void ExecObsobj::setTablename(QString tablename)
     mTable->select();
 }
 
-//void ExecObsobj::addWidgetPlugin(QObject* argWidgetPlugin)
-//{
-//    mWidgetPlugins.append();
-//}
-
 int ExecObsobj::Maxid()
 {
     mErrcode = ExecObsobj::NoErr;
@@ -96,51 +91,6 @@ int ExecObsobj::Maxid()
         id = query.value(0).toInt();            // ref.1
     return id;                                  // ref.1
 }
-
-/*
-QByteArray ExecObsobj::ObservationWhereMaxid()
-{
-    mErrcode = ExecObsobj::NoErr;
-
-    QSqlQuery query(mDb);
-
-    mSqlSelectmaxid = QString("SELECT MAX(id) FROM " + mTablename); // ref.1
-    query.exec((const QString)mSqlSelectmaxid); // ref.1
-    QString strid = QString();                  // ref.1
-    if (query.next())                           // ref.1
-        strid = query.value(0).toString();
-
-    return this->ObservationWhereTheid(strid);
-}
-*/
-
-/*
-QByteArray ExecObsobj::ObservationWhereTheid(int id)
-{
-    mErrcode = ExecObsobj::NoErr;
-
-    QString strid;
-    strid.setNum(id);
-
-    return this->ObservationWhereTheid(strid);
-}
-*/
-
-/*
-QByteArray ExecObsobj::ObservationWhereTheid(QString strid)
-{
-    mErrcode = ExecObsobj::NoErr;
-
-    QSqlQuery query(mDb);
-
-    mObservationWhereTheid.clear();
-    query.exec((const QString)mMetadataOfObservation->SqlSelectWhereId(strid));
-    if (query.next())
-        mObservationWhereTheid.append(query.value(1).toByteArray());
-
-    return mObservationWhereTheid;
-}
-*/
 
 void ExecObsobj::submitCommand(Command *command)
 {
@@ -195,11 +145,14 @@ void ExecObsobj::submitRecord(QString arg)
         break;
     case OBSFMT_CSV:
         {
-            int i = 1;
-            QStringList lines = arg.split(";");
+            QStringList lines = arg.split("\n", QString::SkipEmptyParts);
             foreach (QString line, lines) {
-                mTable->setData(mTable->index(row,i),line);
-                i++;
+                int i = 1;
+                QStringList fields = line.split(";");
+                foreach (QString field, fields) {
+                    mTable->setData(mTable->index(row,i),field);
+                    i++;
+                }
             }
         }
         break;
@@ -219,21 +172,8 @@ void ExecObsobj::saveobservation()
 
     QString buffer = QString(mOutputbuffer.constData());
 
-    switch (mObsformat) {
-    case OBSFMT_TXT:
-        this->submitRecord(buffer);
-        break;
-    case OBSFMT_CSV:
-        {
-            QStringList lines = buffer.split("\n", QString::SkipEmptyParts);
-            foreach (QString line, lines)
-                this->submitRecord(line);
-        }
-        break;
-    default:
-        this->submitRecord(buffer);
-        break;
-    }
+    this->submitRecord(buffer);
+
     ExecObsobj::DatabaseUpdated(mId);
 
 }
@@ -262,6 +202,29 @@ void ExecObsobj::processError(QProcess::ProcessError error) // ref.4
         m_running = false;
     }
 
+}
+
+void ExecObsobj::importobservation()
+{
+    mLog->WriteLog(LOG_NOTICE, "Import started.");
+
+    QString filename = QString(this->Pathname());
+    QFile file((const QString &)filename);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        mLog->WriteLog(LOG_NOTICE, "Import failed.");
+        return;
+    }
+
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        this->submitRecord(line);
+    }
+
+    ExecObsobj::DatabaseUpdated(mId);
+
+    mLog->WriteLog(LOG_NOTICE, "Import succeeded.");
 }
 
 /* References, Quotation:

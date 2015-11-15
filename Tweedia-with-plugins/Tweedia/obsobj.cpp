@@ -130,19 +130,41 @@ ExecObsobj* Obsobj::updatedExecObsobj(int row)
     theThread->setArgument(this->data(this->index(row,4)).toString());
     theThread->setTablename(this->data(this->index(row,5)).toString());
     theThread->setObsformat(this->getType(this->data(this->index(row,6)).toString()));
+    theThread->setMethod(this->getType(this->data(this->index(row,7)).toString()));
     return theThread;
 }
 
 void Obsobj::startExecObsobj(int row)
 {
     ExecObsobj* theThread = updatedExecObsobj(row);
-    theThread->start();
+    TweediaEnum theMethod = theThread->Method();
+    switch (theMethod) {
+    case METHOD_RUN:
+        theThread->start();
+        break;
+    case METHOD_IMPORT:
+        theThread->importobservation();
+        break;
+    default:
+        theThread->start();
+        break;
+    }
 }
 
 void Obsobj::stopExecObsobj(int row)
 {
     ExecObsobj* theThread = this->findExecObsobj(row);
-    theThread->stop();
+    TweediaEnum theMethod = theThread->Method();
+    switch (theMethod) {
+    case METHOD_RUN:
+        theThread->stop();
+        break;
+    case METHOD_IMPORT:
+        break;
+    default:
+        theThread->stop();
+        break;
+    }
 }
 
 void Obsobj::connectToAllExecObsobj(WidgetPluginInterface *mdichild,  const char* method)
@@ -197,8 +219,8 @@ int Obsobj::addObsobj(QString argPathname)
     this->setData(this->index(row,3),argPathname);
 
     this->setData(this->index(row,5),mMetadataOfObservation->Tablename(newid));
-    this->setData(this->index(row,6),QString(TITLE_OBSFMT_TXT));
-    this->setData(this->index(row,7),this->getDeaultMethodTitle(fi.fileName()));
+    this->setData(this->index(row,6),this->getDefaultObsfmtTitle(fi.fileName()));
+    this->setData(this->index(row,7),this->getDefaultMethodTitle(fi.fileName()));
 
     this->submitAll();
 
@@ -230,8 +252,19 @@ TweediaEnum Obsobj::getType(QString arg){
 
     return Default;
 }
+QString Obsobj::getDefaultObsfmtTitle(QString arg){
+    QString ret = QString(TITLE_OBSFMT_CSV);
+    QString wkstr = QString(arg.split(".").last());
 
-QString Obsobj::getDeaultMethodTitle(QString arg){
+    if (!wkstr.compare(TITLE_OBSFMT_CSV)) return ret;
+
+    ret.clear();
+    ret.append(TITLE_OBSFMT_TXT);
+    return ret;
+
+}
+
+QString Obsobj::getDefaultMethodTitle(QString arg){
     QString ret = QString(TITLE_METHOD_IMPORT);
     QString wkstr = QString(arg.split(".").last());
 

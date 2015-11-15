@@ -30,6 +30,9 @@
 #include <QProcess>
 #include <QByteArray>
 
+#include <QFile>
+#include <QTextStream>
+
 #include <QSqlTableModel>
 #include <QSqlQuery>
 
@@ -69,6 +72,8 @@ public:
     void setTablename(QString tablename);
     TweediaEnum Obsformat(){return mObsformat;}
     void setObsformat(TweediaEnum arg){mObsformat = arg;}
+    TweediaEnum Method(){return mMethod;}
+    void setMethod(TweediaEnum arg){mMethod = arg;}
 
     void submitCommand(Command *command);
 
@@ -76,6 +81,7 @@ public:
 
     void start();
     void stop();
+    void importobservation();
 
 private:
     volatile bool m_running;
@@ -88,6 +94,7 @@ private:
     QString mArgument;
     QString mTablename;
     TweediaEnum mObsformat;
+    TweediaEnum mMethod;
     QProcess *mProcess;
 
     QSqlTableModel *mTable;

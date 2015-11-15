@@ -95,7 +95,8 @@ protected:
 
 private:
     TweediaEnum getType(QString arg);
-    QString getDeaultMethodTitle(QString arg);
+    QString getDefaultObsfmtTitle(QString arg);
+    QString getDefaultMethodTitle(QString arg);
 
 signals:
 

@@ -76,7 +76,7 @@
          <item row="0" column="2">
           <widget class="QPushButton" name="pushButton_4">
            <property name="text">
-            <string>Run</string>
+            <string>Run/Import</string>
            </property>
           </widget>
          </item>
