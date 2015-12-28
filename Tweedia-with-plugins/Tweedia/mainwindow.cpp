@@ -376,15 +376,15 @@ void MainWindow::on_pushButton_2_clicked()
     this->OpenCommand();
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-    this->AddObsobj();
-}
+//void MainWindow::on_pushButton_3_clicked()
+//{
+//    this->AddObsobj();
+//}
 
-void MainWindow::on_pushButton_4_clicked()
-{
-    this->RunObsobj();
-}
+//void MainWindow::on_pushButton_4_clicked()
+//{
+//    this->RunObsobj();
+//}
 
 void MainWindow::on_actionAbout_Tweedia_triggered()
 {
