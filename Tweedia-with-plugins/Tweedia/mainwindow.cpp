@@ -371,10 +371,10 @@ void MainWindow::on_pushButton_clicked()
     this->SubmitCommand();
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    this->OpenCommand();
-}
+//void MainWindow::on_pushButton_2_clicked()
+//{
+//    this->OpenCommand();
+//}
 
 //void MainWindow::on_pushButton_3_clicked()
 //{
